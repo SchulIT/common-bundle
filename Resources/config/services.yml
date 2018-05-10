@@ -1,0 +1,56 @@
+services:
+  _defaults:
+      public: false
+
+  app.common.twig:
+    class: SchoolIT\CommonBundle\Twig\CommonExtension
+    arguments:
+      - "@app.common.config"
+      - "%app.common.menu%"
+    tags:
+      - { name: twig.extension }
+
+  app.common.config:
+    class: SchoolIT\CommonBundle\Twig\ConfigVariable
+    arguments:
+      - "%app.common.name%"
+      - "%app.common.host%"
+      - "%app.common.path%"
+      - "%app.common.ssl%"
+      - "%app.common.version%"
+      - "%app.common.logo%"
+
+  # Event Listener
+  app.locale_listener:
+    class: SchoolIT\CommonBundle\EventListener\LocaleListener
+    arguments: ['%app.common.locales%', "@logger"]
+    tags:
+        - { name: kernel.event_subscriber }
+
+  app.console_listener:
+    class: SchoolIT\CommonBundle\EventListener\ConsoleListener
+    calls:
+      - [ "setContainer", ["@service_container"]]
+    tags:
+      - { name: kernel.event_subscriber }
+
+  # DateHelper
+  datehelper:
+    public: true
+    class: SchoolIT\CommonBundle\Helper\DateHelper
+
+  # LightSAML ID store
+  id_store:
+    class: SchoolIT\CommonBundle\Store\IdStore
+    public: true
+    arguments:
+      - "@doctrine.orm.entity_manager"
+      - "@lightsaml.system.time_provider"
+
+  # Monolog
+  monolog.db_handler:
+    class: SchoolIT\CommonBundle\Monolog\DatabaseHandler
+    arguments:
+      - "@doctrine.dbal.default_connection"
+      - "@security.token_storage"
+      - "@request_stack"

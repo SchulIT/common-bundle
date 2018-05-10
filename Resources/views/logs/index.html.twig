@@ -1,0 +1,97 @@
+{% extends "@Common/main.html.twig" %}
+
+{% block title %}{{ 'logs.label'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="row widgetrow">
+        {% for counter in counters %}
+            <div class="col-md-3 col-sm-6 col-xs-12 widget">
+                <div class="content">
+                    <a href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}">
+                        <h3>{{ counter.counter }}</h3>
+                        <p>
+                            {{ counter.name }}
+                        </p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="contentbox">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <colgroup>
+                    <col class="col-xs" />
+                    <col class="col-md" />
+                    <col />
+                    <col class="col-md" />
+                </colgroup>
+
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>{{ 'logs.channel'|trans }}</th>
+                    <th>{{ 'logs.message'|trans }}</th>
+                    <th>{{ 'logs.time'|trans }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.getLevel()|log_level }}</td>
+                        <td>{{ item.getChannel() }}</td>
+                        <td>{{ item.getMessage() }}
+                            {% if item.getDetails() != null %}
+                                <pre style="max-width: 1000px;">{{ item.getDetails() }}</pre>
+                            {% endif %}
+                        </td>
+                        <td>{{ item.getTime().format('d.m.Y H:i:s') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% include '@Common/includes/pagination.html.twig' with {
+        currentPage: page,
+        currentFilters: { level: level, channel: channel },
+        paginationPath: 'admin_logs',
+        lastPage: pages,
+        showAlwaysFirstAndLast: true
+    } only %}
+
+    <div class="contentbox">
+        <h3>{{ 'logs.filter'|trans }}</h3>
+
+        <form class="form form-horizontal" action="{{ path('admin_logs') }}" method="get">
+            {% if level != null %}
+                <input type="hidden" name="level" value="{{ level }}" />
+            {% endif %}
+
+            <div class="form-group">
+                <label for="channel" class="col-sm-2 control-label">{{ 'logs.channel'|trans }}</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="channel">
+                        <option value="">{{ 'logs.all_channels'|trans }}</option>
+                        {% for c in channels %}
+                            <option value="{{ c }}" {% if c == channel %}selected{% endif %}>{{ c }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="btn btn-primary btn-sm">
+                    {{ 'logs.apply_filter'|trans }}
+                </button>
+
+                <a href="{{ path('admin_logs', { level: level }) }}" class="btn btn-default btn-sm">
+                    {{ 'logs.clear_filter'|trans }}
+                </a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

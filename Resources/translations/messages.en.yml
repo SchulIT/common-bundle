@@ -1,0 +1,39 @@
+auth:
+  login: Sign-In
+  remember_me: Remember me
+  lost_pw: Lost password?
+  logout: Log-Out
+
+error:
+  label: Error
+
+info:
+  label: Information
+
+success:
+  label: Success
+
+menu:
+  label: Menu
+
+services:
+  label: Online services
+
+profile:
+  label: Edit profile
+
+dashboard:
+  label: Dashboard
+  welcome: Welcome, %firstname %lastname!
+  redirect: You will be redirected to the WebStore immediately. If not, click the button below.
+  redirect_button: Go to WebStore
+
+logs:
+  label: Logs
+  channel: Channel
+  message: Message
+  time: Time
+  filter: Filter
+  apply_filter: Apply filter
+  clear_filter: Clear filter
+  all_channels: All channels

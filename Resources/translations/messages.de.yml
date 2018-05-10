@@ -1,0 +1,39 @@
+auth:
+  login: Anmelden
+  remember_me: angemeldet bleiben
+  lost_pw: Passwort vergessen?
+  logout: Abmelden
+
+error:
+  label: Fehler
+
+info:
+  label: Information
+
+success:
+  label: Erfolg
+
+menu:
+  label: Menü
+
+services:
+  label: Online-Dienste
+
+profile:
+  label: Konto-Einstellungen
+
+dashboard:
+  label: Übersicht
+  welcome: Willkommen, %firstname% %lastname%!
+  redirect: Du wirst automatisch zum WebStore weitergeleitet. Falls das nicht funktioniert, klicke den untenstehenden Button.
+  redirect_button: Zum WebStore
+
+logs:
+  label: Logs
+  channel: Bereich
+  message: Mitteilung
+  time: Zeit
+  filter: Filter
+  apply_filter: Filter übernehmen
+  clear_filter: Filter löschen
+  all_channels: Alle Bereiche
