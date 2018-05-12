@@ -71,8 +71,8 @@
                 <input type="hidden" name="level" value="{{ level }}" />
             {% endif %}
 
-            <div class="form-group">
-                <label for="channel" class="col-sm-2 control-label">{{ 'logs.channel'|trans }}</label>
+            <div class="form-group row">
+                <label for="channel" class="col-sm-2 col-form-label">{{ 'logs.channel'|trans }}</label>
                 <div class="col-sm-10">
                     <select class="form-control" name="channel">
                         <option value="">{{ 'logs.all_channels'|trans }}</option>
@@ -88,7 +88,7 @@
                     {{ 'logs.apply_filter'|trans }}
                 </button>
 
-                <a href="{{ path('admin_logs', { level: level }) }}" class="btn btn-default btn-sm">
+                <a href="{{ path('admin_logs', { level: level }) }}" class="btn btn-secondary btn-sm">
                     {{ 'logs.clear_filter'|trans }}
                 </a>
             </div>
