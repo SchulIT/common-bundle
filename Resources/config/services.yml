@@ -7,6 +7,15 @@ services:
     arguments:
       - "@app.common.config"
       - "%app.common.menu%"
+      - "@translator"
+    tags:
+      - { name: twig.extension }
+
+  app.common.moment:
+    class: SchoolIT\CommonBundle\Twig\MomentPhpExtension
+    arguments:
+      - "@translator"
+      - "@logger"
     tags:
       - { name: twig.extension }
 

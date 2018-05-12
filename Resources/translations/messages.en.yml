@@ -37,3 +37,7 @@ logs:
   apply_filter: Apply filter
   clear_filter: Clear filter
   all_channels: All channels
+
+date:
+  format: "d/m/Y"
+  with_time: "d/m/Y H:i:s"

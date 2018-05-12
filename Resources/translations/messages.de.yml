@@ -37,3 +37,7 @@ logs:
   apply_filter: Filter übernehmen
   clear_filter: Filter löschen
   all_channels: Alle Bereiche
+
+date:
+  format: d.m.Y
+  with_time: d.m.Y H:i:s
