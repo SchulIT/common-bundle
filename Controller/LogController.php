@@ -7,6 +7,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 use Monolog\Logger;
 use SchoolIT\CommonBundle\Controller\Model\LogCounter;
 use SchoolIT\CommonBundle\Entity\LogEntry;
+use SchoolIT\CommonBundle\Form\ConfirmType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class LogController extends Controller {
             $page = 1;
         }
 
-        if($level !== null && !is_numeric($level) || $level < 200) {
+        if($level !== null && !is_numeric($level)) {
             $level = 200;
         }
 
@@ -130,7 +131,37 @@ class LogController extends Controller {
         return $channels;
     }
 
+    /**
+     * @Route("/admin/logs/clear", name="admin_logs_clear")
+     */
     public function clear(Request $request) {
+        $em = $this->getDoctrine()->getManager();
 
+        $form = $this->createForm(ConfirmType::class, null, [
+            'message' => 'logs.clear.confirm',
+            'header' => 'logs.clear.header'
+        ]);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->truncateLogsTable();
+
+            $this->addFlash('success', 'logs.clear.success');
+            return $this->redirectToRoute('admin_logs');
+        }
+
+        return $this->render('@Common/logs/clear.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    private function truncateLogsTable() {
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $platform = $connection->getDatabasePlatform();
+        $metadata = $em->getClassMetadata(LogEntry::class);
+
+        $query = $platform->getTruncateTableSql($metadata->getTableName());
+        $connection->executeUpdate($query);
     }
 }

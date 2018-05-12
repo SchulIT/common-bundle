@@ -37,6 +37,15 @@ logs:
   apply_filter: Filter übernehmen
   clear_filter: Filter löschen
   all_channels: Alle Bereiche
+  clear:
+    label: Log leeren
+    header: Leeren bestätigen
+    confirm: Soll das Log wirklich geleert werden?
+    success: Log erfolgreich geleert
+
+actions:
+  confirm: Bestätigen
+  cancel: Abbrechen
 
 date:
   format: d.m.Y

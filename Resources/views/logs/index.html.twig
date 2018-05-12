@@ -3,7 +3,7 @@
 {% block title %}{{ 'logs.label'|trans }}{% endblock %}
 
 {% block content %}
-    <div class="row widgetrow">
+    <div class="row">
         {% for counter in counters %}
             <div class="col-md-3 col-sm-6 col-xs-12 widget">
                 <div class="content">
@@ -63,6 +63,12 @@
         showAlwaysFirstAndLast: true
     } only %}
 
+    <div class="buttons">
+        <a href="{{ path('admin_logs_clear') }}" class="btn btn-sm btn-danger">
+            <i class="fa fa-trash"></i> {{ 'logs.clear.label'|trans }}
+        </a>
+    </div>
+
     <div class="contentbox">
         <h3>{{ 'logs.filter'|trans }}</h3>
 
@@ -85,7 +91,7 @@
 
             <div class="buttons">
                 <button type="submit" class="btn btn-primary btn-sm">
-                    {{ 'logs.apply_filter'|trans }}
+                    <i class="fa fa-check"></i> {{ 'logs.apply_filter'|trans }}
                 </button>
 
                 <a href="{{ path('admin_logs', { level: level }) }}" class="btn btn-secondary btn-sm">
