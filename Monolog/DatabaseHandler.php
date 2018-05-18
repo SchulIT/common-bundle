@@ -41,7 +41,11 @@ EOF;
             $user = $token->getUser();
 
             if($user !== null) {
-                $username = $user->getUsername();
+                $username = (string)$user;
+
+                if($user instanceof UserInterface) {
+                    $username = $user->getUsername();
+                }
             }
         }
 
