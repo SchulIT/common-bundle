@@ -83,6 +83,12 @@ header#page-header {
   }
 }
 
+@media (min-width: 768px) {
+  .navigation .nav {
+    width: 100%;
+  }
+}
+
 .navbar-collapse {
   padding: 0px;
   max-height: none;
