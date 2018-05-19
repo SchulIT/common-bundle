@@ -35,7 +35,7 @@ class CommonExtension extends \Twig_Extension implements \Twig_Extension_Globals
         ];
     }
 
-    public function format_date(\DateTime $date) {
+    public function format_date(\DateTimeInterface $date) {
         return $date->format($this->translator->trans('date.with_time'));
     }
 
