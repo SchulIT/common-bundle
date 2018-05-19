@@ -1,0 +1,27 @@
+{% use "bootstrap_4_horizontal_layout.html.twig" %}
+
+{% block fieldset_row %}
+    <div class="contentbox">
+        {% if legend is defined and legend is not empty %}
+            <h4>{{ legend | trans({}, translation_domain) }}</h4>
+        {% endif %}
+
+        {{ form_widget(form) }}
+    </div>
+{% endblock %}
+
+{% block choice_widget_collapsed -%}
+    {{- parent() -}}
+
+    {% if multiple %}
+        <span class="help-block">In diesem Feld ist Mehrfachauswahl mit den Tasten Strg und/oder Shift möglich.</span>
+
+        <button type="button" class="btn btn-secondary btn-sm" onclick="$('#{{ id }} option').prop('selected', true);">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i> alle auswählen
+        </button>
+
+        <button type="button" class="btn btn-secondary btn-sm" onclick="$('#{{ id }} option').prop('selected', false);">
+            <i class="fa fa-square-o" aria-hidden="true"></i> alle abwählen
+        </button>
+    {% endif %}
+{%- endblock choice_widget_collapsed %}
