@@ -21,64 +21,64 @@
         <nav aria-label="Page navigation">
             <ul class="pagination">
             {% if currentPage > 1 %}
-                <li>
-                    <a href="{{ path(paginationPath, currentFilters|merge({page: currentPage-1})) }}">&laquo;</a>
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(paginationPath, currentFilters|merge({page: currentPage-1})) }}">&laquo;</a>
                 </li>
 
                 {% for i in range(1, extremePagesLimit) if ( i < currentPage - nearbyPagesLimit ) %}
-                    <li>
-                        <a href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
 
                 {% if extremePagesLimit + 1 < currentPage - nearbyPagesLimit %}
-                    <li class="disabled">
+                    <li class="page-item disabled">
                         <span class="sep-dots">...</span>
                     </li>
                 {% endif %}
 
                 {% for i in range(currentPage-nearbyPagesLimit, currentPage-1) if ( i > 0 ) %}
-                    <li>
-                        <a href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
             {% elseif showAlwaysFirstAndLast %}
-                <li class="disabled">
-                    <a href="#" aria-label="Zurück">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Zurück">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
             {% endif %}
 
-                <li class="active">
-                    <a href="{{ path(paginationPath, currentFilters|merge({ page: currentPage })) }}">{{ currentPage }}</a>
+                <li class="page-item active">
+                    <a class="page-link" href="{{ path(paginationPath, currentFilters|merge({ page: currentPage })) }}">{{ currentPage }}</a>
                 </li>
 
             {% if currentPage < lastPage %}
                 {% for i in range(currentPage+1, currentPage + nearbyPagesLimit) if ( i <= lastPage ) %}
-                    <li>
-                        <a href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
 
                 {% if  (lastPage - extremePagesLimit) > (currentPage + nearbyPagesLimit) %}
-                    <li class="disabled">
-                        <span class="sep-dots">...</span>
+                    <li class="page-item disabled">
+                        <a class="page-link disabled">...</a>
                     </li>
                 {% endif %}
 
                 {% for i in range(lastPage - extremePagesLimit+1, lastPage) if ( i > currentPage + nearbyPagesLimit ) %}
-                    <li>
-                        <a href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path(paginationPath, currentFilters|merge({page: i})) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
 
-                <li>
-                    <a href="{{ path(paginationPath, currentFilters|merge({page: currentPage+1})) }}">&raquo;</a>
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(paginationPath, currentFilters|merge({page: currentPage+1})) }}">&raquo;</a>
                 </li>
             {% elseif showAlwaysFirstAndLast %}
-                <li>
-                    <a href="#" aria-label="Weiter">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Weiter">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
