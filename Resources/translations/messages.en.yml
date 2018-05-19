@@ -43,6 +43,16 @@ logs:
       confirm: Are you sure you want to clear the logs?
       success: Logs cleared successfully
 
+mails:
+  label: Mail delivery
+  errors:
+    message: In the past %days% day(s) %num_errors% error(s) occured while sending mails.
+    view: View logs
+  to: To
+  from: From
+  date: Date
+  subject: Subject
+
 actions:
   confirm: Confirm
   cancel: Cancel

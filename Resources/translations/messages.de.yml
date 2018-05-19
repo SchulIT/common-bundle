@@ -43,6 +43,16 @@ logs:
     confirm: Soll das Log wirklich geleert werden?
     success: Log erfolgreich geleert
 
+mails:
+  label: E-Mail Versand
+  errors:
+    message: In den letzten %days% Tagen gab es %num_errors% Problem(e) beim E-Mail Versand.
+    view: Zum Log
+  to: Empfänger
+  from: Absender
+  date: Datum
+  subject: Betreff
+
 actions:
   confirm: Bestätigen
   cancel: Abbrechen
