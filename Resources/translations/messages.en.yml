@@ -37,11 +37,11 @@ logs:
   apply_filter: Apply filter
   clear_filter: Clear filter
   all_channels: All channels
-    clear:
-      label: Clear logs
-      header: Confirm clear logs
-      confirm: Are you sure you want to clear the logs?
-      success: Logs cleared successfully
+  clear:
+    label: Clear logs
+    header: Confirm clear logs
+    confirm: Are you sure you want to clear the logs?
+    success: Logs cleared successfully
 
 mails:
   label: Mail delivery
