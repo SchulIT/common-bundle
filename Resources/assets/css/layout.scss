@@ -176,6 +176,26 @@ header#page-header {
     .bootstrap-select {
       width: 100% !important;
     }
+
+    &.link-widget {
+      a.content {
+        color: $black !important;
+        font-size: 130%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -o-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+      }
+
+      a.content:hover {
+        background: $secondary;
+        color: $white !important;
+      }
+    }
   }
 
   table {
