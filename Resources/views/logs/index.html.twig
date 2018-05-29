@@ -5,15 +5,11 @@
 {% block content %}
     <div class="row">
         {% for counter in counters %}
-            <div class="col-md-3 col-sm-6 col-xs-12 widget">
-                <div class="content">
-                    <a href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}">
-                        <h3>{{ counter.counter }}</h3>
-                        <p>
-                            {{ counter.name }}
-                        </p>
-                    </a>
-                </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 widget link-widget">
+                <a href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}" class="content">
+                    <h3>{{ counter.counter }}</h3>
+                    {{ counter.name }}
+                </a>
             </div>
         {% endfor %}
     </div>
