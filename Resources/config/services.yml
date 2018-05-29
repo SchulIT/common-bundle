@@ -49,12 +49,18 @@ services:
     class: SchoolIT\CommonBundle\Helper\DateHelper
 
   # LightSAML ID store
-  id_store:
+  saml.id_store:
     class: SchoolIT\CommonBundle\Store\IdStore
     public: true
     arguments:
       - "@doctrine.orm.entity_manager"
       - "@lightsaml.system.time_provider"
+
+  saml.token_factory:
+        class: SchoolIT\CommonBundle\Security\Factory\SamlSpTokenFactory
+        public: true
+        arguments:
+          - "@event_dispatcher"
 
   # Monolog
   monolog.db_handler:
