@@ -141,27 +141,22 @@ header#page-header {
     }
 
     h3 {
-      font-size: 2em;
-      background: #7f92a7;
+      background: $secondary;
       color: #fff;
       border-radius: 50px;
       width: 45px;
       height: 45px;
-      padding-top: 8px;
-      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5px;
     }
 
     :hover h3 {
-      background: #002750;
+      background: $white;
+      color: $secondary;
     }
-
-    &.service h3 {
-      width: auto !important;
-      border-radius: 0px;
-      color: #002750;
-      background: none;
-    }
-
+    
     p {
       font-size: 1.2em;
       text-decoration: none;
