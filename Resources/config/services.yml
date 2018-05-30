@@ -44,9 +44,12 @@ services:
       - { name: kernel.event_subscriber }
 
   # DateHelper
+  SchoolIT\CommonBundle\Helper\DateHelper:
+    public: false
+
   datehelper:
     public: true
-    class: SchoolIT\CommonBundle\Helper\DateHelper
+    alias: SchoolIT\CommonBundle\Helper\DateHelper
 
   # LightSAML ID store
   saml.id_store:
@@ -57,10 +60,10 @@ services:
       - "@lightsaml.system.time_provider"
 
   saml.token_factory:
-        class: SchoolIT\CommonBundle\Security\Factory\SamlSpTokenFactory
-        public: true
-        arguments:
-          - "@event_dispatcher"
+    class: SchoolIT\CommonBundle\Security\Factory\SamlSpTokenFactory
+    public: true
+    arguments:
+      - "@event_dispatcher"
 
   # Monolog
   monolog.db_handler:
