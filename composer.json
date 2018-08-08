@@ -16,8 +16,8 @@
         "swiftmailer/swiftmailer": "^6.1",
         "lightsaml/lightsaml": "^1.4",
         "twig/twig": "^2.5",
-        "symfony/translation": "^4.1",
-        "symfony/form": "^4.1"
+        "symfony/translation": "^4.0",
+        "symfony/form": "^4.0"
     },
     "autoload": {
         "psr-4": {
