@@ -4,10 +4,11 @@ namespace SchoolIT\CommonBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class CommonExtension extends Extension {
+class CommonExtension extends Extension implements PrependExtensionInterface {
 
     public function load(array $configs, ContainerBuilder $container) {
         $configuration = new Configuration();
@@ -28,5 +29,12 @@ class CommonExtension extends Extension {
 
     public function getAlias() {
         return 'common_bundle';
+    }
+
+    public function prepend(ContainerBuilder $container) {
+        $container->prependExtensionConfig('composer_dependency_list', [
+            'list_template' => '@Common/dependencies/list.html.twig',
+            'license_template' => '@Common/dependencies/license.html.twig'
+        ]);
     }
 }

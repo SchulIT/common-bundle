@@ -1,0 +1,14 @@
+{% extends ["base.html.twig", "@Common/base.html.twig"] %}
+
+{% block title %}{{ 'licenses.label'|trans }}{% endblock %}
+
+{% block container %}
+    <div class="contentbox">
+        <h4>{{ 'licenses.header'|trans({ '%project%': dependency.name, '%license_type%': dependency.licenseType }) }}</h4>
+        <pre>{{ license }}</pre>
+    </div>
+
+    <div class="buttons">
+        <a href="{{ path('list_composer_dependencies') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> {{ 'actions.back'|trans }}</a>
+    </div>
+{% endblock %}

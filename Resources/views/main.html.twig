@@ -1,33 +1,6 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% block meta %}{% endblock %}
-    <title>{{ config.name }} | {% block title %}{% endblock %}</title>
+{% extends ["base.html.twig", "@Common/base.html.twig"] %}
 
-    {% block css %}
-    {% endblock %}
-
-    {% block head %}{% endblock %}
-</head>
-
-<body>
-
-<header class="clearfix" id="page-header">
-    <div class="d-none d-print-block">
-        <h3>{{ block('title') }}</h3>
-    </div>
-
-    <div class="pull-left heading hidden-print">
-        {% if config.logo is defined and config.logo is not null %}
-            <img src="{{ asset(config.logo) }}" alt="" id="logo" />
-        {% endif %}
-
-        <h1>{{ config.name }}</h1>
-    </div>
-
+{% block userbar %}
     <div class="pull-right d-print-none" id="userbar">
         <div class="btn-group d-md-none d-lg-none">
             <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#menu">
@@ -36,23 +9,23 @@
         </div>
 
         {% if user.services|length > 0 %}
-        <div class="btn-group">
-            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bars"></i> {{ 'services.label'|trans }}
-            </button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i> {{ 'services.label'|trans }}
+                </button>
 
-            <ul class="dropdown-menu" role="menu">
+                <ul class="dropdown-menu" role="menu">
 
-                {% for service in user.services %}
-                    <li>
-                        <a class="dropdown-item" href="{{ service.url }}" target="_blank" title="{{ service.description }}">
-                            {{ service.name }}
-                        </a>
-                    </li>
-                {% endfor %}
+                    {% for service in user.services %}
+                        <li>
+                            <a class="dropdown-item" href="{{ service.url }}" target="_blank" title="{{ service.description }}">
+                                {{ service.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
 
-            </ul>
-        </div>
+                </ul>
+            </div>
         {% endif %}
 
         <div class="btn-group">
@@ -60,7 +33,7 @@
                 <i class="fa fa-user"></i>
 
                 {% if user.firstname is not null and user.lastname is not null %}
-                {{ user.lastname }}, {{ user.firstname }} ({{ app.user.username }})
+                    {{ user.lastname }}, {{ user.firstname }} ({{ app.user.username }})
                 {% else %}
                     {{ app.user.username }}
                 {% endif %}
@@ -69,14 +42,14 @@
             <ul class="dropdown-menu pull-right" role="menu">
                 {% block usermenu %}{% endblock %}
                 {% if profile_url is not null %}
-                <li>
-                    {% if profile_url starts with 'http://' or profile_url starts with 'https://' %}
-                        <a href="{{ profile_url }}" class="dropdown-item"><i class="fa fa-cogs"></i> {{ 'profile.label'|trans }}</a>
-                    {% else %}
-                        <a href="{{ path(profile_url) }}" class="dropdown-item"><i class="fa fa-cogs"></i> {{ 'profile.label'|trans }}</a>
-                    {% endif %}
-                </li>
-                <li class="dropdown-divider"></li>
+                    <li>
+                        {% if profile_url starts with 'http://' or profile_url starts with 'https://' %}
+                            <a href="{{ profile_url }}" class="dropdown-item"><i class="fa fa-cogs"></i> {{ 'profile.label'|trans }}</a>
+                        {% else %}
+                            <a href="{{ path(profile_url) }}" class="dropdown-item"><i class="fa fa-cogs"></i> {{ 'profile.label'|trans }}</a>
+                        {% endif %}
+                    </li>
+                    <li class="dropdown-divider"></li>
                 {% endif %}
                 <li>
                     <a href="{{ path('logout') }}" class="dropdown-item"><i class="fa fa-sign-out"></i> {{ 'auth.logout'|trans }}</a>
@@ -84,10 +57,9 @@
             </ul>
         </div>
     </div>
-</header>
+{% endblock %}
 
-<div class="container-fluid main">
-
+{% block container %}
     <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 navigation d-print-none">
             <nav class="navbar navbar-expand-md">
@@ -123,34 +95,4 @@
         </div>
 
     </div>
-
-</div>
-
-<footer class="hidden-print">
-    <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <h3>{{ config.name }}</h3>
-
-            <p>
-                Version {{ config.version }}
-            </p>
-
-        </div>
-
-        <div class="col-md-6 col-xs-12">
-            <p>
-                © {{ "now"|date("Y") }} School IT
-            </p>
-        </div>
-    </div>
-</footer>
-
-{% block pre_javascript %}{% endblock %}
-
-{% block javascript %}
 {% endblock %}
-
-{% block post_javascript %}{% endblock %}
-
-</body>
-</html>
