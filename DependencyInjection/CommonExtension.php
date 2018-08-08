@@ -24,10 +24,6 @@ class CommonExtension extends Extension {
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-
-        /*if(!$container->has('lightsaml.system.time_provider')) {
-            $container->removeDefinition('id_store');
-        }*/
     }
 
     public function getAlias() {
