@@ -26,11 +26,11 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        if($config['disable']['saml'] !== true) {
+        if(!isset($config['disable']) || $config['disable']['saml'] !== true) {
             $loader->load('lightsaml.yml');
         }
 
-        if($config['disable']['mail'] !== true) {
+        if(!isset($config['disable']) || $config['disable']['mail'] !== true) {
             $loader->load('swiftmailer.yml');
         }
     }
