@@ -40,6 +40,12 @@ class Configuration implements ConfigurationInterface {
             ->scalarNode('menu')
                 ->defaultValue('App:Builder:mainMenu')
             ->end()
+            ->arrayNode('disable')
+                ->children()
+                    ->booleanNode('saml')->defaultFalse()->end()
+                    ->booleanNode('mail')->defaultFalse()->end()
+                ->end()
+            ->end()
         ->end();
 
         return $builder;
