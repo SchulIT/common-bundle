@@ -9,25 +9,19 @@ class Configuration implements ConfigurationInterface {
 
     public function getConfigTreeBuilder() {
         $builder = new TreeBuilder();
-        $root = $builder->root('common_bundle');
+        $root = $builder->root('common');
 
         $root->children()
             ->arrayNode('app')
                 ->children()
+                    ->scalarNode('url')
+                        ->isRequired()
+                    ->end()
                     ->scalarNode('name')
                         ->isRequired()
                     ->end()
                     ->scalarNode('version')
                         ->isRequired()
-                    ->end()
-                    ->scalarNode('host')
-                        ->isRequired()
-                    ->end()
-                    ->scalarNode('path')
-                        ->isRequired()
-                    ->end()
-                    ->booleanNode('ssl')
-                        ->defaultValue(true)
                     ->end()
                     ->scalarNode('logo')
                         ->defaultValue(null)
