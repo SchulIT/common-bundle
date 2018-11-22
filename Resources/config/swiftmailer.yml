@@ -1,18 +1,9 @@
 services:
-  SchoolIT\CommonBundle\Controller\MailController:
-    class: SchoolIT\CommonBundle\Controller\MailController
-    public: true
-    arguments:
-    - "@helper.email_spool"
-
-  helper.email_spool:
-    public: false
-    class: SchoolIT\CommonBundle\Helper\EmailSpoolHelper
+  SchoolIT\CommonBundle\Helper\EmailSpoolHelper:
     arguments:
     - "%swiftmailer.spool.default.file.path%"
 
-  app.mail_logger:
-    class: SchoolIT\CommonBundle\EventListener\EmailListener
+  SchoolIT\CommonBundle\EventListener\EmailListener:
     arguments:
     - "@monolog.logger.mailer"
     public: false

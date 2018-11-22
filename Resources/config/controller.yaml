@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        public: false
+
+    SchoolIT\CommonBundle\Controller\:
+        resource: '../../Controller'
+        exclude: '../../Controller/Model'
+        tags:
+            - 'controller.service_arguments'

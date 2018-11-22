@@ -1,14 +1,11 @@
 services:
-  # LightSAML ID store
-  saml.id_store:
-    class: SchoolIT\CommonBundle\Store\IdStore
-    public: true
-    arguments:
-    - "@doctrine.orm.entity_manager"
-    - "@lightsaml.system.time_provider"
+  _defaults:
+      autowire: true
+      public: false
 
-  saml.token_factory:
-    class: SchoolIT\CommonBundle\Security\Factory\SamlSpTokenFactory
-    public: true
+  SchoolIT\CommonBundle\Store\IdStore:
     arguments:
-    - "@event_dispatcher"
+      $timeProvider: "@lightsaml.system.time_provider"
+
+  SchoolIT\CommonBundle\Security\Factory\SamlSpTokenFactory: ~
+

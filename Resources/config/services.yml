@@ -1,26 +1,22 @@
 services:
   _defaults:
       public: false
+      autowire: true
 
-  app.common.twig:
-    class: SchoolIT\CommonBundle\Twig\CommonExtension
+  _instanceof:
+      Twig_ExtensionInterface:
+          tags: ['twig.extension']
+
+      Symfony\Component\EventDispatcher\EventSubscriberInterface:
+          tags: ['kernel.event_subscriber']
+
+  SchoolIT\CommonBundle\Twig\CommonExtension:
     arguments:
-      - "@app.common.config"
-      - "%app.common.menu%"
-      - "@translator"
-    tags:
-      - { name: twig.extension }
+      $menuService: "%app.common.menu%"
 
-  app.common.moment:
-    class: SchoolIT\CommonBundle\Twig\MomentPhpExtension
-    arguments:
-      - "@translator"
-      - "@logger"
-    tags:
-      - { name: twig.extension }
+  SchoolIT\CommonBundle\Twig\MomentPhpExtension: ~
 
-  app.common.config:
-    class: SchoolIT\CommonBundle\Twig\ConfigVariable
+  SchoolIT\CommonBundle\Twig\ConfigVariable:
     arguments:
       - "%app.common.name%"
       - "%app.common.host%"
@@ -30,32 +26,18 @@ services:
       - "%app.common.logo%"
 
   # Event Listener
-  app.locale_listener:
-    class: SchoolIT\CommonBundle\EventListener\LocaleListener
-    arguments: ['%app.common.locales%', "@logger"]
-    tags:
-        - { name: kernel.event_subscriber }
+  SchoolIT\CommonBundle\EventListener\LocaleListener:
+    arguments:
+      $locales: '%app.common.locales%'
 
-  app.console_listener:
-    class: SchoolIT\CommonBundle\EventListener\ConsoleListener
+  SchoolIT\CommonBundle\EventListener\ConsoleListener:
     calls:
       - [ "setContainer", ["@service_container"]]
-    tags:
-      - { name: kernel.event_subscriber }
 
   # DateHelper
-  SchoolIT\CommonBundle\Helper\DateHelper:
-    public: false
-
-  datehelper:
-    public: true
-    alias: SchoolIT\CommonBundle\Helper\DateHelper
+  SchoolIT\CommonBundle\Helper\DateHelper: ~
 
   # Monolog
-  monolog.db_handler:
-    class: SchoolIT\CommonBundle\Monolog\DatabaseHandler
+  SchoolIT\CommonBundle\Monolog\DatabaseHandler:
     arguments:
-      - "@doctrine.dbal.default_connection"
-      - "@security.token_storage"
-      - "@request_stack"
-
+      $connection: "@doctrine.dbal.default_connection"

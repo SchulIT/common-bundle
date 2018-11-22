@@ -35,6 +35,8 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         if(!isset($config['disable']) || $config['disable']['mail'] !== true) {
             $loader->load('swiftmailer.yml');
         }
+
+        $loader->load('controller.yaml');
     }
 
     public function resolveOptions(string $url) {
