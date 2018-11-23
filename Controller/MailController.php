@@ -20,9 +20,11 @@ class MailController extends Controller {
     private const MAILS_PER_PAGE = 25;
 
     private $spoolHelper;
+    private $dateHelper;
 
-    public function __construct(EmailSpoolHelper $spoolHelper) {
+    public function __construct(EmailSpoolHelper $spoolHelper, DateHelper $dateHelper) {
         $this->spoolHelper = $spoolHelper;
+        $this->dateHelper = $dateHelper;
     }
 
     /**
@@ -71,8 +73,6 @@ class MailController extends Controller {
      * @return int
      */
     private function getNumberOfMailLogEntriesWithNoSuccess(): int {
-        /** @var DateHelper $datehelper */
-        $datehelper = $this->container->get('datehelper');
         $manager = $this->getDoctrine()->getManager();
 
         /** @var QueryBuilder $queryBuilder */
@@ -84,7 +84,7 @@ class MailController extends Controller {
             ->andWhere('l.level > :level')
             ->setParameter('channel', static::LOGGER_CHANNEL)
             ->setParameter('level', static::ERRORS_LOG_LEVEL)
-            ->setParameter('time', $datehelper->getToday()->modify(sprintf('-%ddays', static::ERRORS_PAST_DAYS)));
+            ->setParameter('time', $this->dateHelper->getToday()->modify(sprintf('-%ddays', static::ERRORS_PAST_DAYS)));
 
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
