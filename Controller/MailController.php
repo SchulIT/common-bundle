@@ -55,10 +55,6 @@ class MailController extends Controller {
         ]);
     }
 
-    public function sendMails() {
-
-    }
-
     private function createMessageModels(array $swiftMessages) {
         $messages = [ ];
 
