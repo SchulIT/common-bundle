@@ -2,12 +2,7 @@
 
 namespace SchoolIT\CommonBundle\Twig;
 
-use Moment\Moment;
-use Moment\MomentException;
 use Monolog\Logger;
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class CommonExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface{
