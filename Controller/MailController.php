@@ -8,11 +8,11 @@ use SchoolIT\CommonBundle\Controller\Model\Message;
 use SchoolIT\CommonBundle\Entity\LogEntry;
 use SchoolIT\CommonBundle\Helper\DateHelper;
 use SchoolIT\CommonBundle\Helper\EmailSpoolHelper;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MailController extends Controller {
+class MailController extends AbstractController {
 
     private const LOGGER_CHANNEL = 'mailer';
     private const ERRORS_LOG_LEVEL = Logger::WARNING;

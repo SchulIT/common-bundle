@@ -8,8 +8,14 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface {
 
     public function getConfigTreeBuilder() {
-        $builder = new TreeBuilder();
-        $root = $builder->root('common');
+        $builder = new TreeBuilder('common');
+
+        if (method_exists($builder, 'getRootNode')) {
+            $root = $builder->getRootNode();
+        } else {
+            // BC layer for symfony/config 4.1 and older
+            $root = $builder->root('doctrine');
+        }
 
         $root->children()
             ->arrayNode('app')

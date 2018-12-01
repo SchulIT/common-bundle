@@ -3,7 +3,7 @@
 namespace SchoolIT\CommonBundle\Twig;
 
 use Monolog\Logger;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CommonExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface{
     private $configVariable;

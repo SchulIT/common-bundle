@@ -4,12 +4,12 @@ namespace SchoolIT\CommonBundle\Controller;
 
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-abstract class AbstractCronjobController extends Controller {
+abstract class AbstractCronjobController extends AbstractController {
 
     protected function runCommand(array $input) {
         try {

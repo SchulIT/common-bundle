@@ -8,11 +8,11 @@ use Monolog\Logger;
 use SchoolIT\CommonBundle\Controller\Model\LogCounter;
 use SchoolIT\CommonBundle\Entity\LogEntry;
 use SchoolIT\CommonBundle\Form\ConfirmType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LogController extends Controller {
+class LogController extends AbstractController {
     const ITEMS_PER_PAGE = 25;
 
     /**
