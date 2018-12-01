@@ -14,7 +14,7 @@ class Configuration implements ConfigurationInterface {
             $root = $builder->getRootNode();
         } else {
             // BC layer for symfony/config 4.1 and older
-            $root = $builder->root('doctrine');
+            $root = $builder->root('common');
         }
 
         $root->children()
