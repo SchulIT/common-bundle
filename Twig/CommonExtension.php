@@ -4,8 +4,10 @@ namespace SchoolIT\CommonBundle\Twig;
 
 use Monolog\Logger;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
-class CommonExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface{
+class CommonExtension extends AbstractExtension implements GlobalsInterface {
     private $configVariable;
     private $menuService;
     private $translator;

@@ -6,9 +6,10 @@ use Moment\Moment;
 use Moment\MomentException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
 
-class MomentPhpExtension extends \Twig_Extension {
+class MomentPhpExtension extends AbstractExtension {
     private static $localeMapper = [
         'de' => 'de_DE',
         'en' => 'en_GB'
