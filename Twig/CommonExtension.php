@@ -34,11 +34,11 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         ];
     }
 
-    public function format_date(\DateTimeInterface $date) {
+    public function formatDate(\DateTimeInterface $date) {
         return $date->format($this->translator->trans('date.format'));
     }
 
-    public function format_datetime(\DateTimeInterface $dateTime) {
+    public function formatDatetime(\DateTimeInterface $dateTime) {
         return $dateTime->format($this->translator->trans('date.with_time'));
     }
 
