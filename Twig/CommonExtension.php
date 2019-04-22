@@ -6,6 +6,7 @@ use Monolog\Logger;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
+use Twig\TwigFilter;
 
 class CommonExtension extends AbstractExtension implements GlobalsInterface {
     private $configVariable;
@@ -27,13 +28,18 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
 
     public function getFilters() {
         return [
-            new \Twig_SimpleFilter('log_level', [ $this, 'logLevel' ]),
-            new \Twig_SimpleFilter('format_date', [ $this, 'format_date' ])
+            new TwigFilter('log_level', [ $this, 'logLevel' ]),
+            new TwigFilter('format_date', [ $this, 'formatDate' ]),
+            new TwigFilter('format_datetime', [ $this, 'formatDatetime' ])
         ];
     }
 
     public function format_date(\DateTimeInterface $date) {
-        return $date->format($this->translator->trans('date.with_time'));
+        return $date->format($this->translator->trans('date.format'));
+    }
+
+    public function format_datetime(\DateTimeInterface $dateTime) {
+        return $dateTime->format($this->translator->trans('date.with_time'));
     }
 
     public function logLevel($level) {

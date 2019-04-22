@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 class MomentPhpExtension extends AbstractExtension {
     private static $localeMapper = [
@@ -27,7 +28,7 @@ class MomentPhpExtension extends AbstractExtension {
 
     public function getFilters() {
         return [
-            new \Twig_SimpleFilter('moment', [ $this, 'moment' ])
+            new TwigFilter('moment', [ $this, 'moment' ])
         ];
     }
 
