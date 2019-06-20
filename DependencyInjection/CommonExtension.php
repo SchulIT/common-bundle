@@ -24,6 +24,9 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $container->setParameter('app.common.logo', $config['app']['logo']);
         $container->setParameter('app.common.locales', $config['locales']);
         $container->setParameter('app.common.menu', $config['menu']);
+        $container->setParameter('app.common.templates.mail', $config['templates']['mail']);
+        $container->setParameter('app.common.templates.logs', $config['templates']['logs']);
+        $container->setParameter('app.common.templates.clear_logs', $config['templates']['clear_logs']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');

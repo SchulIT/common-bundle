@@ -1,8 +1,8 @@
 /* CSS Document */
 html, body {
   background: rgb(225,225,225);
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   font: normal 90% "Helvetica Neue", "Segoe UI", Helvetica, Arial, "Lucida Grande", sans-serif;
   overflow-x: hidden;
 }
@@ -15,12 +15,12 @@ a {
 }
 
 h1, h2, h3 {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 .row {
-  padding: 0px 15px;
+  padding: 0 15px;
 }
 
 /** HEADER **/
@@ -107,101 +107,6 @@ header#page-header {
 .main {
   padding-bottom: 10px !important;
 
-  .contentbox {
-    background: #fff;
-    padding: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-
-    .row.no-padding {
-      padding-left: 0px;
-    }
-  }
-
-  .breadcrumb {
-    background: #fff;
-    margin-right: 10px;
-    border-radius: 0px;
-  }
-}
-
-
-.main {
-  /*** WIDGETS ***/
-  .row.widgetrow {
-    padding: 0px !important;
-  }
-
-  .widget {
-    text-align: center;
-    padding: 0px;
-
-    .content {
-      margin-right: 10px;
-      margin-bottom: 10px;
-      padding: 10px;
-      background: #fff;
-      height: 120px;
-    }
-
-    a {
-      display: block;
-      text-decoration: none;
-    }
-
-    h3 {
-      background: $secondary;
-      color: #fff;
-      border-radius: 50px;
-      width: 45px;
-      height: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 5px;
-    }
-
-    :hover h3 {
-      background: $white;
-      color: $secondary;
-    }
-    
-    p {
-      font-size: 1.2em;
-      text-decoration: none;
-      color: #002750;
-      padding-top: 20px;
-    }
-
-    form {
-      margin: 15px 0px;
-    }
-
-    .bootstrap-select {
-      width: 100% !important;
-    }
-
-    &.link-widget {
-      a.content {
-        color: $black !important;
-        font-size: 130%;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        -webkit-transition: background-color 0.1s ease-in-out;
-        -o-transition: background-color 0.1s ease-in-out;
-        transition: background-color 0.1s ease-in-out;
-      }
-
-      a.content:hover {
-        background: $secondary;
-        color: $white !important;
-      }
-    }
-  }
-
   table {
     /*** TABLES ***/
 
@@ -211,14 +116,6 @@ header#page-header {
       display: block;
       margin-bottom: 0;
       max-height: 3em;
-    }
-
-    .glyphicon {
-      margin-left: 6px;
-    }
-
-    .tr td:first-child {
-      max-width: 600px;
     }
 
     .column-sm {
@@ -240,7 +137,7 @@ header#page-header {
 
 @media (max-width: 768px) {
   .main > .row {
-    padding: 0px;
+    padding: 0;
   }
 }
 
@@ -255,7 +152,7 @@ footer {
   }
 
   p {
-    margin: 6px 0px;
+    margin: 6px 0;
   }
 }
 
@@ -270,7 +167,7 @@ footer {
   }
 
   footer .row {
-    padding:0px 5px;
+    padding:0 5px;
   }
 }
 @media (max-width: 480px) {
@@ -294,7 +191,7 @@ footer {
   .contentbox {
     padding-left: 5px;
     padding-right: 5px;
-    margin-right: 0px !important;
+    margin-right: 0 !important;
   }
 
   .widget {
@@ -316,7 +213,48 @@ footer {
   }
 
   .form-horizontal .form-group {
-    margin: 0px !important;
+    margin: 0 !important;
   }
 
+}
+
+form {
+  small.form-text {
+    font-size: 100% !important;
+  }
+}
+
+.card {
+  margin-bottom: 1rem;
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    font-size: 1.4em;
+    line-height: 40px;
+    -webkit-font-smoothing: antialiased;
+    color: $white;
+    background: $secondary;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  a.card-body {
+    text-decoration: none;
+    color: $black;
+
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -o-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover {
+      background: $card-border-color;
+      color: $black
+    }
+  }
 }

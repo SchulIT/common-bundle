@@ -1,12 +1,14 @@
 {% use "bootstrap_4_horizontal_layout.html.twig" %}
 
 {% block fieldset_row %}
-    <div class="contentbox">
+    <div class="card">
         {% if legend is defined and legend is not empty %}
-            <h4>{{ legend | trans({}, translation_domain) }}</h4>
+            <div class="card-header">{{ legend | trans({}, translation_domain) }}</div>
         {% endif %}
 
-        {{ form_widget(form) }}
+        <div class="card-body">
+            {{ form_widget(form) }}
+        </div>
     </div>
 {% endblock %}
 

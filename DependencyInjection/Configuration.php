@@ -46,6 +46,14 @@ class Configuration implements ConfigurationInterface {
                     ->booleanNode('mail')->defaultFalse()->end()
                 ->end()
             ->end()
+            ->arrayNode('templates')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('mail')->defaultValue('@Common/mail/index.html.twig')->end()
+                    ->scalarNode('logs')->defaultValue('@Common/logs/index.html.twig')->end()
+                    ->scalarNode('clear_logs')->defaultValue('@Common/logs/clear.html.twig')->end()
+                ->end()
+            ->end()
         ->end();
 
         return $builder;
