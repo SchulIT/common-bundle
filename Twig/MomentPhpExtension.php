@@ -32,12 +32,12 @@ class MomentPhpExtension extends AbstractExtension {
         ];
     }
 
-    public function moment(\DateTime $date) {
+    public function moment(\DateTime $date, bool $withTime = true) {
         try {
             $this->configureMomentPhp();
 
             $moment = new Moment('@' . $date->format('U'));
-            return $moment->calendar();
+            return $moment->calendar($withTime);
         } catch (MomentException $exception) {
             $this->logger
                 ->notice(sprintf('Cannot create Moment from %s', $date), [
