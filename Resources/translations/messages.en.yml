@@ -60,3 +60,4 @@ actions:
 date:
   format: "d/m/Y"
   with_time: "d/m/Y H:i:s"
+  time: "H:i A"
