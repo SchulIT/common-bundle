@@ -94,6 +94,15 @@ header#page-header {
   max-height: none;
 }
 
+.card {
+  .card-body {
+    p:last-child,
+    p:only-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
 /** MAIN **/
 .main {
   padding-bottom: 10px !important;
