@@ -70,6 +70,8 @@
         </div>
 
         <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
+            {% block breadcrumb %}{% endblock %}
+
             {% for msg in app.session.flashbag.get('error') %}
                 <div class="bs-callout bs-callout-danger">
                     <h4>{{ 'error.label'|trans }}</h4>
