@@ -3,12 +3,14 @@
 {% block title %}{{ 'licenses.label'|trans }}{% endblock %}
 
 {% block container %}
-    <div class="contentbox">
-        <h4>{{ 'licenses.header'|trans({ '%project%': dependency.name, '%license_type%': dependency.licenseType }) }}</h4>
-        <pre>{{ license }}</pre>
+    <div class="card ml-3 mr-3">
+        <div class="card-header">{{ 'licenses.header'|trans({ '%project%': dependency.name, '%license_type%': dependency.licenseType }) }}</div>
+        <div class="card-body">
+            <pre>{{ license }}</pre>
+        </div>
     </div>
 
-    <div class="buttons">
+    <div class="buttons ml-3 mr-3">
         <a href="{{ path('list_composer_dependencies') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> {{ 'licenses.back'|trans }}</a>
     </div>
 {% endblock %}
