@@ -242,8 +242,6 @@ form {
   }
 }
 
-@media (max-width: 480px) {
-  .card {
-
-  }
+.form-group.row {
+  @extend .form-group
 }
