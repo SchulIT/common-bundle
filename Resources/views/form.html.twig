@@ -16,14 +16,14 @@
     {{- parent() -}}
 
     {% if multiple %}
-        <span class="help-block">In diesem Feld ist Mehrfachauswahl mit den Tasten Strg und/oder Shift möglich.</span>
+        <span class="help-block">{{ 'forms.select.multiple.info'|trans }}</span>
 
         <button type="button" class="btn btn-secondary btn-sm" onclick="$('#{{ id }} option').prop('selected', true);">
-            <i class="fa fa-check-square-o" aria-hidden="true"></i> alle auswählen
+            <i class="far fa-check-square" aria-hidden="true"></i> {{ 'forms.select.multiple.select_all'|trans }}
         </button>
 
         <button type="button" class="btn btn-secondary btn-sm" onclick="$('#{{ id }} option').prop('selected', false);">
-            <i class="fa fa-square-o" aria-hidden="true"></i> alle abwählen
+            <i class="far fa-square" aria-hidden="true"></i> {{ 'forms.select.multiple.unselect_all'|trans }}
         </button>
     {% endif %}
 {%- endblock choice_widget_collapsed %}

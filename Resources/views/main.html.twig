@@ -1,17 +1,17 @@
 {% extends ["base.html.twig", "@Common/base.html.twig"] %}
 
 {% block userbar %}
-    <div class="pull-right d-print-none" id="userbar">
+    <div class="float-right d-print-none" id="userbar">
         <div class="btn-group d-md-none d-lg-none">
             <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#menu">
-                <i class="fa fa-bars"></i> {{ 'menu.label'|trans }}
+                <i class="fas fa-bars"></i> {{ 'menu.label'|trans }}
             </button>
         </div>
 
         {% if user.services|length > 0 %}
             <div class="btn-group">
                 <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i> {{ 'services.label'|trans }}
+                    <i class="fas fa-bars"></i> {{ 'services.label'|trans }}
                 </button>
 
                 <ul class="dropdown-menu" role="menu">
@@ -30,7 +30,7 @@
 
         <div class="btn-group">
             <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user"></i>
+                <i class="fas fa-user"></i>
 
                 {% if user.firstname is not null and user.lastname is not null %}
                     {{ user.lastname }}, {{ user.firstname }} ({{ app.user.username }})
@@ -44,15 +44,15 @@
                 {% if profile_url is not null %}
                     <li>
                         {% if profile_url starts with 'http://' or profile_url starts with 'https://' %}
-                            <a href="{{ profile_url }}" class="dropdown-item"><i class="fa fa-cogs"></i> {{ 'profile.label'|trans }}</a>
+                            <a href="{{ profile_url }}" class="dropdown-item"><i class="fas fa-cogs"></i> {{ 'profile.label'|trans }}</a>
                         {% else %}
-                            <a href="{{ path(profile_url) }}" class="dropdown-item"><i class="fa fa-cogs"></i> {{ 'profile.label'|trans }}</a>
+                            <a href="{{ path(profile_url) }}" class="dropdown-item"><i class="fas fa-cogs"></i> {{ 'profile.label'|trans }}</a>
                         {% endif %}
                     </li>
                     <li class="dropdown-divider"></li>
                 {% endif %}
                 <li>
-                    <a href="{{ path('logout') }}" class="dropdown-item"><i class="fa fa-sign-out"></i> {{ 'auth.logout'|trans }}</a>
+                    <a href="{{ path('logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> {{ 'auth.logout'|trans }}</a>
                 </li>
             </ul>
         </div>
