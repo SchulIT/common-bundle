@@ -20,12 +20,12 @@ h1, h2, h3 {
 }
 
 .row {
-  padding: 0 15px;
+  margin: 0;
 }
 
 /** HEADER **/
 header#page-header {
-  padding: 40px;
+  padding: 30px;
 
   .heading #logo {
     float: left;
@@ -74,10 +74,7 @@ header#page-header {
   padding: 0;
 
   .nav {
-    margin: 10px 20px;
-
     .header {
-      padding-bottom: 10px;
       font-size: 120%;
     }
   }
@@ -90,7 +87,7 @@ header#page-header {
 }
 
 .navbar-collapse {
-  padding: 0px;
+  padding: 0;
   max-height: none;
 }
 
@@ -188,20 +185,6 @@ footer {
     margin: 0;
   }
 
-  .contentbox {
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-right: 0 !important;
-  }
-
-  .widget {
-    margin-right: 0;
-
-    .content {
-      margin-right: 0;
-    }
-  }
-
   .container, .container-fluid {
     padding: 0 5px;
     margin: 0;
@@ -256,5 +239,11 @@ form {
       background: $card-border-color;
       color: $black
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+
   }
 }
