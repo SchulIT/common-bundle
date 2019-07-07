@@ -64,7 +64,9 @@
         <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 navigation d-print-none">
             <nav class="navbar navbar-expand-md">
                 <div class="collapse navbar-collapse" id="menu">
-                    {{ knp_menu_render(mainMenu, {'depth': 1, 'currentClass': 'active' }) }}
+                    {% block menu %}
+                        {{ knp_menu_render(mainMenu, {'depth': 1, 'currentClass': 'active' }) }}
+                    {% endblock %}
                 </div>
             </nav>
         </div>
