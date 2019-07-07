@@ -66,3 +66,5 @@ forms:
       info: 'Multiple choice is available by pressing Ctrl and/or Shift and selecting values.'
       select_all: select all
       unselect_all: unselect all
+
+version: "Version %version%"

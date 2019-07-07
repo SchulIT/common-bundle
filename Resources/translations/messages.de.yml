@@ -66,3 +66,5 @@ forms:
       info: 'In diesem Feld ist Mehrfachauswahl mit den Tasten Strg und/oder Shift möglich.'
       select_all: alle auswählen
       unselect_all: alle abwählen
+
+version: "Version %version%"

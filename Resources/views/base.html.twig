@@ -43,9 +43,8 @@
             <h3>{{ config.name }}</h3>
 
             <p>
-                Version {{ config.version }}
+                {{ 'version'|trans({'%version%': config.version }) }}
             </p>
-
         </div>
 
         <div class="col-md-6 col-xs-12">
