@@ -3,12 +3,13 @@
 namespace SchoolIT\CommonBundle\Store;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use LightSaml\Provider\TimeProvider\TimeProviderInterface;
 use LightSaml\Store\Id\IdStoreInterface;
 use SchoolIT\CommonBundle\Entity\IdEntity;
 
 class IdStore implements IdStoreInterface {
-    /** @var ObjectManager */
+    /** @var EntityManagerInterface */
     private $manager;
 
     /** @var  TimeProviderInterface */
@@ -18,7 +19,7 @@ class IdStore implements IdStoreInterface {
      * @param ObjectManager $manager
      * @param TimeProviderInterface $timeProvider
      */
-    public function __construct(ObjectManager $manager, TimeProviderInterface $timeProvider) {
+    public function __construct(EntityManagerInterface $manager, TimeProviderInterface $timeProvider) {
         $this->manager = $manager;
         $this->timeProvider = $timeProvider;
     }
