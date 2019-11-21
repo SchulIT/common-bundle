@@ -68,3 +68,7 @@ forms:
       unselect_all: alle abwählen
 
 version: "Version %version%"
+
+navigation:
+  next: Weiter
+  previous: Zurück
