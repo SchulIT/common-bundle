@@ -18,7 +18,8 @@
         "symfony/form": "^4.0",
         "sensiolabs/ansi-to-html": "^1.1",
         "symfony/security": "^4.2",
-        "symfony/security-core": "^4.2"
+        "symfony/security-core": "^4.2",
+        "symfony/validator": "^4.2"
     },
     "suggest": {
         "lightsaml/lightsaml": "",
