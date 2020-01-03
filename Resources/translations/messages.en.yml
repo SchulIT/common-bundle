@@ -72,3 +72,8 @@ version: "Version %version%"
 navigation:
   next: next
   previous: previous
+
+confirm:
+  remove:
+    label: Confirm removal
+    message: Do you really want to remove this entity (including all references)?

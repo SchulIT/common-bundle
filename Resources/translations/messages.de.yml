@@ -72,3 +72,8 @@ version: "Version %version%"
 navigation:
   next: Weiter
   previous: Zurück
+
+confirm:
+  remove:
+    label: Löschen bestätigen
+    message: Soll die Entität (inkl. aller Referenzen) wirklich gelöscht werden?

@@ -12,8 +12,9 @@ class ConfirmType extends AbstractType {
     public function configureOptions(OptionsResolver $resolver) {
         $resolver
             ->setDefaults([
-                'message' => 'Soll die Entität (inkl. aller Referenzen) wirklich gelöscht werden?',
-                'header' => 'Löschen bestätigen'
+                'message' => 'confirm.remove.message',
+                'message_parameters' => [ ],
+                'header' => 'confirm.remove.label'
             ]);
     }
 
@@ -24,6 +25,7 @@ class ConfirmType extends AbstractType {
                 'fields' => function(FormBuilderInterface $builder) use($options) {
                     $builder->add('confirm', CheckboxType::class, [
                         'label' => $options['message'],
+                        'label_translation_parameters' => $options['message_parameters'],
                         'required' => true,
                         'constraints' => [
                             new IsTrue()
