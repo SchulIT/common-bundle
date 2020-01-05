@@ -19,7 +19,7 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         $this->translator = $translator;
     }
 
-    public function getGlobals() {
+    public function getGlobals(): array {
         return [
             'config' => $this->configVariable,
             'mainMenu' => $this->menuService

@@ -3,7 +3,7 @@
 namespace SchoolIT\CommonBundle\Monolog;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types;
 use Monolog\Handler\AbstractProcessingHandler;
 
 abstract class AbstractDatabaseHandler extends AbstractProcessingHandler {
@@ -48,11 +48,11 @@ abstract class AbstractDatabaseHandler extends AbstractProcessingHandler {
 
         $this->getConnection()
             ->insert('log', $entry, [
-                Type::STRING,
-                Type::INTEGER,
-                Type::TEXT,
-                Type::DATETIME,
-                Type::TEXT
+                Types::STRING,
+                Types::INTEGER,
+                Types::TEXT,
+                Types::DATETIME,
+                Types::TEXT
             ]);
     }
 

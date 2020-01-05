@@ -3,7 +3,7 @@
 namespace SchoolIT\CommonBundle\Security;
 
 use LightSaml\SpBundle\Security\Authentication\Token\SamlSpResponseToken;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class AuthenticationEvent extends Event {
     private $user;

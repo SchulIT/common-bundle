@@ -17,7 +17,7 @@ class Voter implements VoterInterface {
     /**
      * @inheritDoc
      */
-    public function matchItem(ItemInterface $item) {
+    public function matchItem(ItemInterface $item): ?bool {
         $currentUri = $this->requestStack->getMasterRequest()->getRequestUri();
         $itemUri = $item->getUri();
 
