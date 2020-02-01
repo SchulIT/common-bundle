@@ -7,6 +7,8 @@ class ConfigVariable {
 
     private $version;
 
+    private $projectUrl;
+
     private $logo;
 
     private $host;
@@ -22,14 +24,16 @@ class ConfigVariable {
      * @param string $path
      * @param string $isSsl
      * @param string $version
+     * @param string $projectUrl
      * @param string|null $logo
      */
-    public function __construct($name, $host, $path, $isSsl, $version, $logo = null) {
+    public function __construct($name, $host, $path, $isSsl, $version, $projectUrl, $logo = null) {
         $this->name = $name;
         $this->host = $host;
         $this->path = $path;
         $this->isSsl = $isSsl;
         $this->version = $version;
+        $this->projectUrl = $projectUrl;
         $this->logo = $logo;
     }
 
@@ -75,6 +79,13 @@ class ConfigVariable {
      */
     public function getVersion() {
         return $this->version;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProjectUrl() {
+        return $this->projectUrl;
     }
 
     /**
