@@ -25,6 +25,7 @@
     "suggest": {
         "lightsaml/lightsaml": "",
         "knplabs/knp-menu-bundle": "",
+        "knplabs/knp-time-bundle": "",
         "swiftmailer/swiftmailer": ""
     },
     "autoload": {

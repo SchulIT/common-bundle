@@ -51,7 +51,7 @@ abstract class AbstractDatabaseHandler extends AbstractProcessingHandler {
                 Types::STRING,
                 Types::INTEGER,
                 Types::TEXT,
-                Types::DATETIME,
+                Types::DATETIME_MUTABLE,
                 Types::TEXT
             ]);
     }

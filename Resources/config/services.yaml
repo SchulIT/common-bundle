@@ -14,8 +14,6 @@ services:
     arguments:
       $menuService: "%app.common.menu%"
 
-  SchoolIT\CommonBundle\Twig\MomentPhpExtension: ~
-
   SchoolIT\CommonBundle\Twig\ConfigVariable:
     arguments:
       - "%app.common.name%"
