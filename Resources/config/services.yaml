@@ -4,7 +4,7 @@ services:
       autowire: true
 
   _instanceof:
-      Twig_ExtensionInterface:
+      Twig\Extension\ExtensionInterface:
           tags: ['twig.extension']
 
       Symfony\Component\EventDispatcher\EventSubscriberInterface:
