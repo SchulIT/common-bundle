@@ -254,6 +254,10 @@ form {
       color: $black
     }
   }
+
+  > .table {
+    border-top: 0;
+  }
 }
 
 .form-group.row {
