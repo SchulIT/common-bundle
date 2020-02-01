@@ -49,7 +49,7 @@
 
         <div class="col-md-6 col-xs-12">
             <p>
-                © {{ "now"|date("Y") }} SchulIT – <a href="{{ path('list_composer_dependencies') }}">{{ 'licenses.label'|trans }}</a>
+                © {{ "now"|date("Y") }} SchulIT – <a href="{{ path('list_composer_dependencies') }}">{{ 'licenses.label'|trans }}</a>{% block footer_links %}{% endblock %}
             </p>
         </div>
     </div>
