@@ -26,7 +26,7 @@ class SamlSpTokenFactory extends \LightSaml\SpBundle\Security\Authentication\Tok
      * @inheritDoc
      */
     public function create($providerKey, array $attributes, $user, SamlSpResponseToken $responseToken) {
-        $this->dispatcher->dispatch(SecurityEvents::SAML_AUTHENTICATION_SUCCESS, new AuthenticationEvent($user, $responseToken));
+        $this->dispatcher->dispatch(new AuthenticationEvent($user, $responseToken));
 
         return parent::create($providerKey, $attributes, $user, $responseToken);
     }
