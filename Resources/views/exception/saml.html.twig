@@ -1,6 +1,6 @@
 {% extends ["auth/main.html.twig", "@Common/auth/main.html.twig"] %}
 
-{% block title %}{{ 'error.saml.label'|trans }}{% endblock %}
+{% block title %}{{ config.name }}{% endblock %}
 
 {% block content %}
     <div class="text-center">
@@ -10,9 +10,7 @@
         <p>{{ 'error.saml.message'|trans }}</p>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 pr-0">
-            <a href="{{ path(route) }}" class="btn btn-primary btn-block">{{ 'error.saml.retry'|trans }}</a>
-        </div>
-    </div>
+    <hr>
+
+    <a href="{{ path(route) }}" class="btn btn-primary btn-block">{{ 'error.saml.retry'|trans }}</a>
 {% endblock %}
