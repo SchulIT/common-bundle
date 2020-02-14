@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Twig\Environment;
 
-class ExceptionListener implements EventSubscriberInterface {
+class SamlExceptionListener implements EventSubscriberInterface {
 
     private $retryRoute;
     private $twig;
