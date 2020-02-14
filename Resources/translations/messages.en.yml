@@ -6,6 +6,10 @@ auth:
 
 error:
   label: Error
+  saml:
+    label: Sign-In error
+    message: An error occurred during sign-in process. Please context the administrator in case this error occurres again.
+    retry: Retry
 
 info:
   label: Information

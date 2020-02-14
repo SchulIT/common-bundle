@@ -6,6 +6,10 @@ auth:
 
 error:
   label: Fehler
+  saml:
+    label: Anmeldefehler
+    message: Bei der Anmeldung ist ein Fehler aufgetreten. Falls der Fehler erneut auftritt, beim Administrator melden.
+    retry: Erneut versuchen
 
 info:
   label: Information

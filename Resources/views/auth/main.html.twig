@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ config.name }}</title>
+
+    {% block stylesheets %}{% endblock %}
+    {% block head %}{% endblock %}
+</head>
+
+<body class="d-flex flex-column">
+
+<header class="clearfix" id="page-header">
+    <div id="logo">
+        <h1>{% block title %}{% endblock %}</h1>
+    </div>
+</header>
+
+<div class="container-fluid main flex-grow-1">
+    <div class="container">
+
+        {% block error %}{% endblock %}
+
+        <div class="card card-signin">
+            <div class="card-body">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <h3>{{ config.name }}</h3>
+
+            <p>
+                Version {{ config.version }}
+            </p>
+
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <p>
+                © {{ "now"|date("Y")  }} SchulIT
+            </p>
+        </div>
+    </div>
+</footer>
+
+{% block javascript %}{% endblock %}
+
+</body>
+</html>
