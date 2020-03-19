@@ -15,20 +15,33 @@
 
 <body class="d-flex flex-column">
 
-<header class="clearfix" id="page-header">
-    <div class="d-none d-print-block">
-        <h3>{{ block('title') }}</h3>
+<header>
+    <div class="container-fluid" data-role="menu" data-menu="#menu" data-submenu="#submenu">
+        <div class="row align-items-end ml-0 mr-0 mt-3 ">
+            <div class="col m-0 p-0">
+                <div class="navbar navbar-dark navbar-expand-sm rounded-top">
+                    {% if config.smallLogo is defined and config.smallLogo is not null %}
+                    <a class="navbar-brand d-none align-items-center-center d-md-flex rounded text-center p-0 ml-2 mr-2 bg-white" style="width: 32px; height: 32px;">
+                        <img src="{{ asset(config.smallLogo) }}" alt="" class="mx-auto" style="width: calc(100% - 2 * 0.25rem)" />
+                    </a>
+                    {% endif %}
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse text-white" id="menu">
+                        {% block menu %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-sub mb-3 rounded-bottom">
+            <div class="navbar text-white w-100" id="submenu">
+                {% block submenu %}{% endblock %}
+            </div>
+        </div>
     </div>
-
-    <div class="float-left heading hidden-print">
-        {% if config.logo is defined and config.logo is not null %}
-            <img src="{{ asset(config.logo) }}" alt="" id="logo" />
-        {% endif %}
-
-        <h1>{{ config.name }}</h1>
-    </div>
-
-    {% block userbar %}{% endblock %}
 </header>
 
 <div class="container-fluid main flex-grow-1">
@@ -38,19 +51,24 @@
 </div>
 
 <footer class="hidden-print">
-    <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <h3>{{ config.name }}</h3>
+    <div class="container-fluid">
+        <div class="row">
+            {% if config.logo is defined and config.logo is not null %}
+            <div class="col-auto">
+                <img src="{{ asset(config.logo) }}" class="logo" alt="" />
+            </div>
+            {% endif %}
 
-            <p>
-                {{ 'version'|trans({'%version%': config.version }) }}
-            </p>
-        </div>
+            <div class="col">
+                <h3>{{ config.name }}</h3>
 
-        <div class="col-md-6 col-xs-12">
-            <p>
-                © {{ "now"|date("Y") }} SchulIT – <a href="{{ path('list_composer_dependencies') }}">{{ 'licenses.label'|trans }}</a>{% if config.projectUrl is not null %} – <i class="fab fa-github"></i> <a href="{{ config.projectUrl }}" target="_blank">GitHub</a>{% endif %}{% block footer_links %}{% endblock %}
-            </p>
+                <p>
+                    {{ 'version'|trans({'%version%': config.version }) }}
+                </p>
+                <p>
+                    © {{ "now"|date("Y") }} SchulIT – <a href="{{ path('list_composer_dependencies') }}">{{ 'licenses.label'|trans }}</a>{% if config.projectUrl is not null %} – <i class="fab fa-github"></i> <a href="{{ config.projectUrl }}" target="_blank">GitHub</a>{% endif %}{% block footer_links %}{% endblock %}
+                </p>
+            </div>
         </div>
     </div>
 </footer>

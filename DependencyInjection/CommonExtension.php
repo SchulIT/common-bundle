@@ -23,6 +23,7 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $container->setParameter('app.common.version', $config['app']['version']);
         $container->setParameter('app.common.project_url', $config['app']['project_url']);
         $container->setParameter('app.common.logo', $config['app']['logo']);
+        $container->setParameter('app.common.small_logo', $config['app']['small_logo']);
         $container->setParameter('app.common.locales', $config['locales']);
         $container->setParameter('app.common.menu', $config['menu']);
         $container->setParameter('app.common.templates.mail', $config['templates']['mail']);

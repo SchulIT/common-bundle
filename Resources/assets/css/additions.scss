@@ -53,21 +53,6 @@
   }
 }
 
-/** BUTTONS **/
-.container .btn {
-  margin-bottom: 5px;
-}
-
-/** BOOTSTRAP-SELECT **/
-ul.selectpicker {
-  text-align: left;
-}
-
-/** DROPDOWN **/
-.dropdown-menu>li>a {
-  padding: 3px 13px !important;
-}
-
 /** MODAL **/
 .modal-body {
   .bg-primary,
@@ -109,18 +94,5 @@ ul.selectpicker {
     overflow-x:initial;
     overflow-y:initial;
     border:none;
-  }
-}
-
-/** HELPER FOR SM-LG **/
-@media screen and (max-width: 1150px) {
-  .visible-xs-sm-lg {
-    display:inherit !important;
-  }
-}
-
-@media screen and (min-width: 1151px) {
-  .visible-xs-sm-lg {
-    display:none !important;
   }
 }

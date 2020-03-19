@@ -1,6 +1,6 @@
 /* CSS Document */
 html, body {
-  background: rgb(245,245,245);
+  background: $background;
   margin: 0;
   padding: 0;
   font: normal 90% "Helvetica Neue", "Segoe UI", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -10,109 +10,140 @@ body {
   min-height: 100vh;
 }
 
-a {
-  color: #002750;
-}
+@include media-breakpoint-up(lg) {
+  .navbar {
+    .navbar-nav {
+      .nav-item {
+        .dropdown-menu {
+          background: $red !important;
+          color: white;
 
-h1, h2, h3 {
-  margin: 0;
-  padding: 0;
-}
-
-.row {
-  margin: 0;
-}
-
-/** HEADER **/
-header#page-header {
-  padding: 30px;
-
-  .heading #logo {
-    float: left;
-    height: 50px;
-    margin-right: 10px;
-  }
-
-  .heading h1 {
-    margin-top: 5px;
-    float: left;
-    color: #444;
-  }
-
-  #userbar {
-    margin-top: 12px;
-
-    .navbar-toggle {
-      padding: 5px 10px;
-      margin: 0px;
+          &.show {
+            display: none !important;
+          }
+        }
+      }
     }
   }
 }
 
-@media (max-width: 768px) {
-  header#page-header {
+// Menu
+header {
+  .brand {
+    color: $gray-800;
+    font-size: $font-size-lg;
+  }
+
+  .logo {
     padding: 5px;
-    padding-bottom: 10px;
+    padding-right: 10px;
+
+    > img {
+      max-height: 80px;
+    }
   }
-}
 
-@media (max-width: 768px) {
-  header#page-header #logo h1 {
-    font-size: 26px;
-    margin-top: 8px;
+  .navbar {
+    padding: 0;
+    background: $primary-menu-background;
+
+    .navbar-toggler {
+      margin: $navbar-padding-y $navbar-padding-x;
+    }
+
+    .navbar-nav {
+      .nav-item {
+
+        &.open {
+          background: $secondary-menu-background;
+        }
+
+        &.active,
+        &.current_ancestor {
+          background: rgba($secondary-menu-background, 0.8);
+        }
+
+        &.open {
+          background: $secondary-menu-background;
+          .fa-caret-down {
+            @extend .fa-caret-up;
+          }
+        }
+
+        .nav-link {
+          padding: $navbar-padding-y+$nav-link-padding-y $nav-link-padding-x;
+          color: white;
+          transition: all .1s ease-out;
+
+          &:hover {
+            background: transparentize($white, 0.75);
+          }
+        }
+      }
+    }
   }
-}
 
-@media (min-width: 768px) {
-  header#page-header #userbar :not(:last-child) button {
-    margin-right: 16px
+  .navbar.navbar-sub {
+    padding: $navbar-padding-y;
+    background: $secondary-menu-background;
+
+    .navbar {
+      background: transparent !important;
+    }
+
+    .nav-item {
+      transition: all .1s ease-out;
+
+      &.active,
+      &:hover {
+        border-radius: 0.25rem;
+        background: transparentize($white, 0.75);
+      }
+    }
+
+    .nav-link {
+      color: white;
+      padding: 0.5rem 0.75rem;
+    }
   }
-}
 
-/** NAVIGATION **/
-.navigation {
-  padding: 0;
+  .navbar-nav {
+    > li.dropdown.show {
+      position: static;
 
-  .nav {
-    .header {
-      font-size: 120%;
+      .dropdown-menu {
+        display: flex;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        right: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
   }
 }
 
-@media (min-width: 768px) {
-  .navigation .nav {
-    width: 100%;
-  }
-}
-
-.navbar-collapse {
-  padding: 0;
-  max-height: none;
-}
-
-.card {
-  .card-body {
-    p:last-child,
-    p:only-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-/** MAIN **/
 .main {
   padding-bottom: 10px !important;
 
-  table {
-    /*** TABLES ***/
+  small, .small {
+    font-size: 90% !important;
+  }
 
+  table {
     p.description {
       text-overflow: ellipsis;
       overflow: hidden;
       display: block;
       margin-bottom: 0;
       max-height: 3em;
+    }
+
+    td {
+      p, ul {
+        margin-bottom: 0 !important;
+      }
     }
 
     .column-sm {
@@ -141,20 +172,25 @@ header#page-header {
     .column-280 {
       width: 280px;
     }
+    .column-320 {
+      width: 320px;
+    }
   }
 }
 
-@media (max-width: 768px) {
-  .main > .row {
-    padding: 0;
-  }
+.breadcrumb {
+  background: $breadcrumb-background;
+  padding: 0.75rem 19px;
 }
 
-/** FOOTER **/
 footer {
   border-top: 1px solid #ccc;
-  background: #e1e1e1;
+  background: $footer-background;
   width: 100%;
+
+  .logo {
+    max-height:80px;
+  }
 
   > div {
     margin: 0 auto !important;
@@ -167,54 +203,6 @@ footer {
   }
 }
 
-@media (max-width: 1200px) {
-  footer > div {
-    width: 65%;
-  }
-}
-@media (max-width: 767px) {
-  footer > div {
-    width: 100%;
-  }
-
-  footer .row {
-    padding:0 5px;
-  }
-}
-@media (max-width: 480px) {
-  footer > div {
-    width: auto;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .row {
-    padding: 0;
-    margin: 0;
-  }
-
-  .content {
-    padding: 0;
-    margin: 0;
-  }
-
-  .container, .container-fluid {
-    padding: 0 5px;
-    margin: 0;
-  }
-
-  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-    padding: 0;
-    margin: 0;
-  }
-
-  .form-horizontal .form-group {
-    margin: 0 !important;
-  }
-
-}
-
 form {
   small.form-text {
     font-size: 100% !important;
@@ -223,6 +211,18 @@ form {
 
 .card {
   margin-bottom: 1rem;
+
+  hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .card-body {
+    p:last-child,
+    p:only-child {
+      margin-bottom: 0;
+    }
+  }
 
   .icon {
     width: 40px;

@@ -23,6 +23,7 @@ services:
       - "%app.common.version%"
       - "%app.common.project_url%"
       - "%app.common.logo%"
+      - "%app.common.small_logo%"
 
   # Event Listener
   SchoolIT\CommonBundle\EventListener\LocaleListener:

@@ -11,6 +11,8 @@ class ConfigVariable {
 
     private $logo;
 
+    private $smallLogo;
+
     private $host;
 
     private $path;
@@ -26,8 +28,9 @@ class ConfigVariable {
      * @param string $version
      * @param string $projectUrl
      * @param string|null $logo
+     * @param string|null $smallLogo
      */
-    public function __construct($name, $host, $path, $isSsl, $version, $projectUrl, $logo = null) {
+    public function __construct($name, $host, $path, $isSsl, $version, $projectUrl, $logo = null, $smallLogo = null) {
         $this->name = $name;
         $this->host = $host;
         $this->path = $path;
@@ -35,6 +38,7 @@ class ConfigVariable {
         $this->version = $version;
         $this->projectUrl = $projectUrl;
         $this->logo = $logo;
+        $this->smallLogo = $smallLogo;
     }
 
     /**
@@ -93,5 +97,12 @@ class ConfigVariable {
      */
     public function getLogo() {
         return $this->logo;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSmallLogo() {
+        return $this->smallLogo;
     }
 }
