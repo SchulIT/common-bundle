@@ -43,6 +43,14 @@ header {
     }
   }
 
+  .show {
+    display: block;
+  }
+
+  .hide {
+    display: none;
+  }
+
   .navbar {
     padding: 0;
     background: $primary-menu-background;
