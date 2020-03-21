@@ -271,3 +271,7 @@ form {
 .form-group.row {
   @extend .form-group
 }
+
+.invalid-feedback {
+  font-size: 100%;
+}
