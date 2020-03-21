@@ -1,5 +1,22 @@
 {% use "bootstrap_4_horizontal_layout.html.twig" %}
 
+{% block form_label_errors %}{% endblock %}
+
+{% block form_row -%}
+    {%- if expanded is defined and expanded -%}
+        {{ block('fieldset_form_row') }}
+    {%- else -%}
+        <div class="form-group row{% if (not compound or force_error|default(false)) and not valid %} is-invalid{% endif %}">
+            {{- form_label(form) -}}
+            <div class="{{ block('form_group_class') }}">
+                {{- form_widget(form) -}}
+                {{- form_errors(form) -}}
+                {{- form_help(form) -}}
+            </div>
+            {##}</div>
+    {%- endif -%}
+{%- endblock form_row %}
+
 {% block fieldset_row %}
     <div class="card">
         {% if legend is defined and legend is not empty %}
