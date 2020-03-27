@@ -2,8 +2,7 @@
 
 namespace SchoolIT\CommonBundle\EventListener;
 
-use LightSaml\Error\LightSamlBindingException;
-use LightSaml\Error\LightSamlContextException;
+use LightSaml\Error\LightSamlException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +31,7 @@ class SamlExceptionListener implements EventSubscriberInterface {
     public function onKernelException(ExceptionEvent $event) {
         $throwable = $event->getThrowable();
 
-        if($throwable instanceof LightSamlContextException || $throwable instanceof LightSamlBindingException) {
+        if($throwable instanceof LightSamlException) {
             if($this->tokenStorage->getToken() !== null && $this->tokenStorage->getToken()->isAuthenticated()) {
                 $response = new RedirectResponse(
                     $this->urlGenerator->generate($this->loggedInRoute)
@@ -43,8 +42,11 @@ class SamlExceptionListener implements EventSubscriberInterface {
             }
 
             $response = new Response(
-                $this->twig->render('@Common/exception/saml.html.twig', [
-                    'route' => $this->retryRoute
+                $this->twig->render('@Common/error/lightsaml.html.twig', [
+                    'route' => $this->retryRoute,
+                    'exception' => $throwable,
+                    'type' => get_class($throwable),
+                    'message' => $throwable->getMessage()
                 ])
             );
 

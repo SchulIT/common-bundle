@@ -1,0 +1,4 @@
+lightsaml_error:
+  title: Error while singin-in
+  text: An error occured during sign-in. If this error occures again, ask for support and add the information below.
+  button: Try again
