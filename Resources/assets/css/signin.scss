@@ -1,52 +1,5 @@
-header {
-  text-align:center !important;
+@import 'simple.scss';
 
-  #logo {
-    margin:0 auto !important;
-    width:450px;
-    text-align:left;
-  }
+body,html {
+  height: 100%;
 }
-
-.container {
-  max-width:450px;
-  margin:0 auto;
-  padding-left:0px;
-  padding-right:0px;
-}
-
-.card.card-signin {
-  margin-bottom: 40px;
-}
-
-.form-signin {
-  .bs-callout {
-    margin-right: 0px;
-  }
-
-  .row {
-    padding: 0px;
-    margin-top: 10px;
-  }
-}
-
-.retry-button {
-  margin-top: 10px !important;
-}
-
-.switch-method {
-  ul {
-    margin-bottom: 0 !important;
-  }
-}
-
-@media screen and (max-width:768px) {
-  header#page-header {
-    padding:10px;
-  }
-
-  header #logo {
-    padding-top:1px;
-  }
-}
-
