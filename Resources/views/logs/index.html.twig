@@ -3,101 +3,109 @@
 {% block title %}{{ 'logs.label'|trans }}{% endblock %}
 
 {% block content %}
-    <div class="card-deck mb-3">
-        {% for counter in counters %}
-            <div class="card">
-                <a class="card-body" href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}">
-                    <div class="icon d-inline-block">{{ counter.counter }}</div>
-                    {{ counter.name }}
-                </a>
-            </div>
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card-deck mb-3">
+                    {% for counter in counters %}
+                    <div class="card">
+                        <a class="card-body" href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}">
+                            <div class="icon d-inline-block">{{ counter.counter }}</div>
+                            {{ counter.name }}
+                        </a>
+                    </div>
 
-            {% if loop.index % 4 == 0 %}
+                    {% if loop.index % 4 == 0 %}
                 </div>
                 <div class="card-deck mb-3">
-            {% endif %}
-        {% endfor %}
-    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 
-    <div class="card">
-        <table class="table table-hover table-striped table-bordered" style="table-layout: fixed">
-            <colgroup>
-                <col class="column-100" />
-                <col class="column-md" />
-                <col />
-                <col class="column-lg" />
-            </colgroup>
+                <div class="card">
+                    <table class="table table-hover table-striped table-bordered" style="table-layout: fixed">
+                        <colgroup>
+                            <col class="column-100" />
+                            <col class="column-md" />
+                            <col />
+                            <col class="column-lg" />
+                        </colgroup>
 
-            <thead>
-            <tr>
-                <th></th>
-                <th>{{ 'logs.channel'|trans }}</th>
-                <th>{{ 'logs.message'|trans }}</th>
-                <th>{{ 'logs.time'|trans }}</th>
-            </tr>
-            </thead>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{ 'logs.channel'|trans }}</th>
+                            <th>{{ 'logs.message'|trans }}</th>
+                            <th>{{ 'logs.time'|trans }}</th>
+                        </tr>
+                        </thead>
 
-            <tbody>
-            {% for item in items %}
-                <tr>
-                    <td>{{ item.getLevel()|log_level }}</td>
-                    <td>{{ item.getChannel() }}</td>
-                    <td>{{ item.getMessage() }}
-                        {% if item.getDetails() != null %}
-                            <pre style="max-width: 1000px;">{{ item.getDetails() }}</pre>
-                        {% endif %}
-                    </td>
-                    <td>{{ item.getTime().format('d.m.Y H:i:s') }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.getLevel()|log_level }}</td>
+                                <td>{{ item.getChannel() }}</td>
+                                <td>{{ item.getMessage() }}
+                                    {% if item.getDetails() != null %}
+                                        <pre style="max-width: 1000px;">{{ item.getDetails() }}</pre>
+                                    {% endif %}
+                                </td>
+                                <td>{{ item.getTime().format('d.m.Y H:i:s') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
-    {% include '@Common/includes/pagination.html.twig' with {
-        currentPage: page,
-        currentFilters: { level: level, channel: channel },
-        paginationPath: 'admin_logs',
-        lastPage: pages,
-        showAlwaysFirstAndLast: true
-    } only %}
+                {% include '@Common/includes/pagination.html.twig' with {
+                    currentPage: page,
+                    currentFilters: { level: level, channel: channel },
+                    paginationPath: 'admin_logs',
+                    lastPage: pages,
+                    showAlwaysFirstAndLast: true
+                } only %}
+            </div>
 
-    <div class="buttons">
-        <a href="{{ path('admin_logs_clear') }}" class="btn btn-sm btn-danger">
-            <i class="fa fa-trash"></i> {{ 'logs.clear.label'|trans }}
-        </a>
-    </div>
-
-    <div class="card">
-        <form class="form form-horizontal" action="{{ path('admin_logs') }}" method="get">
-            <div class="card-header">{{ 'logs.filter'|trans }}</div>
-            <div class="card-body">
-                {% if level != null %}
-                    <input type="hidden" name="level" value="{{ level }}" />
-                {% endif %}
-
-                <div class="form-group row">
-                    <label for="channel" class="col-sm-2 col-form-label">{{ 'logs.channel'|trans }}</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="channel">
-                            <option value="">{{ 'logs.all_channels'|trans }}</option>
-                            {% for c in channels %}
-                                <option value="{{ c }}" {% if c == channel %}selected{% endif %}>{{ c }}</option>
-                            {% endfor %}
-                        </select>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="list-group list-group-flush">
+                        <a href="{{ path('admin_logs_clear') }}" class="list-group-item list-group-item-action list-group-item-danger">
+                            <i class="fa fa-trash"></i> {{ 'logs.clear.label'|trans }}
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-sm">
-                    <i class="fa fa-check"></i> {{ 'logs.apply_filter'|trans }}
-                </button>
+                <div class="card">
+                    <form action="{{ path('admin_logs') }}" method="get">
+                        <div class="card-header">{{ 'logs.filter'|trans }}</div>
+                        <div class="card-body">
+                            {% if level != null %}
+                                <input type="hidden" name="level" value="{{ level }}" />
+                            {% endif %}
 
-                <a href="{{ path('admin_logs', { level: level }) }}" class="btn btn-secondary btn-sm">
-                    {{ 'logs.clear_filter'|trans }}
-                </a>
+                            <div class="form-group">
+                                <label for="channel" class="form-label">{{ 'logs.channel'|trans }}</label>
+                                <select class="form-control" name="channel">
+                                    <option value="">{{ 'logs.all_channels'|trans }}</option>
+                                    {% for c in channels %}
+                                        <option value="{{ c }}" {% if c == channel %}selected{% endif %}>{{ c }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-check"></i> {{ 'logs.apply_filter'|trans }}
+                            </button>
+
+                            <a href="{{ path('admin_logs', { level: level }) }}" class="btn btn-secondary btn-sm">
+                                {{ 'logs.clear_filter'|trans }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 {% endblock %}
