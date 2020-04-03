@@ -1,0 +1,17 @@
+// Adds overrides for SwaggerUI integration
+.swagger-ui {
+  .col {
+    position: initial;
+    width: auto;
+  }
+
+  .topbar,
+  .information-container {
+    display: none;
+  }
+
+  .wrapper,
+  .wrapper > section {
+    padding: 0 !important;
+  }
+}

@@ -1,0 +1,50 @@
+// Choices overrides
+.#{$choices-selector}[data-type*="select-one"],
+.#{$choices-selector}[data-type*="select-multiple"],
+.#{$choices-selector}[data-type*="text"] {
+  .#{$choices-selector}__inner {
+    padding: 0.375rem 0.75rem !important;
+    min-height: calc(1.5em + 0.75rem + 2px);
+    //min-height: auto;
+  }
+}
+
+.#{$choices-selector}[data-type*="select-multiple"] {
+  .#{$choices-selector}__inner {
+    padding: 0.175rem 0.75rem !important;
+  }
+}
+
+.#{$choices-selector}__list {
+  z-index: 100;
+}
+
+.#{$choices-selector}__list--multiple {
+  .#{$choices-selector}__item {
+    background-color: $primary;
+    border-color: $primary;
+    border-radius: $border-radius;
+    margin-bottom: 0;
+  }
+}
+
+.#{$choices-selector}__list--single {
+  padding: 1px 16px 0 4px;
+}
+
+.#{$choices-selector}__list--dropdown {
+  .#{$choices-selector}__item--selectable {
+    padding-right: 0;
+  }
+}
+
+.#{$choices-selector}__input {
+  margin-bottom: 0;
+}
+
+// Fixes dropdowns in combination with active buttons
+.btn-group {
+  > .btn.active {
+    z-index: auto !important;
+  }
+}
