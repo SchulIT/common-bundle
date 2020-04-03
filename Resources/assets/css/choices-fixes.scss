@@ -48,3 +48,13 @@
     z-index: auto !important;
   }
 }
+
+// Fixes choices inside a input-group
+.input-group {
+  .#{$choices-selector} {
+    margin-bottom: 0 !important;
+    position: relative;
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
