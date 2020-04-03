@@ -40,3 +40,73 @@
         </button>
     {% endif %}
 {%- endblock choice_widget_collapsed %}
+
+{% block datetime_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{- block('form_widget_simple') -}}
+    {%- else -%}
+        {%- if widget != 'single_text' and not valid -%}
+            {% set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) -%}
+            {% set valid = true %}
+        {%- endif -%}
+
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' input-group')|trim}) -%}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            </div>
+
+            {{- form_widget(form.date, { datetime: true, hide_input_group: true } ) -}}
+
+            <div class="input-group-prepend">
+                <span class="input-group-text border-left-0"><i class="fa fa-clock"></i></span>
+            </div>
+
+            {{- form_widget(form.time, { datetime: true, hide_input_group: true } ) -}}
+        </div>
+
+        <div class="sr-only">
+            {%- if form.date.year is defined %}{{ form_label(form.date.year) }}{% endif -%}
+            {%- if form.date.month is defined %}{{ form_label(form.date.month) }}{% endif -%}
+            {%- if form.date.day is defined %}{{ form_label(form.date.day) }}{% endif -%}
+            {%- if form.time.hour is defined %}{{ form_label(form.time.hour) }}{% endif -%}
+            {%- if form.time.minute is defined %}{{ form_label(form.time.minute) }}{% endif -%}
+            {%- if form.time.second is defined %}{{ form_label(form.time.second) }}{% endif -%}
+        </div>
+
+        {{- form_errors(form.date) -}}
+        {{- form_errors(form.time) -}}
+    {%- endif -%}
+{%- endblock datetime_widget %}
+
+{% block date_widget -%}
+    {% if hide_input_group|default(false) is same as(false) %}
+        <div class="input-group">
+            <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-calendar"></i>
+            </span>
+            </div>
+
+            {{ parent() }}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{%- endblock date_widget %}
+
+{% block time_widget -%}
+    {% if hide_input_group|default(false) is same as(false) %}
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-clock"></i>
+                </span>
+            </div>
+
+            {{ parent() }}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{%- endblock time_widget %}
