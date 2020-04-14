@@ -63,36 +63,3 @@
     padding:15px;
   }
 }
-
-/** PRINT **/
-@media print {
-  a[href]:after {
-    content: none;
-  }
-
-  .row,
-  .col-md-10,
-  .col-sm-9,
-  .col-md-6,
-  .container-fluid {
-    padding:0;
-    margin:0;
-  }
-
-  .col-md-10,
-  .col-sm-9 {
-    width:100%;
-  }
-
-  .breadcrumb {
-    padding-left:0;
-    padding-right:0;
-  }
-
-  .table-responsive {
-    width:inherit;
-    overflow-x:initial;
-    overflow-y:initial;
-    border:none;
-  }
-}
