@@ -29,6 +29,9 @@ class ConfirmType extends AbstractType {
                         'required' => true,
                         'constraints' => [
                             new IsTrue()
+                        ],
+                        'label_attr' => [
+                            'class' => 'checkbox-custom'
                         ]
                     ]);
                 }
