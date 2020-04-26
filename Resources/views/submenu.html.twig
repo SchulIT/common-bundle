@@ -11,7 +11,10 @@
             <ul class="nav nav-pills {% if rootItem.extras['pull-right'] is defined and rootItem.extras['pull-right'] == true %}justify-content-end{% endif %}">
                 {% for child in rootItem.children %}
                     <li class="nav-item">
-                        <a href="{{ child.uri }}" class="nav-link {% if matcher.isCurrent(child) %}active{% endif %}" {{ macros.attributes(child.attributes) }}>{{ child.label|trans }}</a>
+                        <a href="{{ child.uri }}" class="nav-link {% if matcher.isCurrent(child) %}active{% endif %}" {{ macros.attributes(child.attributes) }}>
+                            {% if child.attributes['icon'] is defined %}<i class="{{ child.attributes['icon'] }}"></i>{% endif %}
+                            {{ child.label|trans }}
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
