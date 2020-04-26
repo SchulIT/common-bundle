@@ -68,6 +68,27 @@ header {
     }
 
     .navbar-nav {
+      li.dropdown.show {
+        .dropdown-menu {
+          display: inherit;
+          border-radius: 0;
+          background-color: transparent;
+
+          li {
+            display: block;
+            text-align: left;
+
+            a {
+              color: white;
+
+              &:hover {
+                background: transparentize($white, 0.75);
+              }
+            }
+          }
+        }
+      }
+
       .nav-item {
 
         &.open {
