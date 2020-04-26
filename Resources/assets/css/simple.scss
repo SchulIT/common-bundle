@@ -2,7 +2,7 @@ $enable-shadows: true;
 $enable-gradients: true;
 
 // Import SCSS from custom
-@import "./assets/css/custom/*.scss";
+@import "../../../../../../assets/css/custom_/*.scss";
 
 // Import Bootstrap
 @import './node_modules/bootstrap/scss/bootstrap';
@@ -17,7 +17,7 @@ $enable-gradients: true;
 @import './vendor/schoolit/common-bundle/Resources/assets/css/additions.scss';
 
 // Import SCSS from overrides
-@import "./assets/css/overrides/*.scss";
+@import "../../../../../../assets/css/overrides_/*.scss";
 
 body, html {
   background: $background;

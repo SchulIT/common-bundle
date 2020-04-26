@@ -41,3 +41,6 @@ services:
   SchoolIT\CommonBundle\Monolog\DatabaseHandler:
     arguments:
       $connection: "@doctrine.dbal.default_connection"
+
+  # Utils
+  SchoolIT\CommonBundle\Utils\RefererHelper: ~

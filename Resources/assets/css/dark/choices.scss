@@ -1,0 +1,82 @@
+body[data-theme=dark] {
+  .#{$choices-selector} {
+    &.is-disabled {
+      .#{$choices-selector}__inner,
+      .#{$choices-selector}__input {
+        background-color: $choices-bg-color-disabled;
+      }
+    }
+  }
+
+  .#{$choices-selector}[data-type*="select-one"] {
+    .#{$choices-selector}__input {
+      border-bottom: 1px solid $form-border;
+      background-color: #171717;
+      color: $form-color;
+    }
+    .#{$choices-selector}__button {
+      background-image: $choices-icon-cross-inverse;
+    }
+    &:after {
+      border-color: $choices-text-color transparent transparent transparent;
+    }
+    &.is-open:after {
+      border-color: transparent transparent $choices-text-color transparent;
+      margin-top: -7.5px;
+    }
+  }
+
+  .#{$choices-selector}[data-type*="select-multiple"],
+  .#{$choices-selector}__inner {
+    background-color: #171717;
+    border: 1px solid $form-border;
+    .is-focused &,
+    .is-open & {
+      border-color: $form-border;
+    }
+    .is-open & {
+      border-radius: $choices-border-radius $choices-border-radius 0 0;
+    }
+    .is-flipped.is-open & {
+      border-radius: 0 0 $choices-border-radius $choices-border-radius;
+    }
+  }
+
+  .#{$choices-selector}__list--multiple {
+    .#{$choices-selector}__item {
+      background-color: $choices-primary-color;
+      border: 1px solid $form-border;
+      &.is-highlighted {
+        background-color: darken($form-border, 5%);
+        border: 1px solid darken($form-border, 10%);
+      }
+      .is-disabled & {
+        background-color: darken($form-border, 25%);
+        border: 1px solid darken($form-border, 35%);
+      }
+    }
+  }
+
+  .#{$choices-selector}__list--dropdown {
+    background-color: #171717;
+    border-color: $form-border;
+    .is-open & {
+      border-color: $form-border;
+    }
+    .#{$choices-selector}__item--selectable {
+      &.is-highlighted {
+        background-color: $default-header-bg;
+      }
+    }
+  }
+
+  .#{$choices-selector}__heading {
+    border-bottom: none;
+    color: lighten(#333, 30%);
+  }
+
+  .#{$choices-selector}__input {
+    background-color: #171717;
+    color: $form-color;
+  }
+}

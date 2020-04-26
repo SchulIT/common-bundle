@@ -81,3 +81,7 @@ confirm:
   remove:
     label: Confirm removal
     message: Do you really want to remove this entity (including all references)?
+
+dark_mode:
+  enable: Enable dark mode
+  disable: Disable dark mode

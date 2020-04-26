@@ -1,0 +1,131 @@
+body[data-theme=dark] {
+  .CodeMirror {
+    border-color: $form-border;
+  }
+
+  .CodeMirror-fullscreen {
+    background: $default-dark-bg;
+  }
+
+  .CodeMirror-focused .CodeMirror-selected {
+    background: $default-dark-bg;
+  }
+
+  .editor-toolbar {
+    border-color: $form-border;
+  }
+
+  .editor-toolbar.fullscreen {
+    width: 100%;
+    height: 50px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    border: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 9;
+  }
+
+  .editor-toolbar.fullscreen::before {
+    width: 20px;
+    height: 50px;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(255, 255, 255, 0)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .editor-toolbar.fullscreen::after {
+    width: 20px;
+    height: 50px;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 1)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .editor-toolbar button {
+    color: $default-color;
+  }
+
+  .editor-toolbar button.active,
+  .editor-toolbar button:hover {
+    background: #fcfcfc;
+    border-color: #95a5a6;
+  }
+
+  .editor-preview-full {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    overflow: auto;
+    display: none;
+    box-sizing: border-box;
+  }
+
+  .editor-preview-side {
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+    top: 50px;
+    right: 0;
+    z-index: 9;
+    overflow: auto;
+    display: none;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+  }
+
+  .editor-preview-active-side {
+    display: block
+  }
+
+  .editor-preview-active {
+    display: block
+  }
+
+  .editor-preview {
+    padding: 10px;
+    background: #fafafa;
+  }
+
+  .editor-preview > p {
+    margin-top: 0
+  }
+
+  .editor-preview pre {
+    background: #eee;
+    margin-bottom: 10px;
+  }
+
+  .editor-preview table td,
+  .editor-preview table th {
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+}

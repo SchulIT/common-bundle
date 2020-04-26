@@ -1,0 +1,71 @@
+body[data-theme=dark] {
+  a {
+    color: $white;
+  }
+
+  header {
+    .navbar {
+      background: $dark-primary-menu-background;
+    }
+
+    .navbar.navbar-sub {
+      background: $dark-secondary-menu-background;
+    }
+  }
+
+  footer {
+    background: $dark-footer-background;
+    border-color: $default-border;
+
+    img {
+      padding: $dark-footer-img-padding;
+      background: $dark-footer-img-background;
+    }
+  }
+
+  .breadcrumb {
+    background: $dark-breadcrumb-background;
+  }
+
+  .btn {
+    &.btn-outline-primary {
+      color: $default-color;
+      border-color: $form-border;
+    }
+  }
+
+  table {
+    td, th {
+      border-color: $default-border;
+    }
+  }
+
+  .table-success,
+  .table-info,
+  .table-danger,
+  .table-warning {
+    color: black;
+
+    &:hover {
+      color: black !important;
+    }
+  }
+
+  .bs-callout {
+    &.bs-callout-info {
+      background: mix(#d0e3f0, #000000, 30%);
+    }
+
+    &.bs-callout-success {
+      background: mix(#d6e9c6, #000000, 30%);
+    }
+
+    &.bs-callout-danger {
+      background: mix(#dFb5b4, #000000, 30%);
+    }
+
+    &.bs-callout-warning {
+      background: mix(#f1e7bc, #000000, 30%);
+    }
+  }
+}

@@ -81,3 +81,7 @@ confirm:
   remove:
     label: Löschen bestätigen
     message: Soll die Entität (inkl. aller Referenzen) wirklich gelöscht werden?
+
+dark_mode:
+  enable: Dunklen Modus aktivieren
+  disable: Dunklen Modus deaktivieren

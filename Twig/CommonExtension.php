@@ -3,20 +3,24 @@
 namespace SchoolIT\CommonBundle\Twig;
 
 use Monolog\Logger;
+use SchoolIT\CommonBundle\DarkMode\DarkModeManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class CommonExtension extends AbstractExtension implements GlobalsInterface {
     private $configVariable;
     private $menuService;
     private $translator;
+    private $darkModeManager;
 
-    public function __construct(ConfigVariable $configVariable, $menuService, TranslatorInterface $translator) {
+    public function __construct(ConfigVariable $configVariable, $menuService, TranslatorInterface $translator, DarkModeManagerInterface $darkModeManager) {
         $this->configVariable = $configVariable;
         $this->menuService = $menuService;
         $this->translator = $translator;
+        $this->darkModeManager = $darkModeManager;
     }
 
     public function getGlobals(): array {
@@ -34,6 +38,16 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
             new TwigFilter('format_time', [ $this, 'formatTime' ]),
             new TwigFilter('format_w3c', [ $this, 'formatW3cDateTime'])
         ];
+    }
+
+    public function getFunctions() {
+        return [
+            new TwigFunction('is_darkmode', [ $this, 'isDarkModeEnabled' ])
+        ];
+    }
+
+    public function isDarkModeEnabled(): bool {
+        return $this->darkModeManager->isDarkModeEnabled();
     }
 
     public function formatDate(\DateTimeInterface $date) {
