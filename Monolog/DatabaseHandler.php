@@ -42,6 +42,10 @@ EOF;
 
             if($user !== null && $user instanceof UserInterface) {
                 $username = $user->getUsername();
+            } else if(is_string($user)) {
+                $username = $user;
+            } else if(method_exists($user, '__toString')) {
+                $username = (string)$user;
             }
         }
 
