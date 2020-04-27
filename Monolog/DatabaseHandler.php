@@ -40,12 +40,8 @@ EOF;
             /** @var UserInterface $user */
             $user = $token->getUser();
 
-            if($user !== null) {
-                $username = (string)$user;
-
-                if($user instanceof UserInterface) {
-                    $username = $user->getUsername();
-                }
+            if($user !== null && $user instanceof UserInterface) {
+                $username = $user->getUsername();
             }
         }
 
