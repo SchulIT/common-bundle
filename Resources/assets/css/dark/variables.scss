@@ -1,3 +1,5 @@
+$dark-brand-background: white !default;
+
 $dark-primary-menu-background: theme-color("dark") !default;
 $dark-secondary-menu-background: theme-color("secondary") !default;
 
@@ -6,3 +8,4 @@ $dark-footer-background: $default-dark-bg !default;
 
 $dark-footer-img-padding: 0 !default;
 $dark-footer-img-background: transparent !default;
+$dark-footer-img-border-radius: none !default;

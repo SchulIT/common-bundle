@@ -6,6 +6,10 @@ body[data-theme=dark] {
   header {
     .navbar {
       background: $dark-primary-menu-background;
+
+      .navbar-brand {
+        background: $dark-brand-background;
+      }
     }
 
     .navbar.navbar-sub {
@@ -20,6 +24,7 @@ body[data-theme=dark] {
     img {
       padding: $dark-footer-img-padding;
       background: $dark-footer-img-background;
+      border-radius: $dark-footer-img-border-radius;
     }
   }
 
@@ -66,6 +71,13 @@ body[data-theme=dark] {
 
     &.bs-callout-warning {
       background: mix(#f1e7bc, #000000, 30%);
+    }
+  }
+
+  .card {
+    a.card-body,
+    a {
+      color: $default-color;
     }
   }
 }
