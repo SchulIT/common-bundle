@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\EventListener;
+namespace SchoolIT\CommonBundle\SwiftMailer;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;

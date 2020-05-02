@@ -26,11 +26,11 @@ services:
       - "%app.common.small_logo%"
 
   # Event Listener
-  SchoolIT\CommonBundle\EventListener\LocaleListener:
-    arguments:
-      $locales: '%app.common.locales%'
+  #SchoolIT\CommonBundle\EventSubscriber\LocaleSubscriber:
+  #  arguments:
+  #    $locales: '%app.common.locales%'
 
-  SchoolIT\CommonBundle\EventListener\ConsoleListener:
+  SchoolIT\CommonBundle\EventSubscriber\ConsoleSubscriber:
     calls:
       - [ "setContainer", ["@service_container"]]
 

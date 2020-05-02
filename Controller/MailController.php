@@ -7,7 +7,7 @@ use Monolog\Logger;
 use SchoolIT\CommonBundle\Controller\Model\Message;
 use SchoolIT\CommonBundle\Entity\LogEntry;
 use SchoolIT\CommonBundle\Helper\DateHelper;
-use SchoolIT\CommonBundle\Helper\EmailSpoolHelper;
+use SchoolIT\CommonBundle\SwiftMailer\EmailSpoolHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

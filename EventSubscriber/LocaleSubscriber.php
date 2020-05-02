@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\EventListener;
+namespace SchoolIT\CommonBundle\EventSubscriber;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -8,7 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class LocaleListener implements EventSubscriberInterface {
+class LocaleSubscriber implements EventSubscriberInterface {
 
     private $locales;
     private $logger;

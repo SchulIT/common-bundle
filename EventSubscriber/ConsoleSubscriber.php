@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\EventListener;
+namespace SchoolIT\CommonBundle\EventSubscriber;
 
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
-class ConsoleListener implements EventSubscriberInterface {
+class ConsoleSubscriber implements EventSubscriberInterface {
 
     use ContainerAwareTrait;
 

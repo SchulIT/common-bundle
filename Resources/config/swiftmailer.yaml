@@ -1,9 +1,9 @@
 services:
-  SchoolIT\CommonBundle\Helper\EmailSpoolHelper:
+  SchoolIT\CommonBundle\SwiftMailer\EmailSpoolHelper:
     arguments:
     - "%swiftmailer.spool.default.file.path%"
 
-  SchoolIT\CommonBundle\EventListener\EmailListener:
+  SchoolIT\CommonBundle\SwiftMailer\EmailListener:
     arguments:
     - "@monolog.logger.mailer"
     public: false

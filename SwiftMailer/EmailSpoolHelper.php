@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Helper;
+namespace SchoolIT\CommonBundle\SwiftMailer;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

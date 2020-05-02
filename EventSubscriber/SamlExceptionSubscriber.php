@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\EventListener;
+namespace SchoolIT\CommonBundle\EventSubscriber;
 
 use LightSaml\Error\LightSamlException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 
-class SamlExceptionListener implements EventSubscriberInterface {
+class SamlExceptionSubscriber implements EventSubscriberInterface {
 
     private $retryRoute;
     private $loggedInRoute;
