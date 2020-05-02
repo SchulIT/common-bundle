@@ -47,10 +47,12 @@ class SamlExceptionListener implements EventSubscriberInterface {
                     'exception' => $throwable,
                     'type' => get_class($throwable),
                     'message' => $throwable->getMessage()
-                ])
+                ]),
+                200
             );
 
             $event->setResponse($response);
+            $event->allowCustomResponseCode();
         }
     }
 
@@ -60,7 +62,7 @@ class SamlExceptionListener implements EventSubscriberInterface {
     public static function getSubscribedEvents() {
         return [
             KernelEvents::EXCEPTION => [
-                ['onKernelException', 0 ]
+                ['onKernelException', 10 ]
             ]
         ];
     }
