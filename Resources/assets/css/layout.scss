@@ -246,6 +246,16 @@ form {
   }
 }
 
+legend.col-form-label.required,
+label.col-form-label.required {
+  &::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: " \f069";
+    color: red;
+  }
+}
+
 .card {
   margin-bottom: 1rem;
 
