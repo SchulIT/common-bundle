@@ -140,9 +140,9 @@ header {
       }
     }
 
-    .nav-item:not(:first-child):not(:last-child) {
+    .nav-item:not(:first-child).nav-item:not(:last-child) {
       margin-left: 0.25rem;
-      margin-righ: 0.25rem;
+      margin-right: 0.25rem;
     }
   }
 
