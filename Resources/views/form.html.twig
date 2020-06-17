@@ -25,22 +25,6 @@
     </div>
 {% endblock %}
 
-{% block choice_widget_collapsed -%}
-    {{- parent() -}}
-
-    {% if multiple %}
-        <span class="help-block">{{ 'forms.select.multiple.info'|trans }}</span>
-
-        <button type="button" class="btn btn-secondary btn-sm" onclick="document.querySelector('#{{ id }}').querySelectorAll('option').forEach(function(el) { el.selected = true; });">
-            <i class="far fa-check-square" aria-hidden="true"></i> {{ 'forms.select.multiple.select_all'|trans }}
-        </button>
-
-        <button type="button" class="btn btn-secondary btn-sm" onclick="document.querySelector('#{{ id }}').querySelectorAll('option').forEach(function(el) { el.selected = false; });">
-            <i class="far fa-square" aria-hidden="true"></i> {{ 'forms.select.multiple.unselect_all'|trans }}
-        </button>
-    {% endif %}
-{%- endblock choice_widget_collapsed %}
-
 {% block datetime_widget -%}
     {%- if widget == 'single_text' -%}
         {{- block('form_widget_simple') -}}
