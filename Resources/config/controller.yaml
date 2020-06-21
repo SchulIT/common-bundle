@@ -9,3 +9,7 @@ services:
         exclude: '../../Controller/Model'
         tags:
             - 'controller.service_arguments'
+
+    SchoolIT\CommonBundle\Controller\LogoutController:
+        arguments:
+            $logoutUrl: '%env(IDP_LOGOUT_URL)%'

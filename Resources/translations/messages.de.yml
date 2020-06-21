@@ -4,6 +4,12 @@ auth:
   lost_pw: Passwort vergessen?
   logout: Abmelden
 
+logout:
+  success: Erfolgreich abgemeldet.
+  info: 'Zur Sicherheit bitte den Browser schließen oder "überall abmelden".'
+  login: Erneut anmelden
+  logout: überall abmelden
+
 error:
   label: Fehler
   saml:

@@ -4,6 +4,12 @@ auth:
   lost_pw: Lost password?
   logout: Log-Out
 
+logout:
+  success: Successfully logged out.
+  info: 'For security reasons you may close your browser or "logout everywhere".'
+  login: Sign-In again
+  logout: Logout everywhere
+
 error:
   label: Error
   saml:
