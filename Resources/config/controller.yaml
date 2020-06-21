@@ -4,9 +4,11 @@ services:
         autoconfigure: true
         public: false
 
-    SchoolIT\CommonBundle\Controller\:
-        resource: '../../Controller'
-        exclude: '../../Controller/Model'
+    SchoolIT\CommonBundle\Controller\LogController:
+        tags:
+            - 'controller.service_arguments'
+
+    SchoolIT\CommonBundle\Controller\DarkModeController:
         tags:
             - 'controller.service_arguments'
 
