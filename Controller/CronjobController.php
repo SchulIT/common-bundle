@@ -34,7 +34,7 @@ class CronjobController extends AbstractController {
         $content = $output->fetch();
         $converter = new AnsiToHtmlConverter();
 
-        return $this->render('admin/cron/output.html.twig', [
+        return $this->render('@Common/cron/output.html.twig', [
             'output' => $converter->convert($content)
         ]);
     }
@@ -54,7 +54,7 @@ class CronjobController extends AbstractController {
                 ->findMostRecent($job);
         }
 
-        return $this->render('admin/cron/index.html.twig', [
+        return $this->render($this->getParameter('app.common.templates.cron.index'), [
             'jobs' => $jobs,
             'results' => $results
         ]);
@@ -73,7 +73,7 @@ class CronjobController extends AbstractController {
             ->getQuery()
             ->getResult();
 
-        return $this->render('admin/cron/show.html.twig', [
+        return $this->render($this->getParameter('app.common.templates.cron.show'), [
             'job' => $job,
             'results' => $results
         ]);
@@ -83,7 +83,7 @@ class CronjobController extends AbstractController {
      * @Route("/admin/cron/{job}/result/{id}", name="show_cronresult")
      */
     public function showResult(CronJobResult $result) {
-        return $this->render('admin/cron/result.html.twig', [
+        return $this->render($this->getParameter('app.common.templates.cron.result'), [
             'result' => $result
         ]);
     }
