@@ -15,9 +15,9 @@ $enable-gradients: true;
 
 @import './vendor/schulit/common-bundle/Resources/assets/css/variables.scss';
 @import './vendor/schulit/common-bundle/Resources/assets/css/additions.scss';
-@import '../../node_modules/bootstrap-darkmode/darktheme';
-@import '../../vendor/schulit/common-bundle/Resources/assets/css/dark/variables.scss';
-@import '../../vendor/schulit/common-bundle/Resources/assets/css/dark/layout';
+@import './node_modules/bootstrap-darkmode/darktheme';
+@import './vendor/schulit/common-bundle/Resources/assets/css/dark/variables.scss';
+@import './vendor/schulit/common-bundle/Resources/assets/css/dark/layout';
 
 // Import SCSS from overrides
 @import "../../../../../../assets/css/overrides/*.scss";
