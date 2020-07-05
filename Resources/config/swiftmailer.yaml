@@ -1,4 +1,9 @@
 services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
   SchulIT\CommonBundle\SwiftMailer\EmailSpoolHelper:
     arguments:
       - "%swiftmailer.spool.default.file.path%"
@@ -6,14 +11,14 @@ services:
   SchulIT\CommonBundle\SwiftMailer\EmailListener:
     arguments:
       - "@monolog.logger.mailer"
-    public: false
     tags:
       - { name: monolog.logger, channel: mailer }
       - { name: "swiftmailer.default.plugin"}
 
   SchulIT\CommonBundle\Controller\MailController:
-    autowire: true
-    autoconfigure: true
-    public: false
     tags:
       - 'controller.service_arguments'
+
+  SchulIT\CommonBundle\Command\SendMailsCommand:
+    tags:
+      - { name: shapecode_cron.cron_job, expression: '* *\/2 * * *' }
