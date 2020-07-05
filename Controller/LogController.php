@@ -69,7 +69,7 @@ class LogController extends AbstractController {
 
         $counters = $this->getCounterForLevels($channel);
 
-        return $this->render($this->getParameter('app.common.templates.logs'), [
+        return $this->render('@Common/logs/index.html.twig', [
             'items' => $paginator,
             'page' => $page,
             'pages' => $pages,
@@ -150,7 +150,7 @@ class LogController extends AbstractController {
             return $this->redirectToRoute('admin_logs');
         }
 
-        return $this->render($this->getParameter('app.common.templates.clear_logs'), [
+        return $this->render('@Common/logs/clear.html.twig', [
             'form' => $form->createView()
         ]);
     }

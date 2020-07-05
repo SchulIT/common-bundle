@@ -46,7 +46,7 @@ class MailController extends AbstractController {
         $messages = array_slice($messages, $offset, static::MAILS_PER_PAGE);
         $messages = $this->createMessageModels($messages);
 
-        return $this->render($this->getParameter('app.common.templates.mail'), [
+        return $this->render('@Common/mail/index.html.twig', [
             'numErrors' => $numErrors,
             'numErrorsDays' => static::ERRORS_PAST_DAYS,
             'messages' => $messages,
