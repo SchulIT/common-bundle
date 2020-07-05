@@ -41,6 +41,10 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
             $loader->load('swiftmailer.yaml');
         }
 
+        if(!isset($config['disable']) || $config['disable']['cron'] !== true) {
+            $loader->load('cron.yaml');
+        }
+
         $loader->load('controller.yaml');
     }
 

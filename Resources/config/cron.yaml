@@ -1,0 +1,7 @@
+services:
+  SchulIT\CommonBundle\Controller\CronjobController:
+    autowire: true
+    autoconfigure: true
+    public: false
+    tags:
+      - 'controller.service_arguments'

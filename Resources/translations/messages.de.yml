@@ -91,3 +91,19 @@ confirm:
 dark_mode:
   enable: Dunklen Modus aktivieren
   disable: Dunklen Modus deaktivieren
+
+cron:
+  label: Cronjobs
+  command: Befehl
+  overview:
+    last_run: Letzte Ausführung
+    next_run: Nächste Ausführung
+    last_result: Letzter Statuscode
+  show:
+    label: Cronjob-Details
+  results:
+    label: Ergebnisse
+    date: Datum
+    result: Statuscode
+    show:
+      label: Ausgabe ansehen
