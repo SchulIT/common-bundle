@@ -2,7 +2,7 @@ $enable-shadows: true;
 $enable-gradients: true;
 
 // Import SCSS from custom
-@import "../../../../../../assets/css/custom_/*.scss";
+@import "../../../../../../assets/css/custom/*.scss";
 
 // Import Bootstrap
 @import './node_modules/bootstrap/scss/bootstrap';
@@ -13,11 +13,11 @@ $enable-gradients: true;
 @import './node_modules/@fortawesome/fontawesome-free/scss/regular';
 @import './node_modules/@fortawesome/fontawesome-free/scss/brands';
 
-@import './vendor/schoolit/common-bundle/Resources/assets/css/variables.scss';
-@import './vendor/schoolit/common-bundle/Resources/assets/css/additions.scss';
+@import './vendor/schulit/common-bundle/Resources/assets/css/variables.scss';
+@import './vendor/schulit/common-bundle/Resources/assets/css/additions.scss';
 
 // Import SCSS from overrides
-@import "../../../../../../assets/css/overrides_/*.scss";
+@import "../../../../../../assets/css/overrides/*.scss";
 
 body, html {
   background: $background;
