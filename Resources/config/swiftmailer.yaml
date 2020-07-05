@@ -21,4 +21,4 @@ services:
 
   SchulIT\CommonBundle\Command\SendMailsCommand:
     tags:
-      - { name: shapecode_cron.cron_job, expression: '* *\/2 * * *' }
+      - { name: shapecode_cron.cron_job, expression: '*\/2 * * * *' }
