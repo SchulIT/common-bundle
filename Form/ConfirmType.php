@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Form;
+namespace SchulIT\CommonBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

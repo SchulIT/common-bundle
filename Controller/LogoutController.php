@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Controller;
+namespace SchulIT\CommonBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 

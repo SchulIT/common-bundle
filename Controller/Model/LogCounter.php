@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Controller\Model;
+namespace SchulIT\CommonBundle\Controller\Model;
 
 class LogCounter {
     public $level;

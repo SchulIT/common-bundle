@@ -1,6 +1,6 @@
 {
-    "name": "schoolit/common-bundle",
-    "version": "2.1.1",
+    "name": "schulit/common-bundle",
+    "version": "1.0.0",
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
@@ -29,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SchoolIT\\CommonBundle\\": ""
+            "SchulIT\\CommonBundle\\": ""
         }
     }
 }

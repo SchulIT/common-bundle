@@ -4,14 +4,14 @@ services:
         autoconfigure: true
         public: false
 
-    SchoolIT\CommonBundle\Controller\LogController:
+    SchulIT\CommonBundle\Controller\LogController:
         tags:
             - 'controller.service_arguments'
 
-    SchoolIT\CommonBundle\Controller\DarkModeController:
+    SchulIT\CommonBundle\Controller\DarkModeController:
         tags:
             - 'controller.service_arguments'
 
-    SchoolIT\CommonBundle\Controller\LogoutController:
+    SchulIT\CommonBundle\Controller\LogoutController:
         arguments:
             $logoutUrl: '%env(IDP_LOGOUT_URL)%'

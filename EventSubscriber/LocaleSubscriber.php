@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\EventSubscriber;
+namespace SchulIT\CommonBundle\EventSubscriber;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

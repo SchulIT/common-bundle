@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Utils;
+namespace SchulIT\CommonBundle\Utils;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Saml;
+namespace SchulIT\CommonBundle\Saml;
 
 class ClaimTypes {
     const ID = 'urn:id';

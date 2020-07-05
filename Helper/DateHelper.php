@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Helper;
+namespace SchulIT\CommonBundle\Helper;
 
 class DateHelper {
 

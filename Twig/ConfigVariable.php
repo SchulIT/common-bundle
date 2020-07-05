@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Twig;
+namespace SchulIT\CommonBundle\Twig;
 
 class ConfigVariable {
     private $name;

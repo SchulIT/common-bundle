@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\EventSubscriber;
+namespace SchulIT\CommonBundle\EventSubscriber;
 
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;

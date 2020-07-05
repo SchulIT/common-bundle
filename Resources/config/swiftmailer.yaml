@@ -1,9 +1,9 @@
 services:
-  SchoolIT\CommonBundle\SwiftMailer\EmailSpoolHelper:
+  SchulIT\CommonBundle\SwiftMailer\EmailSpoolHelper:
     arguments:
       - "%swiftmailer.spool.default.file.path%"
 
-  SchoolIT\CommonBundle\SwiftMailer\EmailListener:
+  SchulIT\CommonBundle\SwiftMailer\EmailListener:
     arguments:
       - "@monolog.logger.mailer"
     public: false
@@ -11,7 +11,7 @@ services:
       - { name: monolog.logger, channel: mailer }
       - { name: "swiftmailer.default.plugin"}
 
-  SchoolIT\CommonBundle\Controller\MailController:
+  SchulIT\CommonBundle\Controller\MailController:
     autowire: true
     autoconfigure: true
     public: false

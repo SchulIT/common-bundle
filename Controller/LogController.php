@@ -1,13 +1,13 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Controller;
+namespace SchulIT\CommonBundle\Controller;
 
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Monolog\Logger;
-use SchoolIT\CommonBundle\Controller\Model\LogCounter;
-use SchoolIT\CommonBundle\Entity\LogEntry;
-use SchoolIT\CommonBundle\Form\ConfirmType;
+use SchulIT\CommonBundle\Controller\Model\LogCounter;
+use SchulIT\CommonBundle\Entity\LogEntry;
+use SchulIT\CommonBundle\Form\ConfirmType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

@@ -1,11 +1,11 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Store;
+namespace SchulIT\CommonBundle\Store;
 
 use Doctrine\ORM\EntityManagerInterface;
 use LightSaml\Provider\TimeProvider\TimeProviderInterface;
 use LightSaml\Store\Id\IdStoreInterface;
-use SchoolIT\CommonBundle\Entity\IdEntity;
+use SchulIT\CommonBundle\Entity\IdEntity;
 
 class IdStore implements IdStoreInterface {
     /** @var EntityManagerInterface */

@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\DependencyInjection;
+namespace SchulIT\CommonBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

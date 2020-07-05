@@ -1,10 +1,10 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Security\Factory;
+namespace SchulIT\CommonBundle\Security\Factory;
 
 use LightSaml\SpBundle\Security\Authentication\Token\SamlSpResponseToken;
-use SchoolIT\CommonBundle\Security\AuthenticationEvent;
-use SchoolIT\CommonBundle\Security\SecurityEvents;
+use SchulIT\CommonBundle\Security\AuthenticationEvent;
+use SchulIT\CommonBundle\Security\SecurityEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**

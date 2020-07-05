@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\EventSubscriber;
+namespace SchulIT\CommonBundle\EventSubscriber;
 
 use LightSaml\Error\LightSamlException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

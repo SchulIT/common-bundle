@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Security;
+namespace SchulIT\CommonBundle\Security;
 
 use LightSaml\SpBundle\Security\Authentication\Token\SamlSpResponseToken;
 use Symfony\Contracts\EventDispatcher\Event;

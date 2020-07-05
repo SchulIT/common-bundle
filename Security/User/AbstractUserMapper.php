@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Security\User;
+namespace SchulIT\CommonBundle\Security\User;
 
 use LightSaml\Model\Protocol\Response;
 

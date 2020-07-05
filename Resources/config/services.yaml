@@ -10,11 +10,11 @@ services:
       Symfony\Component\EventDispatcher\EventSubscriberInterface:
           tags: ['kernel.event_subscriber']
 
-  SchoolIT\CommonBundle\Twig\CommonExtension:
+  SchulIT\CommonBundle\Twig\CommonExtension:
     arguments:
       $menuService: "%app.common.menu%"
 
-  SchoolIT\CommonBundle\Twig\ConfigVariable:
+  SchulIT\CommonBundle\Twig\ConfigVariable:
     arguments:
       - "%app.common.name%"
       - "%app.common.host%"
@@ -26,21 +26,21 @@ services:
       - "%app.common.small_logo%"
 
   # Event Listener
-  SchoolIT\CommonBundle\EventSubscriber\LocaleSubscriber:
+  SchulIT\CommonBundle\EventSubscriber\LocaleSubscriber:
     arguments:
       $locales: '%app.common.locales%'
 
-  SchoolIT\CommonBundle\EventSubscriber\ConsoleSubscriber:
+  SchulIT\CommonBundle\EventSubscriber\ConsoleSubscriber:
     calls:
       - [ "setContainer", ["@service_container"]]
 
   # DateHelper
-  SchoolIT\CommonBundle\Helper\DateHelper: ~
+  SchulIT\CommonBundle\Helper\DateHelper: ~
 
   # Monolog
-  SchoolIT\CommonBundle\Monolog\DatabaseHandler:
+  SchulIT\CommonBundle\Monolog\DatabaseHandler:
     arguments:
       $connection: "@doctrine.dbal.default_connection"
 
   # Utils
-  SchoolIT\CommonBundle\Utils\RefererHelper: ~
+  SchulIT\CommonBundle\Utils\RefererHelper: ~

@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Controller;
+namespace SchulIT\CommonBundle\Controller;
 
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
 use Symfony\Bundle\FrameworkBundle\Console\Application;

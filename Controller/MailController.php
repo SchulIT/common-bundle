@@ -1,13 +1,13 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Controller;
+namespace SchulIT\CommonBundle\Controller;
 
 use Doctrine\ORM\QueryBuilder;
 use Monolog\Logger;
-use SchoolIT\CommonBundle\Controller\Model\Message;
-use SchoolIT\CommonBundle\Entity\LogEntry;
-use SchoolIT\CommonBundle\Helper\DateHelper;
-use SchoolIT\CommonBundle\SwiftMailer\EmailSpoolHelper;
+use SchulIT\CommonBundle\Controller\Model\Message;
+use SchulIT\CommonBundle\Entity\LogEntry;
+use SchulIT\CommonBundle\Helper\DateHelper;
+use SchulIT\CommonBundle\SwiftMailer\EmailSpoolHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

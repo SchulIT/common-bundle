@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\DarkMode;
+namespace SchulIT\CommonBundle\DarkMode;
 
 interface DarkModeManagerInterface {
     public function enableDarkMode(): void;

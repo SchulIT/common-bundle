@@ -3,9 +3,9 @@ services:
       autowire: true
       public: false
 
-  SchoolIT\CommonBundle\Store\IdStore:
+  SchulIT\CommonBundle\Store\IdStore:
     arguments:
       $timeProvider: "@lightsaml.system.time_provider"
 
-  SchoolIT\CommonBundle\Security\Factory\SamlSpTokenFactory: ~
+  SchulIT\CommonBundle\Security\Factory\SamlSpTokenFactory: ~
 

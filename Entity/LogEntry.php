@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Entity;
+namespace SchulIT\CommonBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

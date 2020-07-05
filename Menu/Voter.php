@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Menu;
+namespace SchulIT\CommonBundle\Menu;
 
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Monolog;
+namespace SchulIT\CommonBundle\Monolog;
 
 use Doctrine\DBAL\Connection;
 use Monolog\Logger;

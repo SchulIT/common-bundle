@@ -1,9 +1,9 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Controller;
+namespace SchulIT\CommonBundle\Controller;
 
-use SchoolIT\CommonBundle\DarkMode\DarkModeManagerInterface;
-use SchoolIT\CommonBundle\Utils\RefererHelper;
+use SchulIT\CommonBundle\DarkMode\DarkModeManagerInterface;
+use SchulIT\CommonBundle\Utils\RefererHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 

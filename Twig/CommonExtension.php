@@ -1,9 +1,9 @@
 <?php
 
-namespace SchoolIT\CommonBundle\Twig;
+namespace SchulIT\CommonBundle\Twig;
 
 use Monolog\Logger;
-use SchoolIT\CommonBundle\DarkMode\DarkModeManagerInterface;
+use SchulIT\CommonBundle\DarkMode\DarkModeManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
