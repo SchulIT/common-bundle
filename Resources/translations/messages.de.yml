@@ -5,6 +5,7 @@ auth:
   logout: Abmelden
 
 logout:
+  title: Abgemeldet
   success: Erfolgreich abgemeldet.
   info: 'Zur Sicherheit bitte den Browser schließen oder "überall abmelden".'
   login: Erneut anmelden

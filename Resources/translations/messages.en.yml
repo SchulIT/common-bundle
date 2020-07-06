@@ -5,6 +5,7 @@ auth:
   logout: Log-Out
 
 logout:
+  title: Logged out
   success: Successfully logged out.
   info: 'For security reasons you may close your browser or "logout everywhere".'
   login: Sign-In again
