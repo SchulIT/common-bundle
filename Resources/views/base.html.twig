@@ -21,7 +21,7 @@
             <div class="col m-0 p-0">
                 <div class="navbar navbar-dark navbar-expand-sm rounded-top {% if config.smallLogo is defined and config.smallLogo is not empty %}has-logo{% else %}no-logo{% endif %}">
                     {% if config.smallLogo is defined and config.smallLogo is not empty %}
-                    <a class="navbar-brand d-none align-items-center-center d-md-flex rounded text-center p-0 ml-2 mr-2 bg-white" style="width: 32px; height: 32px;">
+                    <a class="navbar-brand align-items-center-center d-flex rounded text-center p-0 ml-2 mr-2 bg-white" style="min-width: 32px; max-width: 32px; height: 32px;">
                         <img src="{{ asset(config.smallLogo) }}" alt="" class="mx-auto" style="width: calc(100% - 2 * 0.25rem)">
                     </a>
                     {% endif %}
