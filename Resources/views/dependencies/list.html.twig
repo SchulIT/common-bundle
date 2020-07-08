@@ -2,6 +2,12 @@
 
 {% block title %}{{ 'licenses.label'|trans }}{% endblock %}
 
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">{{ block('title') }}</li>
+    </ol>
+{% endblock %}
+
 {% block container %}
     <div class="card">
         <table class="table table-striped table-hover">

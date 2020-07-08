@@ -2,15 +2,18 @@
 
 {% block title %}{{ 'licenses.label'|trans }}{% endblock %}
 
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('list_composer_dependencies') }}">{{ 'licenses.label'|trans }}</a></li>
+        <li class="breadcrumb-item">{{ block('title') }}</li>
+    </ol>
+{% endblock %}
+
 {% block container %}
     <div class="card">
         <div class="card-header">{{ 'licenses.header'|trans({ '%project%': dependency.name, '%license_type%': dependency.licenseType }) }}</div>
         <div class="card-body">
             <pre>{{ license }}</pre>
         </div>
-    </div>
-
-    <div class="buttons">
-        <a href="{{ path('list_composer_dependencies') }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> {{ 'licenses.back'|trans }}</a>
     </div>
 {% endblock %}
