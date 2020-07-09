@@ -25,11 +25,13 @@
 
             {% block error %}{% endblock %}
 
+            {% block container %}
             <div class="card mb-4">
                 <div class="card-body">
                     {% block content %}{% endblock %}
                 </div>
             </div>
+            {% endblock %}
 
             <footer class="hidden-print">
                 <div class="container-fluid px-0">
