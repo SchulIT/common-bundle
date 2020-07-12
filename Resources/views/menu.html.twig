@@ -52,25 +52,25 @@
         {%- set originalItem = item -%}
 
         {# displaying the item #}
-            <li{{ macros.attributes(attributes) }}>
-                {%- if is_dropdown %}
-                    {{ block('dropdownElement') }}
-                {%- elseif item.uri is not empty and (not item.current or options.currentAsLink) %}
-                    {{ block('linkElement') }}
-                {%- else %}
-                    {{ block('spanElement') }}
-                {%- endif %}
-                {# render the list of children #}
-                {% if is_dropdown %}
-                    {% set listAttributes = listAttributes|merge({ class: 'dropdown-menu', role: 'menu' }) %}
+        <li{{ macros.attributes(attributes) }}>
+            {%- if is_dropdown %}
+                {{ block('dropdownElement') }}
+            {%- elseif item.uri is not empty and (not item.current or options.currentAsLink) %}
+                {{ block('linkElement') }}
+            {%- else %}
+                {{ block('spanElement') }}
+            {%- endif %}
+            {# render the list of children #}
+            {% if is_dropdown %}
+                {% set listAttributes = listAttributes|merge({ class: 'dropdown-menu', role: 'menu' }) %}
 
-                    <ul{{ macros.attributes(listAttributes) }}>
-                        {% for item in originalItem.children %}
-                            {{ block('item') }}
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
+                <ul{{ macros.attributes(listAttributes) }}>
+                    {% for item in originalItem.children %}
+                        {{ block('item') }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
 
         {%- set item = originalItem -%}
 
@@ -105,18 +105,18 @@
     {%- set linkAttributes = linkAttributes|merge({'class': classes|join(' ')}) %}
 
     <a href="{{ item.uri }}"{{ macros.attributes(linkAttributes) }}>
-        {% if item.attribute('icon') is not empty %}
+        {% if item.extra('icon') is not empty %}
             <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('label') }}
                 {{ block('badge') }}
             </span>
             <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('badge') }}
             </span>
         {% else %}
-            <i class="{{ item.attribute('icon') }}"></i>
+            <i class="{{ item.extra('icon') }}"></i>
             {{ block('label') }}
             {{ block('badge') }}
         {% endif %}
@@ -133,15 +133,15 @@
     {%- set linkAttributes = linkAttributes|merge({'class': classes|join(' ')}) %}
 
     <a href="{{ item.uri }}"{{ macros.attributes(linkAttributes) }}>
-        {% if item.attribute('icon') is not empty %}
+        {% if item.extra('icon') is not empty %}
             <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('label') }}
-            {{ block('badge') }}
+                {{ block('badge') }}
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
             </span>
             <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('badge') }}
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
             </span>
@@ -159,14 +159,14 @@
     {%- set labelAttributes = labelAttributes|merge({'class': classes|join(' ')}) %}
 
     <span{{ macros.attributes(labelAttributes) }}>
-        {% if item.attribute('icon') is not empty %}
+        {% if item.extra('icon') is not empty %}
             <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('label') }}
                 {{ block('badge') }}
             </span>
             <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('badge') }}
             </span>
         {% else %}
@@ -178,8 +178,8 @@
 {% endblock %}
 
 {% block badge %}
-    {% if item.attribute('count') is not empty %}
-        <span class="d-md-inline-block d-sm-none badge badge-pill badge-primary{%- if matcher.isCurrent(item) %} badge-light{% endif %}">{{ item.attribute('count') }}</span>
+    {% if item.extra('count') is not empty %}
+        <span class="d-md-inline-block d-sm-none badge badge-pill badge-primary{%- if matcher.isCurrent(item) %} badge-light{% endif %}">{{ item.extra('count') }}</span>
     {% endif %}
 {% endblock %}
 
@@ -196,15 +196,15 @@
     {% endif %}
 
     <a {{ macros.attributes(attributes) }}>
-        {% if item.attribute('icon') is not empty  %}
+        {% if item.extra('icon') is not empty  %}
             <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('label') }}
                 {{ block('badge') }}
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
             </span>
             <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.attribute('icon') }}"></i>
+                <i class="{{ item.extra('icon') }}"></i>
                 {{ block('badge') }}
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
             </span>

@@ -12,13 +12,13 @@
                 {% for child in rootItem.children %}
                     <li class="nav-item">
                         <a href="{{ child.uri }}" class="nav-link {% if matcher.isCurrent(child) %}active{% endif %}" {{ macros.attributes(child.attributes) }}>
-                            {% if child.attributes['icon'] is defined %}
+                            {% if child.extras['icon'] is defined %}
                                 <span class="d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                    <i class="{{ child.attributes['icon'] }}"></i>
+                                    <i class="{{ child.extras['icon'] }}"></i>
                                     {{ child.label|trans }}
                                 </span>
                                 <span class="d-block d-xs-block d-sm-block d-md-block d-lg-none d-xl-none">
-                                    <i class="{{ child.attributes['icon'] }}"></i>
+                                    <i class="{{ child.extras['icon'] }}"></i>
                                 </span>
                             {% else %}
                                 {{ child.label|trans }}
