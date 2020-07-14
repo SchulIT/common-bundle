@@ -2,53 +2,34 @@
 
 namespace SchulIT\CommonBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * Spooled emails are sent using this command.
+ * Spooled emails are sent using this command. This command overrides the original command provided by Symfony
+ * such as the message-limit option is passed based on the configuration.
  */
-class SendMailsCommand extends Command {
+class SendMailsCommand extends SendEmailCommand {
 
     private $messageLimit;
-    private $transport;
-    private $spool;
+    private $command;
 
-    public function __construct(int $messageLimit, \Swift_Transport $transport, \Swift_Spool $spool, string $name = null) {
+    public function __construct(int $messageLimit, string $name = null) {
         parent::__construct($name);
 
         $this->messageLimit = $messageLimit;
-        $this->transport = $transport;
-        $this->spool = $spool;
     }
 
     public function configure() {
+        parent::configure();
+
         $this->setName('app:mails:send')
             ->setDescription('Sends next batch of mails');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output) {
-        $style = new SymfonyStyle($input, $output);
-
-        try {
-            if ($this->spool instanceof \Swift_ConfigurableSpool) {
-                $this->spool->setMessageLimit($this->messageLimit);
-            }
-
-            if ($this->spool instanceof \Swift_FileSpool) {
-                $this->spool->recover();
-            }
-
-            $sent = $this->spool->flushQueue($this->transport);
-
-            $style->success(sprintf('%d email(s) sent', $sent));
-        } catch (\Throwable $e) {
-            $this->getApplication()->renderThrowable($e, $output);
-            return 1;
-        }
-
-        return 0;
+    protected function execute(InputInterface $input, OutputInterface $output) {
+        $input->setOption('message-limit', $this->messageLimit);
+        return parent::execute($input, $output);
     }
 }
