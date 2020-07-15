@@ -2,6 +2,7 @@ services:
   _defaults:
       public: false
       autowire: true
+      autoconfigure: true
 
   _instanceof:
       Twig\Extension\ExtensionInterface:
@@ -41,6 +42,11 @@ services:
   SchulIT\CommonBundle\Monolog\DatabaseHandler:
     arguments:
       $connection: "@doctrine.dbal.default_connection"
+
+  # Commands
+  SchulIT\CommonBundle\Command\ClearLogsCommand:
+    tags:
+      - { name: shapecode_cron.cron_job, expression: '@daily' }
 
   # Utils
   SchulIT\CommonBundle\Utils\RefererHelper: ~
