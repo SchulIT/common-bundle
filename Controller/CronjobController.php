@@ -70,6 +70,7 @@ class CronjobController extends AbstractController {
             ->where('c.id = :job')
             ->orderBy('r.createdAt', 'desc')
             ->setParameter('job', $job->getId())
+            ->setMaxResults(25)
             ->getQuery()
             ->getResult();
 
