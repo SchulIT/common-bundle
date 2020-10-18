@@ -25,6 +25,7 @@ services:
       - "%app.common.project_url%"
       - "%app.common.logo%"
       - "%app.common.small_logo%"
+      - "%app.common.logo_link%"
 
   # Event Listener
   SchulIT\CommonBundle\EventSubscriber\LocaleSubscriber:
