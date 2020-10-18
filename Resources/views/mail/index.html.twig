@@ -52,6 +52,7 @@
 
     {% include '@Common/includes/pagination.html.twig' with {
         currentPage: page,
+        currentFilters: { },
         paginationPath: 'admin_mails',
         lastPage: pages,
         showAlwaysFirstAndLast: true
