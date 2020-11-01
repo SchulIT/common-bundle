@@ -319,3 +319,10 @@ label.col-form-label.required {
 .invalid-feedback {
   font-size: 100%;
 }
+
+.sticky-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  align-self: flex-start;
+  top: 1rem;
+}
