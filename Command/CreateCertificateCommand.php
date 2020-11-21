@@ -42,9 +42,6 @@ class CreateCertificateCommand extends Command {
             return 1;
         }
 
-        dump($type);
-        dump($this->types[$type]);
-
         $keyFile = $this->types[$type]['keyFile'];
         $certFile = $this->types[$type]['certFile'];
 
@@ -62,8 +59,8 @@ class CreateCertificateCommand extends Command {
         $data['localityName'] = $io->ask('localityName', 'Aachen');
         $data['organizationName'] = $io->ask('organizationName', 'SchulIT');
         $data['organizationalUnitName'] = $io->ask('organizationalUnitName', 'SchulIT IT');
-        $data['commonName'] = $io->ask('commonName', 'sso.schulit.de');
-        $data['emailAddress'] = $io->ask('emailAddress', 'admin@schoolit.de');
+        $data['commonName'] = $io->ask('commonName', 'schulit.de');
+        $data['emailAddress'] = $io->ask('emailAddress', 'admin@schulit.de');
 
         $csr = openssl_csr_new($data, $privKey, $config);
         $cert = openssl_csr_sign($csr, null, $privKey, 10*365, $config);
