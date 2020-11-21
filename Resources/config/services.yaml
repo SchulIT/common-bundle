@@ -51,3 +51,6 @@ services:
 
   # Utils
   SchulIT\CommonBundle\Utils\RefererHelper: ~
+
+  # Security
+  SchulIT\CommonBundle\Security\CertificateCreator: ~

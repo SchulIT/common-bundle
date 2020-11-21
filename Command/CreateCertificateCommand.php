@@ -2,6 +2,7 @@
 
 namespace SchulIT\CommonBundle\Command;
 
+use SchulIT\CommonBundle\Security\CertificateCreator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,11 +13,13 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class CreateCertificateCommand extends Command {
 
     private $types = [ ];
+    private $certificateCreator;
 
-    public function __construct(array $types, ?string $name = null) {
+    public function __construct(array $types, CertificateCreator  $certificateCreator, ?string $name = null) {
         parent::__construct($name);
 
         $this->types = $types;
+        $this->certificateCreator = $certificateCreator;
     }
 
     public function configure() {
@@ -28,6 +31,41 @@ class CreateCertificateCommand extends Command {
                 't',
                 InputOption::VALUE_REQUIRED,
                 'Type of certificate (e.g. saml or oauth2)'
+            )
+            ->addOption(
+                'countryName',
+                'c',
+                InputOption::VALUE_REQUIRED
+            )
+            ->addOption(
+                'stateOrProvinceName',
+                's',
+                InputOption::VALUE_REQUIRED
+            )
+            ->addOption(
+                'localityName',
+                'l',
+                InputOption::VALUE_REQUIRED
+            )
+            ->addOption(
+                'organizationName',
+                'o',
+                InputOption::VALUE_REQUIRED
+            )
+            ->addOption(
+                'organizationalUnitName',
+                null,
+                InputOption::VALUE_REQUIRED
+            )
+            ->addOption(
+                'commonName',
+                null,
+                InputOption::VALUE_REQUIRED
+            )
+            ->addOption(
+                'emailAddress',
+                null,
+                InputOption::VALUE_REQUIRED
             );
     }
 
@@ -45,34 +83,18 @@ class CreateCertificateCommand extends Command {
         $keyFile = $this->types[$type]['keyFile'];
         $certFile = $this->types[$type]['certFile'];
 
-        $config = [
-            'digest_alg' => 'sha512',
-            'private_key_bits' => 4096,
-            'private_key_type' => OPENSSL_KEYTYPE_RSA
-        ];
+        $countryName = $input->getOption('countryName') ?? $io->ask('countryName', 'DE');
+        $stateOrProvinceName = $input->getOption('stateOrProvinceName') ?? $io->ask('stateOrProvinceName', 'Nordrhein-Westfalen');
+        $localityName = $input->getOption('localityName') ?? $io->ask('localityName', 'Aachen');
+        $organizationName = $input->getOption('organizationName') ?? $io->ask('organizationName', 'SchulIT');
+        $organizationalUnitName = $input->getOption('organizationalUnitName') ?? $io->ask('organizationalUnitName', 'SchulIT IT');
+        $commonName = $input->getOption('commonName') ?? $io->ask('commonName', 'schulit.de');
+        $emailAddress = $input->getOption('emailAddress') ?? $io->ask('emailAddress', 'admin@schulit.de');
 
-        $privKey = openssl_pkey_new($config);
-        $data = [ ];
-
-        $data['countryName'] = $io->ask('countryName', 'DE');
-        $data['stateOrProvinceName'] = $io->ask('stateOrProvinceName', 'Nordrhein-Westfalen');
-        $data['localityName'] = $io->ask('localityName', 'Aachen');
-        $data['organizationName'] = $io->ask('organizationName', 'SchulIT');
-        $data['organizationalUnitName'] = $io->ask('organizationalUnitName', 'SchulIT IT');
-        $data['commonName'] = $io->ask('commonName', 'schulit.de');
-        $data['emailAddress'] = $io->ask('emailAddress', 'admin@schulit.de');
-
-        $csr = openssl_csr_new($data, $privKey, $config);
-        $cert = openssl_csr_sign($csr, null, $privKey, 10*365, $config);
-
-        openssl_x509_export($cert, $certout);
-        openssl_pkey_export($privKey, $keyout);
-
-        file_put_contents($keyFile, $keyout);
-        file_put_contents($certFile, $certout);
-
-        openssl_x509_free($cert);
-        openssl_pkey_free($privKey);
+        $this->certificateCreator->createCertificate(
+            $certFile, $keyFile, $countryName, $stateOrProvinceName,
+            $localityName,  $organizationName, $organizationalUnitName,
+            $commonName, $emailAddress);
 
         $io->success(sprintf('Certificate generated successfully (saved as %s)', $certFile));
         return 0;
