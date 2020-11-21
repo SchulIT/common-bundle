@@ -1,6 +1,6 @@
 {
     "name": "schulit/common-bundle",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
