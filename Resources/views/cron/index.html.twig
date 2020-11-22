@@ -43,6 +43,12 @@
                             {% endif %}
                         </td>
                         <td>
+                            <a href="{{ path('run_cronjob', { id: job.id }) }}" class="btn btn-primary btn-sm" title="{{ 'cron.run.label'|trans }}">
+                                <i class="fa fa-play"></i>
+                            </a>
+                            <a href="{{ path('reset_cronjob', { id: job.id }) }}" class="btn btn-primary btn-sm" title="{{ 'cron.reset.label'|trans }}">
+                                <i class="fa fa-power-off"></i>
+                            </a>
                             <a href="{{ path('show_cronjob', { id: job.id }) }}" class="btn btn-primary btn-sm" title="{{ 'cron.show.label'|trans }}">
                                 <i class="fa fa-list"></i>
                             </a>

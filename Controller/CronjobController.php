@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
 use Shapecode\Bundle\CronBundle\Entity\CronJob;
 use Shapecode\Bundle\CronBundle\Entity\CronJobResult;
+use Shapecode\Bundle\CronBundle\Manager\CronJobManager;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Input\StringInput;
@@ -58,6 +59,46 @@ class CronjobController extends AbstractController {
             'jobs' => $jobs,
             'results' => $results
         ]);
+    }
+
+    /**
+     * @Route("/admin/cron/{id}/run", name="run_cronjob")
+     */
+    public function runJob(CronJob $job, CronJobManager $manager, KernelInterface $kernel) {
+        $application = new Application($kernel);
+        $application->setAutoExit(false);
+
+        $input = new StringInput(sprintf('shapecode:cron:process %d', $job->getId()));
+
+        $output = new BufferedOutput(
+            OutputInterface::VERBOSITY_NORMAL,
+            true
+        );
+        $application->run($input, $output);
+
+        $content = $output->fetch();
+        $converter = new AnsiToHtmlConverter();
+
+        $result = $job->getResults()->last();
+
+        return $this->render('@Common/cron/run.html.twig', [
+            'output' => $converter->convert($content),
+            'result' => $result,
+            'job' => $job
+        ]);
+    }
+
+    /**
+     * @Route("/admin/cron/{id}/reset", name="reset_cronjob")
+     */
+    public function resetJob(CronJob $job, EntityManagerInterface $manager) {
+        $job->setRunningInstances(0);
+        $manager->persist($job);
+        $manager->flush();
+
+        $this->addFlash('success', 'cron.reset.success');
+
+        return $this->redirectToRoute('admin_cronjobs');
     }
 
     /**

@@ -100,6 +100,12 @@ cron:
     last_run: Letzte Ausführung
     next_run: Nächste Ausführung
     last_result: Letzter Statuscode
+  reset:
+    label: Instanzen zurücksetzen
+    success: Anzahl der laufenden Instanzen auf Null gesetzt.
+  run:
+    label: Cronjob starten
+    output: Ausgabe
   show:
     label: Cronjob-Details
   results:
