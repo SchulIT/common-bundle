@@ -10,6 +10,14 @@ body[data-theme=dark] {
       .navbar-brand {
         background: $dark-brand-background;
       }
+
+      .navbar-nav {
+        .nav-item {
+          &.open {
+            background: $dark-secondary-menu-background;
+          }
+        }
+      }
     }
 
     .navbar.navbar-sub {

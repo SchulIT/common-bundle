@@ -1,9 +1,18 @@
-$background: rgb(245,245,245);
+$enable-shadows: true;
+$enable-gradients: true;
 
-$primary-menu-background: theme-color("dark") !default;
-$secondary-menu-background: theme-color("secondary") !default;
+$blue: #02225B;
+$primary: $blue;
+
+$primary-menu-background: $blue;
+$secondary-menu-background: #2e7eed;
+
+$dark-primary-menu-background: #171717;
+$dark-secondary-menu-background: $blue;
+
+$nav-pills-link-active-bg: $blue;
+
+$background: rgb(245,245,245);
 
 $breadcrumb-background: #e1e1e1;
 $footer-background: #e1e1e1;
-
-$primary: darken(#007bff, 10%) !default;
