@@ -87,4 +87,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     });
+
+    let hideMenuElementsIfNotEnoughSpace = function() {
+        document.querySelectorAll('[data-trigger=collapsible-menu]').forEach(function(element) {
+            // Important: retrieve width at the beginning because after applying the hide class, the element has 0 width
+            let children = Array.prototype.slice.call(element.children);
+            let childrenWidth = 12; // epsilon > 0
+
+            children.forEach(function(child) {
+                if(child.offsetWidth > 0) {
+                    if (child.hasAttribute('data-width') === false || child.getAttribute('data-width') == '0') {
+                        let style = window.getComputedStyle ? getComputedStyle(child, null) : child.currentStyle;
+                        let marginLeft = parseInt(style.marginLeft);
+                        let marginRight = parseInt(style.marginRight);
+
+                        if (child.classList.contains('ml-auto')) {
+                            marginLeft = 0;
+                        }
+
+                        if (child.classList.contains('mr-auto')) {
+                            marginRight = 0;
+                        }
+
+                        child.setAttribute('data-width', child.offsetWidth + marginLeft + marginRight);
+                    }
+
+                    childrenWidth += parseInt(child.getAttribute('data-width'));
+                }
+            });
+
+            let containerWidth = element.parentNode.offsetWidth;
+
+            element.setAttribute('data-parent-width', containerWidth);
+            element.setAttribute('data-children-width', childrenWidth);
+
+            if(childrenWidth > containerWidth) {
+                element.querySelectorAll('.is-collapsible').forEach(function(el) {
+                    el.classList.add('collapse');
+                });
+            } else {
+                element.querySelectorAll('.is-collapsible').forEach(function(el) {
+                    el.classList.remove('collapse');
+                });
+            }
+        });
+    };
+
+    window.addEventListener('resize', function(event) {
+        hideMenuElementsIfNotEnoughSpace();
+    });
+
+    hideMenuElementsIfNotEnoughSpace();
 });

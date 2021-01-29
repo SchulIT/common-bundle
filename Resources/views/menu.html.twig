@@ -92,9 +92,9 @@
     {%- set linkAttributes = item.linkAttributes %}
     {%- set classes = linkAttributes.class is defined and linkAttributes.class is not empty ? [linkAttributes.attribute('class')] : [] %}
     {% if item.level > 1 %}
-        {%- set classes = classes|merge(['dropdown-item']) %}
+        {%- set classes = classes|merge(['dropdown-item', 'text-nowrap']) %}
     {% else %}
-        {%- set classes = classes|merge(['nav-link']) %}
+        {%- set classes = classes|merge(['nav-link', 'text-nowrap']) %}
     {% endif %}
     {% if item.extras['menu-id'] is defined %}
         {%- set linkAttributes = linkAttributes|merge({'data-menu': item.extras['menu-id']}) -%}
@@ -106,18 +106,11 @@
 
     <a href="{{ item.uri }}"{{ macros.attributes(linkAttributes) }}>
         {% if item.extra('icon') is not empty %}
-            <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('label') }}
-                {{ block('badge') }}
-            </span>
-            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('badge') }}
-            </span>
-        {% else %}
             <i class="{{ item.extra('icon') }}"></i>
-            {{ block('label') }}
+            <span class="is-collapsible">{{ block('label') }}</span>
+            {{ block('badge') }}
+        {% else %}
+            <span class="not-collapsible">{{ block('label') }}</span>
             {{ block('badge') }}
         {% endif %}
     </a>
@@ -126,7 +119,7 @@
 {% block dropdownItem %}
     {%- set linkAttributes = item.linkAttributes %}
     {%- set classes = linkAttributes.class is defined and linkAttributes.class is not empty ? [linkAttributes.attribute('class')] : [] %}
-    {%- set classes = classes|merge(['nav-link']) %}
+    {%- set classes = classes|merge(['nav-link', 'text-nowrap']) %}
     {%- if matcher.isCurrent(item) %}
         {%- set classes = classes|merge([options.currentClass]) %}
     {%- endif  %}
@@ -134,20 +127,12 @@
 
     <a href="{{ item.uri }}"{{ macros.attributes(linkAttributes) }}>
         {% if item.extra('icon') is not empty %}
-            <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('label') }}
-                {{ block('badge') }}
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
-            </span>
-            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('badge') }}
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
-            </span>
-        {% else %}
+            <i class="{{ item.extra('icon') }}"></i>
+            <span class="is-collapsible">{{ block('label') }}</span>
             {{ block('badge') }}
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        {% else %}
+            <span class="not-collapsible">{{ block('label') }}</span>
+            {{ block('badge') }}
         {% endif %}
     </a>
 {% endblock %}
@@ -155,25 +140,18 @@
 {% block spanElement %}
     {%- set labelAttributes = item.labelAttributes %}
     {%- set classes = labelAttributes.class is defined and linkAttributes.class is not empty ? [linkAttributes.attribute('class')] : [] %}
-    {%- set classes = classes|merge(['navbar-text']) %}
+    {%- set classes = classes|merge(['navbar-text', 'text-nowrap']) %}
     {%- set labelAttributes = labelAttributes|merge({'class': classes|join(' ')}) %}
 
     <span{{ macros.attributes(labelAttributes) }}>
         {% if item.extra('icon') is not empty %}
-            <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('label') }}
-                {{ block('badge') }}
-            </span>
-            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('badge') }}
-            </span>
+            <i class="{{ item.extra('icon') }}"></i>
+            <span class="is-collapsible">{{ block('label') }}</span>
+            {{ block('badge') }}
         {% else %}
-            {{ block('label') }}
+            <span class="not-collapsible">{{ block('label') }}</span>
             {{ block('badge') }}
         {% endif %}
-
 	</span>
 {% endblock %}
 
@@ -184,7 +162,7 @@
 {% endblock %}
 
 {% block dropdownElement %}
-    {%- set classes = (item.linkAttribute('class') is not empty ? [item.linkAttribute('class')] : [])|merge(['nav-link dropdown']) %}
+    {%- set classes = (item.linkAttribute('class') is not empty ? [item.linkAttribute('class')] : [])|merge(['nav-link dropdown', 'text-nowrap']) %}
     {%- set attributes = item.linkAttributes %}
     {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- set attributes = attributes|merge({'data-toggle': 'dropdown', 'href': item.url ?? '#' }) %}
@@ -196,24 +174,16 @@
     {% endif %}
 
     <a {{ macros.attributes(attributes) }}>
-        {% if item.extra('icon') is not empty  %}
-            <span class="d-sm-none d-md-none d-lg-none d-xl-block">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('label') }}
-                {{ block('badge') }}
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
-            </span>
-            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-none">
-                <i class="{{ item.extra('icon') }}"></i>
-                {{ block('badge') }}
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
-            </span>
+        {% if item.extra('icon') is not empty %}
+            <i class="{{ item.extra('icon') }}"></i>
+            <span class="is-collapsible">{{ block('label') }}</span>
+            {{ block('badge') }}
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
         {% else %}
-            {{ block('label') }}
+            <span class="not-collapsible">{{ block('label') }}</span>
             {{ block('badge') }}
             <i class="fa fa-caret-down" aria-hidden="true"></i>
         {% endif %}
-
     </a>
 {% endblock %}
 
