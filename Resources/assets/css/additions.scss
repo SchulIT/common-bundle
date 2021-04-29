@@ -21,7 +21,7 @@
 
 .bs-callout-danger {
   background-color: #fcf2f2;
-  @extend .border-danger;
+  border-color: #B94A48;
 
   h4 {
     &::before {
@@ -36,7 +36,7 @@
 
 .bs-callout-warning {
   background-color: #fefbed;
-  @extend .border-warning;
+  border-color: #C09853;
 
   h4 {
     &::before {
@@ -51,9 +51,7 @@
 
 .bs-callout-info {
   background-color: #f0f7fd;
-  //border-color: #d0e3f0;
-  //border-color: #3A87AD;
-  @extend .border-info;
+  border-color: #3A87AD;
 
   h4 {
     &::before {
@@ -68,7 +66,7 @@
 
 .bs-callout-success {
   background-color: #FEFFF7;
-  border-color: #d6e9c6;
+  border-color: #3c763d;
 
   h4 {
     &::before {
