@@ -2,6 +2,7 @@
 
 namespace SchulIT\CommonBundle\DependencyInjection;
 
+use SchulIT\CommonBundle\Monolog\DatabaseHandler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -41,6 +42,10 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
 
         if(!isset($config['disable']) || $config['disable']['cron'] !== true) {
             $loader->load('cron.yaml');
+        }
+
+        if(!isset($config['disable']) || $config['disable']['orm'] !== true) {
+            $container->removeDefinition(DatabaseHandler::class);
         }
 
         $loader->load('controller.yaml');

@@ -54,6 +54,7 @@ class Configuration implements ConfigurationInterface {
                     ->booleanNode('saml')->defaultFalse()->end()
                     ->booleanNode('mail')->defaultFalse()->end()
                     ->booleanNode('cron')->defaultFalse()->end()
+                    ->booleanNode('orm')->defaultFalse()->end()
                 ->end()
             ->end()
         ->end();
