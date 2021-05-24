@@ -45,7 +45,6 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         }
 
         if(!isset($config['disable']) || $config['disable']['orm'] !== true) {
-            $container->setParameter('app.common.disable.database', true);
             $container->removeDefinition(DatabaseHandler::class);
         }
 

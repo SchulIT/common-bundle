@@ -11,7 +11,7 @@ class CommonBundle extends Bundle {
     public function build(ContainerBuilder $container) {
         parent::build($container);
 
-        if($container->hasParameter('app.common.disable.database') === false || $container->getParameter('app.common.disable.database') === false) {
+        if(class_exists("Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass")) {
             $container->addCompilerPass(
                 \Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass::createAnnotationMappingDriver(
                     ['SchulIT\CommonBundle\Entity'],
