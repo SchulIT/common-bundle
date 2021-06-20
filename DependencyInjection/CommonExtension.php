@@ -2,6 +2,7 @@
 
 namespace SchulIT\CommonBundle\DependencyInjection;
 
+use SchulIT\CommonBundle\Command\ClearLogsCommand;
 use SchulIT\CommonBundle\Monolog\DatabaseHandler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -44,8 +45,9 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
             $loader->load('cron.yaml');
         }
 
-        if(!isset($config['disable']) || $config['disable']['orm'] !== true) {
+        if(isset($config['disable']) && $config['disable']['orm'] === true) {
             $container->removeDefinition(DatabaseHandler::class);
+            $container->removeDefinition(ClearLogsCommand::class);
         }
 
         $loader->load('controller.yaml');
