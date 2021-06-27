@@ -36,7 +36,8 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
             new TwigFilter('format_date', [ $this, 'formatDate' ]),
             new TwigFilter('format_datetime', [ $this, 'formatDatetime' ]),
             new TwigFilter('format_time', [ $this, 'formatTime' ]),
-            new TwigFilter('format_w3c', [ $this, 'formatW3cDateTime'])
+            new TwigFilter('format_w3c', [ $this, 'formatW3cDateTime']),
+            new TwigFilter('fqcn', [ $this, 'fqcn' ])
         ];
     }
 
@@ -64,6 +65,23 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
 
     public function formatW3cDateTime(\DateTimeInterface $dateTime) {
         return $dateTime->format(\DateTimeInterface::W3C);
+    }
+
+    public function fqcn($object): string {
+        if(is_array($object)) {
+            return '[' .
+                implode(
+                    ', ',
+                    array_map([ $this, 'fqcn'], $object)
+                ) .
+                ']';
+        }
+
+        if(is_scalar($object)) {
+            return gettype($object);
+        }
+
+        return get_class($object);
     }
 
     public function logLevel($level) {

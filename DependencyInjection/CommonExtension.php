@@ -3,10 +3,12 @@
 namespace SchulIT\CommonBundle\DependencyInjection;
 
 use SchulIT\CommonBundle\Command\ClearLogsCommand;
+use SchulIT\CommonBundle\Controller\MessengerController;
 use SchulIT\CommonBundle\Monolog\DatabaseHandler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -43,6 +45,12 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
 
         if(!isset($config['disable']) || $config['disable']['cron'] !== true) {
             $loader->load('cron.yaml');
+        }
+
+        if(!isset($config['disable']) || $config['disable']['messenger'] !== true) {
+            $loader->load('messenger.yaml');
+            $definition = $container->getDefinition(MessengerController::class);
+            $definition->setArgument('$transport', new Reference($config['messenger']['transport']));
         }
 
         if(isset($config['disable']) && $config['disable']['orm'] === true) {

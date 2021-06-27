@@ -114,3 +114,8 @@ cron:
     result: Statuscode
     show:
       label: Ausgabe ansehen
+
+messenger:
+  label: Messenger
+  type: Typ
+  count: "{0} Aktuell befinden sich %count% Mitteilung in der Warteschlange.|{1} Aktuell befindet sich %count% Mitteilung in der Warteschlange.|]1,Inf[ Aktuell befinden sich %count% Mitteilungen in der Warteschlange."

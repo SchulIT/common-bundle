@@ -25,7 +25,8 @@
         "knplabs/knp-time-bundle": "",
         "swiftmailer/swiftmailer": "",
         "shapecode/cron-bundle": "",
-        "doctrine/orm": ""
+        "doctrine/orm": "",
+        "symfony/doctrine-messenger": ""
     },
     "autoload": {
         "psr-4": {

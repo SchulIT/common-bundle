@@ -114,3 +114,7 @@ cron:
     result: Status code
     show:
       label: Show output
+
+messenger:
+  label: Messenger
+  count: "{0} %count messages queued.|{1} %count% message queued.|]1,Inf[ %count% messages queued."
