@@ -2,10 +2,13 @@
 
 namespace SchulIT\CommonBundle\Utils;
 
+use SchulIT\CommonBundle\BC\RequestStackBackwardsCompatibilityTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 
 class RefererHelper {
+
+    use RequestStackBackwardsCompatibilityTrait;
 
     private const RefQueryName = 'ref';
 
@@ -18,7 +21,7 @@ class RefererHelper {
     }
 
     public function getRefererPathFromQuery(array $mapping, string $route, array $parameters = [ ], array $fallbackParameters = [ ]): string {
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->getMainRequest($this->requestStack);
         $referer = $request->query->get(static::RefQueryName, null);
 
         if(isset($mapping[$referer])) {
@@ -31,7 +34,7 @@ class RefererHelper {
     }
 
     public function getRefererPathFromRequest(?string $fallbackRoute = null, array $fallbackParameters = [ ]): string {
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->getMainRequest($this->requestStack);
         $referer = $request->headers->get('referer');
 
         if($referer === null) {

@@ -4,9 +4,12 @@ namespace SchulIT\CommonBundle\Menu;
 
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
+use SchulIT\CommonBundle\BC\RequestStackBackwardsCompatibilityTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class Voter implements VoterInterface {
+
+    use RequestStackBackwardsCompatibilityTrait;
 
     private $requestStack;
 
@@ -18,7 +21,7 @@ class Voter implements VoterInterface {
      * @inheritDoc
      */
     public function matchItem(ItemInterface $item): ?bool {
-        $currentUri = $this->requestStack->getMasterRequest()->getRequestUri();
+        $currentUri = $this->getMainRequest($this->requestStack)->getRequestUri();
         $itemUri = $item->getUri();
 
         if($itemUri === null) {

@@ -4,11 +4,14 @@ namespace SchulIT\CommonBundle\Monolog;
 
 use Doctrine\DBAL\Connection;
 use Monolog\Logger;
+use SchulIT\CommonBundle\BC\RequestStackBackwardsCompatibilityTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class DatabaseHandler extends AbstractDatabaseHandler {
+    use RequestStackBackwardsCompatibilityTrait;
+
     private $connection;
     private $tokenStorage;
     private $requestStack;
@@ -52,7 +55,7 @@ EOF;
         $url = null;
         $userAgent = null;
 
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->getMainRequest($this->requestStack);
 
         if($request !== null) {
             $url = $request->getRequestUri();

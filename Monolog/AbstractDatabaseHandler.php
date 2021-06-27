@@ -36,6 +36,12 @@ abstract class AbstractDatabaseHandler extends AbstractProcessingHandler {
             'details' => null
         ];
 
+        foreach($record['context'] as $key => $value) {
+            if(is_scalar($value) || (is_object($value) && method_exists($value, '__toString'))) {
+                $entry['message'] = str_replace('{' . $key . '}', (string)$value, $entry['message']);
+            }
+        }
+
         $details = $this->formatRequest($record);
 
         if(!empty($details)) {
