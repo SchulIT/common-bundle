@@ -2,7 +2,7 @@ $enable-shadows: true;
 $enable-gradients: true;
 
 // Import SCSS from custom
-@import "../../../../../../assets/css/custom/*.scss";
+@import "./assets/css/custom/*.scss";
 
 // Import Bootstrap
 @import './node_modules/bootstrap/scss/bootstrap';
@@ -20,7 +20,7 @@ $enable-gradients: true;
 @import './vendor/schulit/common-bundle/Resources/assets/css/dark/layout';
 
 // Import SCSS from overrides
-@import "../../../../../../assets/css/overrides/*.scss";
+@import "./assets/css/overrides/*.scss";
 
 body, html {
   background: $background;
@@ -72,5 +72,17 @@ label.col-form-label.required {
     font-weight: 900;
     content: " \f069";
     color: red;
+  }
+}
+
+.card {
+  &.card-link {
+    text-decoration: none;
+    color: $body-color;
+    transition: 0.2s;
+
+    &:hover {
+      border-color: $link-color;
+    }
   }
 }
