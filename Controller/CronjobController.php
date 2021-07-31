@@ -51,8 +51,7 @@ class CronjobController extends AbstractController {
         $results = [ ];
 
         foreach($jobs as $job) {
-            $results[$job->getCommand()] = $manager->getRepository(CronJobResult::class)
-                ->findMostRecent($job);
+            $results[$job->getCommand()] = $job->getResults()->last();
         }
 
         return $this->render('@Common/cron/index.html.twig', [
