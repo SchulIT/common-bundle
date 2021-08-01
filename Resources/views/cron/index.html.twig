@@ -5,12 +5,13 @@
 {% block content %}
     <div class="card">
         <div class="table-responsive">
-            <table class="table table-hover table-bordered table-striped card-table">
+            <table class="table table-hover table-striped card-table">
                 <colgroup>
                     <col>
                     <col class="column-lg">
                     <col class="column-md">
-                    <col class="column-md">
+                    <col class="column-sm">
+                    <col class="column-sm">
                 </colgroup>
 
                 <thead>
@@ -43,15 +44,23 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{{ path('run_cronjob', { id: job.id }) }}" class="btn btn-primary btn-sm" title="{{ 'cron.run.label'|trans }}">
-                                <i class="fa fa-play"></i>
-                            </a>
-                            <a href="{{ path('reset_cronjob', { id: job.id }) }}" class="btn btn-primary btn-sm" title="{{ 'cron.reset.label'|trans }}">
-                                <i class="fa fa-power-off"></i>
-                            </a>
-                            <a href="{{ path('show_cronjob', { id: job.id }) }}" class="btn btn-primary btn-sm" title="{{ 'cron.show.label'|trans }}">
-                                <i class="fa fa-list"></i>
-                            </a>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="{{ path('run_cronjob', { id: job.id }) }}" class="dropdown-item">
+                                        <i class="fa fa-play"></i> {{ 'cron.run.label'|trans }}
+                                    </a>
+                                    <a href="{{ path('reset_cronjob', { id: job.id }) }}" class="dropdown-item">
+                                        <i class="fa fa-power-off"></i> {{ 'cron.reset.label'|trans }}
+                                    </a>
+                                    <a href="{{ path('show_cronjob', { id: job.id }) }}" class="dropdown-item">
+                                        <i class="fa fa-list"></i> {{ 'cron.show.label'|trans }}
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
