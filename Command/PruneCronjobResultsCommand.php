@@ -21,13 +21,9 @@ class PruneCronjobResultsCommand extends Command {
     }
 
     public function configure() {
-        $this->setName('shapecode:cron:result:prune');
-
-        $this->setAliases([
-            'shapecode:cron:logs:clean-up',
-        ]);
-
-        $this->setDescription('Cleans the logs for each cron job.');
+        $this
+            ->setName('shapecode:cron:clean-up')
+            ->setDescription('Cleans the logs for each cron job.');
     }
 
     public function execute(InputInterface $input, OutputInterface $output) {
