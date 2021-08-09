@@ -91,7 +91,9 @@ class CronjobController extends AbstractController {
      * @Route("/admin/cron/{id}/reset", name="reset_cronjob")
      */
     public function resetJob(CronJob $job, EntityManagerInterface $manager) {
-        $job->setRunningInstances(0);
+        while($job->getRunningInstances() > 0) {
+            $job->decreaseRunningInstances();
+        }
         $manager->persist($job);
         $manager->flush();
 
