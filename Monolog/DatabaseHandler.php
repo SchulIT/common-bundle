@@ -44,7 +44,11 @@ EOF;
             $user = $token->getUser();
 
             if($user !== null && $user instanceof UserInterface) {
-                $username = $user->getUsername();
+                if(method_exists($user, 'getUserIdentifier')) {
+                    $username = $user->getUserIdentifier();
+                } else {
+                    $username = $user->getUsername();
+                }
             } else if(is_string($user)) {
                 $username = $user;
             } else if(method_exists($user, '__toString')) {
