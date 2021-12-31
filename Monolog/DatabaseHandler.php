@@ -4,14 +4,11 @@ namespace SchulIT\CommonBundle\Monolog;
 
 use Doctrine\DBAL\Connection;
 use Monolog\Logger;
-use SchulIT\CommonBundle\BC\RequestStackBackwardsCompatibilityTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class DatabaseHandler extends AbstractDatabaseHandler {
-    use RequestStackBackwardsCompatibilityTrait;
-
     private Connection $connection;
     private TokenStorageInterface $tokenStorage;
     private RequestStack $requestStack;
@@ -44,11 +41,7 @@ EOF;
             $user = $token->getUser();
 
             if($user !== null && $user instanceof UserInterface) {
-                if(method_exists($user, 'getUserIdentifier')) {
-                    $username = $user->getUserIdentifier();
-                } else {
-                    $username = $user->getUsername();
-                }
+                $username = $user->getUserIdentifier();
             } else if(is_string($user)) {
                 $username = $user;
             } else if(method_exists($user, '__toString')) {
@@ -59,7 +52,7 @@ EOF;
         $url = null;
         $userAgent = null;
 
-        $request = $this->getMainRequest($this->requestStack);
+        $request = $this->requestStack->getMainRequest();
 
         if($request !== null) {
             $url = $request->getRequestUri();

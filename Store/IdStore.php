@@ -17,7 +17,7 @@ class IdStore implements IdStoreInterface {
         $this->timeProvider = $timeProvider;
     }
 
-    public function set(string $entityId, string $id, DateTime $expiryTime): void {
+    public function set($entityId, $id, DateTime $expiryTime): void {
         $idEntry = $this->manager->find(IdEntity::class, ['entityId' => $entityId, 'id' => $id]);
         if (null == $idEntry) {
             $idEntry = new IdEntity();
@@ -29,7 +29,7 @@ class IdStore implements IdStoreInterface {
         $this->manager->flush();
     }
 
-    public function has(string $entityId, string $id): bool {
+    public function has($entityId, $id): bool {
         /** @var IdEntity $idEntry */
         $idEntry = $this->manager->find(IdEntity::class, ['entityId' => $entityId, 'id' => $id]);
         if (null == $idEntry) {
