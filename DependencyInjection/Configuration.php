@@ -51,7 +51,6 @@ class Configuration implements ConfigurationInterface {
             ->arrayNode('disable')
                 ->children()
                     ->booleanNode('saml')->defaultFalse()->end()
-                    ->booleanNode('mail')->defaultFalse()->end()
                     ->booleanNode('cron')->defaultFalse()->end()
                     ->booleanNode('orm')->defaultFalse()->end()
                     ->booleanNode('messenger')->defaultTrue()->end()
