@@ -11,10 +11,10 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class CommonExtension extends AbstractExtension implements GlobalsInterface {
-    private $configVariable;
+    private ConfigVariable $configVariable;
     private $menuService;
-    private $translator;
-    private $darkModeManager;
+    private TranslatorInterface $translator;
+    private DarkModeManagerInterface $darkModeManager;
 
     public function __construct(ConfigVariable $configVariable, $menuService, TranslatorInterface $translator, DarkModeManagerInterface $darkModeManager) {
         $this->configVariable = $configVariable;
@@ -30,7 +30,7 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         ];
     }
 
-    public function getFilters() {
+    public function getFilters(): array {
         return [
             new TwigFilter('log_level', [ $this, 'logLevel' ]),
             new TwigFilter('format_date', [ $this, 'formatDate' ]),
@@ -41,7 +41,7 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         ];
     }
 
-    public function getFunctions() {
+    public function getFunctions(): array {
         return [
             new TwigFunction('is_darkmode', [ $this, 'isDarkModeEnabled' ])
         ];
@@ -51,19 +51,19 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         return $this->darkModeManager->isDarkModeEnabled();
     }
 
-    public function formatDate(\DateTimeInterface $date) {
+    public function formatDate(\DateTimeInterface $date): string {
         return $date->format($this->translator->trans('date.format'));
     }
 
-    public function formatDatetime(\DateTimeInterface $dateTime) {
+    public function formatDatetime(\DateTimeInterface $dateTime): string {
         return $dateTime->format($this->translator->trans('date.with_time'));
     }
 
-    public function formatTime(\DateTimeInterface $dateTime) {
+    public function formatTime(\DateTimeInterface $dateTime): string {
         return $dateTime->format($this->translator->trans('date.time'));
     }
 
-    public function formatW3cDateTime(\DateTimeInterface $dateTime) {
+    public function formatW3cDateTime(\DateTimeInterface $dateTime): string {
         return $dateTime->format(\DateTimeInterface::W3C);
     }
 
@@ -84,7 +84,7 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         return get_class($object);
     }
 
-    public function logLevel($level) {
+    public function logLevel($level): string {
         return Logger::getLevelName($level);
     }
 }

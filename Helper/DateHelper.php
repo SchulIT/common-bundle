@@ -2,21 +2,23 @@
 
 namespace SchulIT\CommonBundle\Helper;
 
+use DateTime;
+
 class DateHelper {
 
-    private $today;
+    private ?DateTime $today;
 
     const DateJsonFormat = 'Y-m-d\TH:i:s';
 
-    public function __construct(\DateTime $today = null) {
+    public function __construct(?DateTime $today = null) {
         $this->setToday($today);
     }
 
-    public function setToday(\DateTime $today = null) {
+    public function setToday(?DateTime $today = null) {
         $this->today = $today;
     }
 
-    public function formatDateTimeForJson(\DateTime $dateTime = null) {
+    public function formatDateTimeForJson(?DateTime $dateTime = null): ?string {
         if($dateTime === null) {
             return null;
         }
@@ -25,23 +27,23 @@ class DateHelper {
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getNow() {
+    public function getNow(): DateTime {
         $today = $this->getToday();
 
-        $now = new \DateTime('now');
+        $now = new DateTime('now');
         $today->setTime($now->format('H'), $now->format('i'), $now->format('s'));
 
         return $today;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getToday() {
+    public function getToday(): DateTime {
         if($this->today === null) {
-            return new \DateTime('today');
+            return new DateTime('today');
         }
 
         return clone $this->today;
@@ -50,9 +52,9 @@ class DateHelper {
     /**
      * Gets the start date for the timeline
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getStartDate() {
+    public function getStartDate(): DateTime {
         $now = $this->getNow();
         $endOfDay = $this->getToday()->modify('+18 hours');
 
@@ -67,10 +69,10 @@ class DateHelper {
 
     /**
      * @param int $number
-     * @param null|\DateTime First day in list
-     * @return \DateTime[]
+     * @param DateTime|null $first
+     * @return DateTime[]
      */
-    public function getListOfNextDays($number, $first = null) {
+    public function getListOfNextDays(int $number, ?DateTime $first = null): array {
         if($number <= 0) {
             throw new \InvalidArgumentException('$number must be greater than 0');
         }
@@ -96,12 +98,12 @@ class DateHelper {
     /**
      * Checks if a given date is beween a given start and end date
      *
-     * @param \DateTime $dateTime
-     * @param \DateTime $start
-     * @param \DateTime $end
+     * @param DateTime $dateTime
+     * @param DateTime $start
+     * @param DateTime $end
      * @return bool
      */
-    public function isBetween(\DateTime $dateTime, \DateTime $start, \DateTime $end) {
+    public function isBetween(DateTime $dateTime, DateTime $start, DateTime $end): bool {
         return $dateTime >= $start && $dateTime <= $end;
     }
 }

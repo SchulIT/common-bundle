@@ -14,11 +14,11 @@ use Twig\Environment;
 
 class SamlExceptionSubscriber implements EventSubscriberInterface {
 
-    private $retryRoute;
-    private $loggedInRoute;
-    private $tokenStorage;
-    private $twig;
-    private $urlGenerator;
+    private string $retryRoute;
+    private string $loggedInRoute;
+    private TokenStorageInterface $tokenStorage;
+    private Environment $twig;
+    private UrlGeneratorInterface $urlGenerator;
 
     public function __construct(string $retryRoute, string $loggedInRoute, TokenStorageInterface $tokenStorage, Environment $twig, UrlGeneratorInterface $urlGenerator) {
         $this->retryRoute = $retryRoute;
@@ -28,7 +28,7 @@ class SamlExceptionSubscriber implements EventSubscriberInterface {
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function onKernelException(ExceptionEvent $event) {
+    public function onKernelException(ExceptionEvent $event): void {
         $throwable = $event->getThrowable();
 
         if($throwable instanceof LightSamlException) {
@@ -59,7 +59,7 @@ class SamlExceptionSubscriber implements EventSubscriberInterface {
     /**
      * @inheritDoc
      */
-    public static function getSubscribedEvents() {
+    public static function getSubscribedEvents(): array {
         return [
             KernelEvents::EXCEPTION => [
                 ['onKernelException', 10 ]

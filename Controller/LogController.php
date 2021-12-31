@@ -10,6 +10,7 @@ use SchulIT\CommonBundle\Entity\LogEntry;
 use SchulIT\CommonBundle\Form\ConfirmType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LogController extends AbstractController {
@@ -18,7 +19,7 @@ class LogController extends AbstractController {
     /**
      * @Route("/admin/logs", name="admin_logs")
      */
-    public function index(Request $request) {
+    public function index(Request $request): Response {
         $page = $request->query->get('page', 1);
         $channel = $request->query->get('channel', null);
         $level = $request->query->get('level', null);
@@ -80,7 +81,7 @@ class LogController extends AbstractController {
         ]);
     }
 
-    private function getCounterForLevels($channel = null) {
+    private function getCounterForLevels($channel = null): array {
         $levels = [ ];
 
         foreach(Logger::getLevels() as $name => $level) {
@@ -111,7 +112,7 @@ class LogController extends AbstractController {
         return $levels;
     }
 
-    private function getChannels() {
+    private function getChannels(): array {
         $channels = [ ];
 
         /** @var QueryBuilder $qb */
@@ -134,7 +135,7 @@ class LogController extends AbstractController {
     /**
      * @Route("/admin/logs/clear", name="admin_logs_clear")
      */
-    public function clear(Request $request) {
+    public function clear(Request $request): Response {
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(ConfirmType::class, null, [
@@ -155,7 +156,7 @@ class LogController extends AbstractController {
         ]);
     }
 
-    private function truncateLogsTable() {
+    private function truncateLogsTable(): void {
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $platform = $connection->getDatabasePlatform();

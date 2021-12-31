@@ -11,7 +11,7 @@ class Voter implements VoterInterface {
 
     use RequestStackBackwardsCompatibilityTrait;
 
-    private $requestStack;
+    private RequestStack $requestStack;
 
     public function __construct(RequestStack $requestStack) {
         $this->requestStack = $requestStack;

@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class SamlSpTokenFactory extends \LightSaml\SpBundle\Security\Authentication\Token\SamlSpTokenFactory {
 
-    private $dispatcher;
+    private EventDispatcherInterface $dispatcher;
 
     public function __construct(EventDispatcherInterface $dispatcher) {
         $this->dispatcher = $dispatcher;

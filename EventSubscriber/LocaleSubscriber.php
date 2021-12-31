@@ -10,8 +10,8 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class LocaleSubscriber implements EventSubscriberInterface {
 
-    private $locales;
-    private $logger;
+    private array $locales;
+    private LoggerInterface $logger;
 
     public function __construct(array $locales, LoggerInterface $logger = null) {
         $this->locales = $locales;
@@ -37,7 +37,7 @@ class LocaleSubscriber implements EventSubscriberInterface {
         }
     }
 
-    public static function getSubscribedEvents() {
+    public static function getSubscribedEvents(): array {
         return [
             KernelEvents::REQUEST => [
                 [ 'onKernelRequest', 17 ]

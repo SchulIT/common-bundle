@@ -6,24 +6,19 @@ use LightSaml\SpBundle\Security\Authentication\Token\SamlSpResponseToken;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class AuthenticationEvent extends Event {
-    private $user;
-    private $token;
+    private UserInterface $user;
+    private SamlSpResponseToken $token;
 
-    /**
-     * AuthenticationEvent constructor.
-     * @param UserInterface $user
-     * @param SamlSpResponseToken $token
-     */
     public function __construct($user, SamlSpResponseToken $token) {
         $this->user = $user;
         $this->token = $token;
     }
 
-    public function getUser() {
+    public function getUser(): UserInterface {
         return $this->user;
     }
 
-    public function getToken() {
+    public function getToken(): SamlSpResponseToken {
         return $this->token;
     }
 }

@@ -10,9 +10,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class PruneCronjobResultsCommand extends Command {
-    private $em;
+    private EntityManagerInterface $em;
 
-    private $threshold = '-7 days';
+    private string $threshold = '-7 days';
 
     public function __construct(EntityManagerInterface $em, string $name = null) {
         parent::__construct($name);
@@ -26,7 +26,7 @@ class PruneCronjobResultsCommand extends Command {
             ->setDescription('Cleans the logs for each cron job.');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output) {
+    public function execute(InputInterface $input, OutputInterface $output): int {
         $output->writeln('Cleaning logs for all cron jobs');
 
         $threshold = (new DateTime())->modify($this->threshold);

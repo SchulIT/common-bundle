@@ -11,7 +11,7 @@ abstract class AbstractDatabaseHandler extends AbstractProcessingHandler {
     /**
      * @inheritDoc
      */
-    protected function write(array $record) {
+    protected function write(array $record): void {
         try {
             $this->createEntryFromRecord($record);
 
@@ -25,7 +25,7 @@ abstract class AbstractDatabaseHandler extends AbstractProcessingHandler {
     /**
      * @return Connection
      */
-    protected abstract function getConnection();
+    protected abstract function getConnection(): Connection;
 
     private function createEntryFromRecord(array $record) {
         $entry = [
@@ -64,7 +64,7 @@ abstract class AbstractDatabaseHandler extends AbstractProcessingHandler {
 
     protected abstract function formatRequest(array $record);
 
-    protected function formatException(array $record) {
+    protected function formatException(array $record): ?string {
         $context = $record['context'];
 
         if(!isset($context['exception']) || !$context['exception'] instanceof \Exception) {

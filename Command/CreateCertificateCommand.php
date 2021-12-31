@@ -4,7 +4,6 @@ namespace SchulIT\CommonBundle\Command;
 
 use SchulIT\CommonBundle\Security\CertificateCreator;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,8 +11,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CreateCertificateCommand extends Command {
 
-    private $types = [ ];
-    private $certificateCreator;
+    private array $types = [ ];
+    private CertificateCreator $certificateCreator;
 
     public function __construct(array $types, CertificateCreator  $certificateCreator, ?string $name = null) {
         parent::__construct($name);
@@ -69,7 +68,7 @@ class CreateCertificateCommand extends Command {
             );
     }
 
-    public function run(InputInterface $input, OutputInterface $output) {
+    public function run(InputInterface $input, OutputInterface $output): int {
         $io = new SymfonyStyle($input, $output);
 
         $type = $input->getOption('type');

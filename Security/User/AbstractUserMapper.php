@@ -13,7 +13,7 @@ class AbstractUserMapper {
      * @param string[] $valuesAttributes
      * @return array
      */
-    protected function transformResponseToArray(Response $response, array $valueAttributes, array $valuesAttributes) {
+    protected function transformResponseToArray(Response $response, array $valueAttributes, array $valuesAttributes): array {
         $result = [ ];
 
         foreach($valueAttributes as $valueAttribute) {
@@ -31,7 +31,7 @@ class AbstractUserMapper {
         return $result;
     }
 
-    private function hasAttribute(Response $response, $attributeName) {
+    private function hasAttribute(Response $response, $attributeName): bool {
         return $response->getFirstAssertion() !== null
             && $response->getFirstAssertion()->getFirstAttributeStatement() !== null
             && $response->getFirstAssertion()->getFirstAttributeStatement()->getFirstAttributeByName($attributeName) !== null;

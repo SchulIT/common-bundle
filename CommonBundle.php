@@ -4,6 +4,7 @@ namespace SchulIT\CommonBundle;
 
 use SchulIT\CommonBundle\DependencyInjection\CommonExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class CommonBundle extends Bundle {
@@ -21,7 +22,7 @@ class CommonBundle extends Bundle {
         }
     }
 
-    public function getContainerExtension() {
+    public function getContainerExtension(): ?ExtensionInterface {
         return new CommonExtension();
     }
 }

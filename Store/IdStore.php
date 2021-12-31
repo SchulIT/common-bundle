@@ -2,35 +2,22 @@
 
 namespace SchulIT\CommonBundle\Store;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use LightSaml\Provider\TimeProvider\TimeProviderInterface;
 use LightSaml\Store\Id\IdStoreInterface;
 use SchulIT\CommonBundle\Entity\IdEntity;
 
 class IdStore implements IdStoreInterface {
-    /** @var EntityManagerInterface */
-    private $manager;
+    private EntityManagerInterface $manager;
+    private TimeProviderInterface $timeProvider;
 
-    /** @var  TimeProviderInterface */
-    private $timeProvider;
-
-    /**
-     * @param EntityManagerInterface $manager
-     * @param TimeProviderInterface $timeProvider
-     */
     public function __construct(EntityManagerInterface $manager, TimeProviderInterface $timeProvider) {
         $this->manager = $manager;
         $this->timeProvider = $timeProvider;
     }
 
-    /**
-     * @param string $entityId
-     * @param string $id
-     * @param \DateTime $expiryTime
-     *
-     * @return void
-     */
-    public function set($entityId, $id, \DateTime $expiryTime) {
+    public function set(string $entityId, string $id, DateTime $expiryTime): void {
         $idEntry = $this->manager->find(IdEntity::class, ['entityId' => $entityId, 'id' => $id]);
         if (null == $idEntry) {
             $idEntry = new IdEntity();
@@ -42,13 +29,7 @@ class IdStore implements IdStoreInterface {
         $this->manager->flush();
     }
 
-    /**
-     * @param string $entityId
-     * @param string $id
-     *
-     * @return bool
-     */
-    public function has($entityId, $id) {
+    public function has(string $entityId, string $id): bool {
         /** @var IdEntity $idEntry */
         $idEntry = $this->manager->find(IdEntity::class, ['entityId' => $entityId, 'id' => $id]);
         if (null == $idEntry) {

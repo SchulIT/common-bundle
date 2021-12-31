@@ -14,8 +14,8 @@ class ClearLogsCommand extends Command {
 
     private const KeepLogsForDays = 7;
 
-    private $dateHelper;
-    private $em;
+    private DateHelper $dateHelper;
+    private EntityManagerInterface $em;
 
     public function __construct(DateHelper $dateHelper, EntityManagerInterface $em, string $name = null) {
         parent::__construct($name);
@@ -30,7 +30,7 @@ class ClearLogsCommand extends Command {
             ->setDescription('Clears all logs older than seven days.');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output) {
+    public function execute(InputInterface $input, OutputInterface $output): int {
         $threshold = $this->dateHelper->getToday()->modify(sprintf('-%d days', static::KeepLogsForDays));
 
         $style = new SymfonyStyle($input, $output);

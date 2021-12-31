@@ -12,9 +12,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class DatabaseHandler extends AbstractDatabaseHandler {
     use RequestStackBackwardsCompatibilityTrait;
 
-    private $connection;
-    private $tokenStorage;
-    private $requestStack;
+    private Connection $connection;
+    private TokenStorageInterface $tokenStorage;
+    private RequestStack $requestStack;
 
     public function __construct(Connection $connection, TokenStorageInterface $tokenStorage, RequestStack $requestStack, $level = Logger::INFO) {
         parent::__construct($level);
@@ -24,11 +24,11 @@ class DatabaseHandler extends AbstractDatabaseHandler {
         $this->requestStack = $requestStack;
     }
 
-    protected function getConnection() {
+    protected function getConnection(): Connection {
         return $this->connection;
     }
 
-    protected function formatRequest(array $record) {
+    protected function formatRequest(array $record): string {
         $details = <<<EOF
 Username: %s
 User-Agent: %s

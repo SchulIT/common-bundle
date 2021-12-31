@@ -3,13 +3,13 @@
 namespace SchulIT\CommonBundle\Controller\Model;
 
 class LogCounter {
-    public $level;
+    public string $level;
 
-    public $name;
+    public string $name;
 
-    public $counter;
+    public int $counter;
 
-    public function __construct($level, $name, $counter = 0) {
+    public function __construct(string $level, string $name, int $counter = 0) {
         $this->level = $level;
         $this->name = $name;
         $this->counter = $counter;

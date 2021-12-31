@@ -61,7 +61,7 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $loader->load('controller.yaml');
     }
 
-    public function resolveOptions(string $url) {
+    public function resolveOptions(string $url): array {
         $options = [
             'scheme' => 'http',
             'host' => null,
@@ -85,7 +85,7 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         return $options;
     }
 
-    public function getAlias() {
+    public function getAlias(): string {
         return 'common';
     }
 
