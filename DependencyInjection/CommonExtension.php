@@ -35,10 +35,6 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
 
-        if(!isset($config['disable']) || $config['disable']['saml'] !== true) {
-            $loader->load('lightsaml.yaml');
-        }
-
         if(!isset($config['disable']) || $config['disable']['cron'] !== true) {
             $loader->load('cron.yaml');
         }
