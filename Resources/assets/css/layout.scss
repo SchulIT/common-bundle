@@ -326,3 +326,7 @@ label.col-form-label.required {
   align-self: flex-start;
   top: 1rem;
 }
+
+.custom-control-label:after, .custom-control-label:before {
+   top: 0rem !important;
+ }
