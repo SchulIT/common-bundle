@@ -1,6 +1,13 @@
 body[data-theme=dark] {
+
+  .CodeMirror-cursor{
+    border-left: 1px solid #bebebe !important;
+  }
+  
   .CodeMirror {
     border-color: $form-border;
+    background: none !important;
+    color: #bebebe !important;
   }
 
   .CodeMirror-fullscreen {
@@ -13,6 +20,13 @@ body[data-theme=dark] {
 
   .editor-toolbar {
     border-color: $form-border;
+    
+    a{
+      color: #f8f9fa !important;
+    }
+    a:hover{
+      color: #00162c !important;
+    }
   }
 
   .editor-toolbar.fullscreen {
