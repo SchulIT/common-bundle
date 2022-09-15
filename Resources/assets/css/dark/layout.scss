@@ -67,18 +67,22 @@ body[data-theme=dark] {
   .bs-callout {
     &.bs-callout-info {
       background: mix(#d0e3f0, #000000, 30%);
+      border-color: #3a87ad !important;
     }
 
     &.bs-callout-success {
       background: mix(#d6e9c6, #000000, 30%);
+      border-color: #3c763d !important;
     }
 
     &.bs-callout-danger {
       background: mix(#dFb5b4, #000000, 30%);
+      border-color: #b94a48 !important;
     }
 
     &.bs-callout-warning {
       background: mix(#f1e7bc, #000000, 30%);
+      border-color: #c09853 !important;
     }
   }
 
