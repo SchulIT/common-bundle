@@ -34,6 +34,9 @@ body[data-theme=dark] {
       background: $dark-footer-img-background;
       border-radius: $dark-footer-img-border-radius;
     }
+    a {
+      color: #bebebe !important;
+    }
   }
 
   .breadcrumb {
