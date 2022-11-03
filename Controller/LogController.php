@@ -2,6 +2,7 @@
 
 namespace SchulIT\CommonBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Monolog\Logger;
@@ -15,6 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LogController extends AbstractController {
     const ITEMS_PER_PAGE = 25;
+
+    private EntityManagerInterface $em;
+
+    public function __construct(EntityManagerInterface $em) {
+        $this->em = $em;
+    }
 
     /**
      * @Route("/admin/logs", name="admin_logs")
@@ -40,7 +47,7 @@ class LogController extends AbstractController {
         }
 
         /** @var QueryBuilder $queryBuilder */
-        $queryBuilder = $this->getDoctrine()->getManager()
+        $queryBuilder = $this->em
             ->createQueryBuilder()
             ->select('l')
             ->from(LogEntry::class, 'l')
@@ -89,7 +96,7 @@ class LogController extends AbstractController {
         }
 
         /** @var QueryBuilder $qb */
-        $qb = $this->getDoctrine()->getManager()
+        $qb = $this->em
             ->createQueryBuilder()
             ->select(['l.level', 'COUNT(l.id)'])
             ->from(LogEntry::class, 'l')
@@ -116,7 +123,7 @@ class LogController extends AbstractController {
         $channels = [ ];
 
         /** @var QueryBuilder $qb */
-        $qb = $this->getDoctrine()->getManager()
+        $qb = $this->em
             ->createQueryBuilder()
             ->select('l.channel')
             ->from(LogEntry::class, 'l')
@@ -136,8 +143,6 @@ class LogController extends AbstractController {
      * @Route("/admin/logs/clear", name="admin_logs_clear")
      */
     public function clear(Request $request): Response {
-        $em = $this->getDoctrine()->getManager();
-
         $form = $this->createForm(ConfirmType::class, null, [
             'message' => 'logs.clear.confirm',
             'header' => 'logs.clear.header'
@@ -157,10 +162,9 @@ class LogController extends AbstractController {
     }
 
     private function truncateLogsTable(): void {
-        $em = $this->getDoctrine()->getManager();
-        $connection = $em->getConnection();
+        $connection = $this->em->getConnection();
         $platform = $connection->getDatabasePlatform();
-        $metadata = $em->getClassMetadata(LogEntry::class);
+        $metadata = $this->em->getClassMetadata(LogEntry::class);
 
         $query = $platform->getTruncateTableSql($metadata->getTableName());
         $connection->executeUpdate($query);
