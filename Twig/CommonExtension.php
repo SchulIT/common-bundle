@@ -2,7 +2,8 @@
 
 namespace SchulIT\CommonBundle\Twig;
 
-use Monolog\Logger;
+use DateTimeInterface;
+use Monolog\Level;
 use SchulIT\CommonBundle\DarkMode\DarkModeManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -11,16 +12,10 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class CommonExtension extends AbstractExtension implements GlobalsInterface {
-    private ConfigVariable $configVariable;
     private $menuService;
-    private TranslatorInterface $translator;
-    private DarkModeManagerInterface $darkModeManager;
 
-    public function __construct(ConfigVariable $configVariable, $menuService, TranslatorInterface $translator, DarkModeManagerInterface $darkModeManager) {
-        $this->configVariable = $configVariable;
+    public function __construct(private readonly ConfigVariable $configVariable, $menuService, private readonly TranslatorInterface $translator, private readonly DarkModeManagerInterface $darkModeManager) {
         $this->menuService = $menuService;
-        $this->translator = $translator;
-        $this->darkModeManager = $darkModeManager;
     }
 
     public function getGlobals(): array {
@@ -51,20 +46,20 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         return $this->darkModeManager->isDarkModeEnabled();
     }
 
-    public function formatDate(\DateTimeInterface $date): string {
+    public function formatDate(DateTimeInterface $date): string {
         return $date->format($this->translator->trans('date.format'));
     }
 
-    public function formatDatetime(\DateTimeInterface $dateTime): string {
+    public function formatDatetime(DateTimeInterface $dateTime): string {
         return $dateTime->format($this->translator->trans('date.with_time'));
     }
 
-    public function formatTime(\DateTimeInterface $dateTime): string {
+    public function formatTime(DateTimeInterface $dateTime): string {
         return $dateTime->format($this->translator->trans('date.time'));
     }
 
-    public function formatW3cDateTime(\DateTimeInterface $dateTime): string {
-        return $dateTime->format(\DateTimeInterface::W3C);
+    public function formatW3cDateTime(DateTimeInterface $dateTime): string {
+        return $dateTime->format(DateTimeInterface::W3C);
     }
 
     public function fqcn($object): string {
@@ -84,7 +79,7 @@ class CommonExtension extends AbstractExtension implements GlobalsInterface {
         return get_class($object);
     }
 
-    public function logLevel($level): string {
-        return Logger::getLevelName($level);
+    public function logLevel(int $level): string {
+        return Level::from($level)->getName();
     }
 }

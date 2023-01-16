@@ -3,80 +3,41 @@
 namespace SchulIT\CommonBundle\Twig;
 
 class ConfigVariable {
-    private $name;
 
-    private $version;
-
-    private $projectUrl;
-
-    private $logo;
-
-    private $smallLogo;
-
-    private $host;
-
-    private $path;
-
-    private $isSsl;
-
-    private $logoLink;
-
-    /**
-     * ConfigVariable constructor.
-     * @param string $name
-     * @param string $host
-     * @param string $path
-     * @param string $isSsl
-     * @param string $version
-     * @param string $projectUrl
-     * @param string|null $logo
-     * @param string|null $smallLogo
-     * @param string|null $logoLink
-     */
-    public function __construct($name, $host, $path, $isSsl, $version, $projectUrl, $logo = null, $smallLogo = null, $logoLink = null) {
-        $this->name = $name;
-        $this->host = $host;
-        $this->path = $path;
-        $this->isSsl = $isSsl;
-        $this->version = $version;
-        $this->projectUrl = $projectUrl;
-        $this->logo = $logo;
-        $this->smallLogo = $smallLogo;
-        $this->logoLink = $logoLink;
-    }
+    public function __construct(private readonly string $name, private readonly string $host, private readonly string $path, private readonly bool $isSsl, private readonly string $version, private readonly string $projectUrl, private readonly ?string $logo = null, private readonly ?string $smallLogo = null, private readonly ?string $logoLink = null) { }
 
     /**
      * @return string
      */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
     /**
      * @return string
      */
-    public function getHost() {
+    public function getHost(): string {
         return $this->host;
     }
 
     /**
      * @return string
      */
-    public function getPath() {
+    public function getPath(): string {
         return $this->path;
     }
 
     /**
      * @return bool
      */
-    public function isSsl() {
+    public function isSsl(): bool {
         return $this->isSsl;
     }
 
     /**
      * @return string
      */
-    public function getBasePath() {
+    public function getBasePath(): string {
         $scheme = $this->isSsl() ? 'https' : 'http';
 
         return sprintf('%s://%s%s', $scheme, $this->getHost(), $this->getPath());
@@ -85,28 +46,28 @@ class ConfigVariable {
     /**
      * @return string
      */
-    public function getVersion() {
+    public function getVersion(): string {
         return $this->version;
     }
 
     /**
      * @return string
      */
-    public function getProjectUrl() {
+    public function getProjectUrl(): string {
         return $this->projectUrl;
     }
 
     /**
      * @return null|string
      */
-    public function getLogo() {
+    public function getLogo(): ?string {
         return $this->logo;
     }
 
     /**
      * @return null|string
      */
-    public function getSmallLogo() {
+    public function getSmallLogo(): ?string {
         return $this->smallLogo;
     }
 

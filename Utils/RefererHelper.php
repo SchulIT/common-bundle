@@ -9,13 +9,7 @@ class RefererHelper {
 
     private const RefQueryName = 'ref';
 
-    private RequestStack $requestStack;
-    private RouterInterface $router;
-
-    public function __construct(RequestStack $requestStack, RouterInterface $router) {
-        $this->requestStack = $requestStack;
-        $this->router = $router;
-    }
+    public function __construct(private readonly RequestStack $requestStack, private readonly RouterInterface $router) { }
 
     public function getRefererPathFromQuery(array $mapping, string $route, array $parameters = [ ], array $fallbackParameters = [ ]): string {
         $request = $this->requestStack->getMainRequest();

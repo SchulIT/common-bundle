@@ -9,13 +9,8 @@ use LightSaml\Store\Id\IdStoreInterface;
 use SchulIT\CommonBundle\Entity\IdEntity;
 
 class IdStore implements IdStoreInterface {
-    private EntityManagerInterface $manager;
-    private TimeProviderInterface $timeProvider;
 
-    public function __construct(EntityManagerInterface $manager, TimeProviderInterface $timeProvider) {
-        $this->manager = $manager;
-        $this->timeProvider = $timeProvider;
-    }
+    public function __construct(private readonly EntityManagerInterface $manager, private readonly TimeProviderInterface $timeProvider) { }
 
     public function set($entityId, $id, DateTime $expiryTime): void {
         $idEntry = $this->manager->find(IdEntity::class, ['entityId' => $entityId, 'id' => $id]);
