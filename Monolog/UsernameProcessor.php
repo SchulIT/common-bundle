@@ -17,7 +17,7 @@ class UsernameProcessor implements ProcessorInterface {
     /**
      * @inheritDoc
      */
-    public function __invoke(LogRecord $record): array {
+    public function __invoke(LogRecord $record): LogRecord {
         $record['extra']['username'] = $this->getUsername();
 
         return $record;

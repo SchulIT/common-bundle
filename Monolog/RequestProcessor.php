@@ -19,7 +19,7 @@ class RequestProcessor implements ProcessorInterface {
     /**
      * @inheritDoc
      */
-    public function __invoke(LogRecord $records): array {
+    public function __invoke(LogRecord $records): LogRecord {
         $records['extra']['useragent'] = $this->getUserAgent();
         $records['extra']['url'] = $this->getUrl();
         $records['extra']['referer'] = $this->getXhrBaseUrl();

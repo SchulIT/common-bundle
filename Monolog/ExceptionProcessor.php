@@ -8,7 +8,7 @@ use Throwable;
 
 class ExceptionProcessor implements ProcessorInterface {
 
-    public function __invoke(LogRecord $records): array {
+    public function __invoke(LogRecord $records): LogRecord {
         if(isset($records['context']['exception']) && $records['context']['exception'] instanceof Throwable) {
             $records['extra']['exception'] = [
                 'class' => $records['context']['exception']::class,
