@@ -49,7 +49,8 @@ class CronjobController extends AbstractController {
         $results = [ ];
 
         foreach($jobs as $job) {
-            $results[$job->getCommand()] = $job->getResults()->last();
+            $results[$job->getCommand()] = $manager->getRepository(CronJobResult::class)
+                ->findOneBy(['cronJob' => $job ], ['runAt' => 'desc']);
         }
 
         return $this->render('@Common/cron/index.html.twig', [
