@@ -5,6 +5,7 @@ namespace SchulIT\CommonBundle\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Monolog\Level;
 use Monolog\Logger;
 use SchulIT\CommonBundle\Controller\Model\LogCounter;
 use SchulIT\CommonBundle\Entity\LogEntry;
@@ -85,8 +86,8 @@ class LogController extends AbstractController {
     private function getCounterForLevels($channel = null): array {
         $levels = [ ];
 
-        foreach(Logger::getLevels() as $name => $level) {
-            $levels[$level] = new LogCounter($level, $name);
+        foreach(Level::cases() as $level) {
+            $levels[$level->value] = new LogCounter($level->value, $level->name);
         }
 
         /** @var QueryBuilder $qb */
