@@ -34,8 +34,5 @@ class CertificateCreator {
 
         file_put_contents($keyFile, $keyout);
         file_put_contents($certFile, $certout);
-
-        openssl_x509_free($cert);
-        openssl_pkey_free($privKey);
     }
 }
