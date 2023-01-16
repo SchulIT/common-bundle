@@ -18,7 +18,7 @@ services:
   SchulIT\CommonBundle\Twig\ConfigVariable:
     arguments:
       - "%app.common.url%"
-      - %app.common.url%"
+      - "%app.common.url%"
       - "%app.common.version%"
       - "%app.common.project_url%"
       - "%app.common.logo%"
