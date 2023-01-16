@@ -3,73 +3,40 @@
 namespace SchulIT\CommonBundle\Monolog;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\Types\Types;
+use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-class DatabaseHandler extends AbstractDatabaseHandler {
-    private Connection $connection;
-    private TokenStorageInterface $tokenStorage;
-    private RequestStack $requestStack;
+class DatabaseHandler extends AbstractProcessingHandler {
 
-    public function __construct(Connection $connection, TokenStorageInterface $tokenStorage, RequestStack $requestStack, $level = Logger::INFO) {
-        parent::__construct($level);
-
-        $this->connection = $connection;
-        $this->tokenStorage = $tokenStorage;
-        $this->requestStack = $requestStack;
+    public function __construct(private Connection $connection, int $level = Logger::INFO) {
+        parent::__construct($level, false);
     }
 
-    protected function getConnection(): Connection {
-        return $this->connection;
-    }
+    /**
+     * @inheritDoc
+     */
+    protected function write(array $record): void {
+        $entry = [
+            'channel' => $record['channel'],
+            'level' => $record['level'],
+            'message' => $record['formatted'],
+            'time' => $record['datetime'],
+            'details' => json_encode($record['extra'], JSON_PRETTY_PRINT)
+        ];
 
-    protected function formatRequest(array $record): string {
-        $details = <<<EOF
-Username: %s
-User-Agent: %s
-URL: %s
-Data: %s
-EOF;
-
-        $username = null;
-        $token = $this->tokenStorage->getToken();
-
-        if($token !== null) {
-            /** @var UserInterface $user */
-            $user = $token->getUser();
-
-            if($user !== null && $user instanceof UserInterface) {
-                $username = $user->getUserIdentifier();
-            } else if(is_string($user)) {
-                $username = $user;
-            } else if(method_exists($user, '__toString')) {
-                $username = (string)$user;
-            }
+        try {
+            $this->connection
+                ->insert('log', $entry, [
+                    Types::STRING,
+                    Types::INTEGER,
+                    Types::TEXT,
+                    Types::DATETIME_MUTABLE,
+                    Types::STRING
+                ]);
+        } catch (Exception) {
+            // Logging failed :-/
         }
-
-        $url = null;
-        $userAgent = null;
-
-        $request = $this->requestStack->getMainRequest();
-
-        if($request !== null) {
-            $url = $request->getRequestUri();
-            $userAgent = $request->headers->get('User-Agent');
-        }
-
-        $extra = null;
-
-        if(isset($record['context']['extra'])) {
-            $extra = var_export($record['context']['extra'], true);
-        }
-
-        return sprintf($details,
-            $username ?? 'N/A',
-            $userAgent ?? 'N/A',
-            $url ?? 'N/A',
-            $extra ?? 'N/A'
-        );
     }
 }
