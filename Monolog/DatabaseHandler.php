@@ -6,18 +6,19 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Types\Types;
 use Monolog\Handler\AbstractProcessingHandler;
-use Monolog\Logger;
+use Monolog\Level;
+use Monolog\LogRecord;
 
 class DatabaseHandler extends AbstractProcessingHandler {
 
-    public function __construct(private Connection $connection, int $level = Logger::INFO) {
+    public function __construct(private readonly Connection $connection, Level $level = Level::Info) {
         parent::__construct($level, false);
     }
 
     /**
      * @inheritDoc
      */
-    protected function write(array $record): void {
+    protected function write(LogRecord $record): void {
         $entry = [
             'channel' => $record['channel'],
             'level' => $record['level'],
