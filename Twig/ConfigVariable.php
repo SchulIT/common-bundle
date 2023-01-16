@@ -4,7 +4,7 @@ namespace SchulIT\CommonBundle\Twig;
 
 class ConfigVariable {
 
-    public function __construct(private readonly string $name, private readonly string $host, private readonly string $path, private readonly bool $isSsl, private readonly string $version, private readonly string $projectUrl, private readonly ?string $logo = null, private readonly ?string $smallLogo = null, private readonly ?string $logoLink = null) { }
+    public function __construct(private readonly string $name, private readonly string $url, private readonly string $version, private readonly string $projectUrl, private readonly ?string $logo = null, private readonly ?string $smallLogo = null, private readonly ?string $logoLink = null) { }
 
     /**
      * @return string
@@ -14,33 +14,42 @@ class ConfigVariable {
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getHost(): string {
-        return $this->host;
+    public function getHost(): ?string {
+        $parsed = parse_url($this->url);
+        return $parsed['host'];
     }
 
     /**
      * @return string
      */
     public function getPath(): string {
-        return $this->path;
+        $parsed = parse_url($this->url);
+        return $parsed['url'];
     }
 
     /**
      * @return bool
      */
     public function isSsl(): bool {
-        return $this->isSsl;
+        $parsed = parse_url($this->url);
+        return $parsed['scheme'] === 'https';
     }
 
     /**
      * @return string
      */
-    public function getBasePath(): string {
-        $scheme = $this->isSsl() ? 'https' : 'http';
+    public function getUrl(): string {
+        return $this->url;
+    }
 
-        return sprintf('%s://%s%s', $scheme, $this->getHost(), $this->getPath());
+    /**
+     * @return string
+     * @deprecated Use getUrl()
+     */
+    public function getBasePath(): string {
+        return $this->url;
     }
 
     /**
