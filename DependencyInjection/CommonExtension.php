@@ -20,8 +20,6 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
 
         $container->setParameter('app.common.name', $config['app']['name']);
         $container->setParameter('app.common.url', $config['app']['url']);
-        $container->setParameter('app.common.path', $options['path']);
-        $container->setParameter('app.common.ssl', $options['scheme'] === 'https');
         $container->setParameter('app.common.version', $config['app']['version']);
         $container->setParameter('app.common.project_url', $config['app']['project_url']);
         $container->setParameter('app.common.logo', $config['app']['logo']);
