@@ -7,11 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LogoutController extends AbstractController {
 
-    private string $logoutUrl;
-
-    public function __construct(string $logoutUrl) {
-        $this->logoutUrl = $logoutUrl;
-    }
+    public function __construct(private readonly string $logoutUrl) { }
 
     public function logout(): Response {
         return $this->render('@Common/auth/logout.html.twig', [

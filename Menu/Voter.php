@@ -8,11 +8,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class Voter implements VoterInterface {
 
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack) {
-        $this->requestStack = $requestStack;
-    }
+    public function __construct(private readonly RequestStack $requestStack) { }
 
     /**
      * @inheritDoc

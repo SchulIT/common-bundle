@@ -2,80 +2,50 @@
 
 namespace SchulIT\CommonBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity()
- */
+#[ORM\Entity]
 class IdEntity {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'NONE')]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $entityId;
 
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'NONE')]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=false)
-     */
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $expiry;
 
-    /**
-     * @return string
-     */
-    public function getEntityId() {
+    public function getEntityId(): string {
         return $this->entityId;
     }
 
-    /**
-     * @param string $entityId
-     *
-     * @return IdEntity
-     */
-    public function setEntityId($entityId) {
+    public function setEntityId(string $entityId): IdEntity {
         $this->entityId = $entityId;
 
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getExpiry() {
+    public function getExpiry(): DateTime {
         return $this->expiry;
     }
 
-    /**
-     * @param \DateTime $expiry
-     *
-     * @return IdEntity
-     */
-    public function setExpiry(\DateTime $expiry) {
+    public function setExpiry(DateTime $expiry): IdEntity {
         $this->expiry = $expiry;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getId() {
+    public function getId(): string {
         return $this->id;
     }
-
-    /**
-     * @param string $id
-     *
-     * @return IdEntity
-     */
-    public function setId($id) {
+    
+    public function setId(string $id): IdEntity {
         $this->id = $id;
 
         return $this;

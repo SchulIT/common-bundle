@@ -10,9 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DarkModeController extends AbstractController {
 
-    /**
-     * @Route("/settings/dark_mode", name="toggle_darkmode")
-     */
+    #[Route('/settings/dark_mode', name: 'toggle_darkmode')]
     public function toggleDarkMode(DarkModeManagerInterface $darkModeManager, RefererHelper $refererHelper): RedirectResponse {
         if($darkModeManager->isDarkModeEnabled()) {
             $darkModeManager->disableDarkMode();

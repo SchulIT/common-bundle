@@ -11,15 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class MessengerController extends AbstractController {
 
     private const Limit = 100;
-    private TransportInterface $transport;
 
-    public function __construct(TransportInterface $transport) {
-        $this->transport = $transport;
-    }
+    public function __construct(private readonly TransportInterface $transport) { }
 
-    /**
-     * @Route("/admin/messenger", name="admin_messenger")
-     */
+    #[Route('/admin/messenger', name: 'admin_messenger')]
     public function index(): Response {
         $envelopes = $this->transport->all(static::Limit);
         $count = $this->transport->getMessageCount();

@@ -5,10 +5,12 @@ namespace SchulIT\CommonBundle\Command;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Shapecode\Bundle\CronBundle\Entity\CronJobResult;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'shapecode:cron:clean-up', description: 'Cleans the logs for each cron job.')]
 class PruneCronjobResultsCommand extends Command {
     private EntityManagerInterface $em;
 
@@ -18,12 +20,6 @@ class PruneCronjobResultsCommand extends Command {
         parent::__construct($name);
 
         $this->em = $em;
-    }
-
-    public function configure() {
-        $this
-            ->setName('shapecode:cron:clean-up')
-            ->setDescription('Cleans the logs for each cron job.');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int {

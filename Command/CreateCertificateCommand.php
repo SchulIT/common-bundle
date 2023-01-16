@@ -3,12 +3,14 @@
 namespace SchulIT\CommonBundle\Command;
 
 use SchulIT\CommonBundle\Security\CertificateCreator;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand(name: 'app:create-certificate', description: 'Creates a new self-signed certificate')]
 class CreateCertificateCommand extends Command {
 
     private array $types = [ ];
@@ -23,8 +25,6 @@ class CreateCertificateCommand extends Command {
 
     public function configure() {
         $this
-            ->setName('app:create-certificate')
-            ->setDescription('Creates a new self-signed certificate')
             ->addOption(
                 'type',
                 't',

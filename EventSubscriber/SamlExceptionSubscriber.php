@@ -14,19 +14,10 @@ use Twig\Environment;
 
 class SamlExceptionSubscriber implements EventSubscriberInterface {
 
-    private string $retryRoute;
-    private string $loggedInRoute;
-    private TokenStorageInterface $tokenStorage;
-    private Environment $twig;
-    private UrlGeneratorInterface $urlGenerator;
 
-    public function __construct(string $retryRoute, string $loggedInRoute, TokenStorageInterface $tokenStorage, Environment $twig, UrlGeneratorInterface $urlGenerator) {
-        $this->retryRoute = $retryRoute;
-        $this->loggedInRoute = $loggedInRoute;
-        $this->tokenStorage = $tokenStorage;
-        $this->twig = $twig;
-        $this->urlGenerator = $urlGenerator;
-    }
+    public function __construct(private readonly string $retryRoute, private readonly string $loggedInRoute,
+                                private readonly TokenStorageInterface $tokenStorage, private readonly Environment $twig,
+                                private readonly UrlGeneratorInterface $urlGenerator) { }
 
     public function onKernelException(ExceptionEvent $event): void {
         $throwable = $event->getThrowable();

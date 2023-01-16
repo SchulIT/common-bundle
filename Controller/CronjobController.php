@@ -12,15 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CronjobController extends AbstractController {
 
-    /**
-     * @Route("/cron", methods={"GET"})
-     */
+    #[Route('/cron', methods: ['GET'])]
     public function run(KernelInterface $kernel): Response {
         $application = new Application($kernel);
         $application->setAutoExit(false);
@@ -41,9 +40,7 @@ class CronjobController extends AbstractController {
         ]);
     }
 
-    /**
-     * @Route("/admin/cron", name="admin_cronjobs")
-     */
+    #[Route('/admin/cron', name: 'admin_cronjobs')]
     public function index(EntityManagerInterface $manager): Response {
         $jobs = $manager->getRepository(CronJob::class)
             ->findAll();
@@ -61,9 +58,7 @@ class CronjobController extends AbstractController {
         ]);
     }
 
-    /**
-     * @Route("/admin/cron/{id}/run", name="run_cronjob")
-     */
+    #[Route('/admin/cron/{id}/run', name: 'run_cronjob')]
     public function runJob(CronJob $job, CronJobManager $manager, KernelInterface $kernel): Response {
         $application = new Application($kernel);
         $application->setAutoExit(false);
@@ -88,10 +83,8 @@ class CronjobController extends AbstractController {
         ]);
     }
 
-    /**
-     * @Route("/admin/cron/{id}/reset", name="reset_cronjob")
-     */
-    public function resetJob(CronJob $job, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\RedirectResponse {
+    #[Route('admin/cron/{id}/reset', name: 'reset_cronjob')]
+    public function resetJob(CronJob $job, EntityManagerInterface $manager): RedirectResponse {
         while($job->getRunningInstances() > 0) {
             $job->decreaseRunningInstances();
         }
@@ -103,9 +96,7 @@ class CronjobController extends AbstractController {
         return $this->redirectToRoute('admin_cronjobs');
     }
 
-    /**
-     * @Route("/admin/cron/{id}", name="show_cronjob")
-     */
+    #[Route('/admin/cron/{id}', name: 'show_cronjob')]
     public function showJob(CronJob $job, EntityManagerInterface $manager): Response {
         $results = $manager->getRepository(CronJobResult::class)
             ->createQueryBuilder('r')
@@ -122,10 +113,8 @@ class CronjobController extends AbstractController {
             'results' => $results
         ]);
     }
-
-    /**
-     * @Route("/admin/cron/{job}/result/{id}", name="show_cronresult")
-     */
+    
+    #[Route('/admin/cron/{job}/result/{id}', name: 'show_cronresult')]
     public function showResult(CronJobResult $result): Response {
         return $this->render('@Common/cron/result.html.twig', [
             'result' => $result

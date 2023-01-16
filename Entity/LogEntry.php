@@ -2,133 +2,78 @@
 
 namespace SchulIT\CommonBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity()
- * @ORM\Table(name="log", options={"collate"="utf8mb4_unicode_ci", "charset"="utf8mb4"})
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'log')]
 class LogEntry {
-    /**
-     * @ORM\GeneratedValue()
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @var int
-     */
-    private $id;
 
-    /**
-     * @ORM\Column(type="string")
-     * @var string
-     */
-    private $channel;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private int $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @var int
-     */
-    private $level;
+    #[ORM\Column(type: 'string')]
+    private string $channel;
 
-    /**
-     * @ORM\Column(type="text")
-     * @var string
-     */
-    private $message;
+    #[ORM\Column(type: 'integer')]
+    private int $level;
 
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
-    private $time;
+    #[ORM\Column(type: 'text')]
+    private string $message;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $details;
+    #[ORM\Column(type: 'datetime')]
+    private DateTime $time;
 
-    /**
-     * @return int|null
-     */
-    public function getId() {
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $details;
+
+    public function getId(): int {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getChannel() {
+    public function getChannel(): string {
         return $this->channel;
     }
 
-    /**
-     * @param string $channel
-     * @return LogEntry
-     */
-    public function setChannel($channel) {
+    public function setChannel(string $channel): LogEntry {
         $this->channel = $channel;
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getLevel() {
+    public function getLevel(): int {
         return $this->level;
     }
 
-    /**
-     * @param int $level
-     * @return LogEntry
-     */
-    public function setLevel($level) {
+    public function setLevel(int $level): LogEntry {
         $this->level = $level;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getMessage() {
+    public function getMessage(): string {
         return $this->message;
     }
 
-    /**
-     * @param string $message
-     * @return LogEntry
-     */
-    public function setMessage($message) {
+    public function setMessage(string $message): LogEntry {
         $this->message = $message;
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getTime() {
+    public function getTime(): DateTime {
         return $this->time;
     }
 
-    /**
-     * @param \DateTime $time
-     * @return LogEntry
-     */
-    public function setTime(\DateTime $time) {
+    public function setTime(DateTime $time): LogEntry {
         $this->time = $time;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getDetails() {
+    public function getDetails(): ?string {
         return $this->details;
     }
 
-    /**
-     * @param string $details
-     * @return LogEntry
-     */
-    public function setDetails($details) {
+    public function setDetails(?string $details): LogEntry {
         $this->details = $details;
         return $this;
     }

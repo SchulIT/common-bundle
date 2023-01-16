@@ -5,11 +5,13 @@ namespace SchulIT\CommonBundle\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use SchulIT\CommonBundle\Entity\LogEntry;
 use SchulIT\CommonBundle\Helper\DateHelper;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand(name: 'app:clear-logs', description: 'Clears all logs older than seven days.')]
 class ClearLogsCommand extends Command {
 
     private const KeepLogsForDays = 7;
@@ -22,12 +24,6 @@ class ClearLogsCommand extends Command {
 
         $this->dateHelper = $dateHelper;
         $this->em = $em;
-    }
-
-    public function configure() {
-        $this
-            ->setName('app:clear-logs')
-            ->setDescription('Clears all logs older than seven days.');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int {
