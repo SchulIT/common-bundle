@@ -1,4 +1,4 @@
-body[data-theme=dark] {
+body[data-bs-theme=dark] {
   .#{$choices-selector} {
     &.is-disabled {
       .#{$choices-selector}__inner,
@@ -10,9 +10,9 @@ body[data-theme=dark] {
 
   .#{$choices-selector}[data-type*="select-one"] {
     .#{$choices-selector}__input {
-      border-bottom: 1px solid $form-border;
-      background-color: #171717;
-      color: $form-color;
+      border-bottom: $border-width solid $input-border-color;
+      background-color: $input-bg;
+      color: $gray-400;
     }
     .#{$choices-selector}__button {
       background-image: $choices-icon-cross-inverse;
@@ -28,11 +28,11 @@ body[data-theme=dark] {
 
   .#{$choices-selector}[data-type*="select-multiple"],
   .#{$choices-selector}__inner {
-    background-color: #171717;
-    border: 1px solid $form-border;
+    background-color: $input-bg;
+    border: $border-width solid $input-border-color;
     .is-focused &,
     .is-open & {
-      border-color: $form-border;
+      border-color: $gray-400;
     }
     .is-open & {
       border-radius: $choices-border-radius $choices-border-radius 0 0;
@@ -45,27 +45,27 @@ body[data-theme=dark] {
   .#{$choices-selector}__list--multiple {
     .#{$choices-selector}__item {
       background-color: $choices-primary-color;
-      border: 1px solid $form-border;
+      border: 1px solid $gray-400;
       &.is-highlighted {
-        background-color: darken($form-border, 5%);
-        border: 1px solid darken($form-border, 10%);
+        background-color: darken($gray-400, 5%);
+        border: 1px solid darken($gray-400, 10%);
       }
       .is-disabled & {
-        background-color: darken($form-border, 25%);
-        border: 1px solid darken($form-border, 35%);
+        background-color: darken($gray-400, 25%);
+        border: 1px solid darken($gray-400, 35%);
       }
     }
   }
 
   .#{$choices-selector}__list--dropdown {
-    background-color: #171717;
-    border-color: $form-border;
+    background-color: $input-bg;
+    border-color: $input-border-color;;
     .is-open & {
-      border-color: $form-border;
+      border-color: $input-border-color;;
     }
     .#{$choices-selector}__item--selectable {
       &.is-highlighted {
-        background-color: $default-header-bg;
+        background-color: $list-group-hover-bg;
       }
     }
   }
@@ -76,7 +76,7 @@ body[data-theme=dark] {
   }
 
   .#{$choices-selector}__input {
-    background-color: #171717;
-    color: $form-color;
+    background-color: $input-bg;
+    color: $input-color;
   }
 }

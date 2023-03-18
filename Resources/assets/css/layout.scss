@@ -1,9 +1,15 @@
 /* CSS Document */
 html, body {
-  background: $background;
   margin: 0;
   padding: 0;
-  font: normal 90% "Helvetica Neue", "Segoe UI", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 90%;
+  background: $background;
+}
+
+@include color-mode(dark) {
+  html, body {
+    background: $background-dark !important;
+  }
 }
 
 body {
@@ -116,6 +122,10 @@ header {
             background: transparentize($white, 0.75);
           }
         }
+
+        .navbar-text {
+          display: block;
+        }
       }
     }
   }
@@ -220,11 +230,6 @@ header {
   }
 }
 
-.breadcrumb {
-  background: $breadcrumb-background;
-  padding: 0.75rem 19px;
-}
-
 footer {
   border-top: 1px solid #ccc;
   background: $footer-background;
@@ -254,7 +259,7 @@ form {
 legend.col-form-label.required,
 label.col-form-label.required {
   &::after {
-    font-family: 'Font Awesome 5 Free';
+    font-family: $fa-style-family;
     font-weight: 900;
     content: " \f069";
     color: red;
@@ -265,8 +270,8 @@ label.col-form-label.required {
   margin-bottom: 1rem;
 
   hr {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .card-body {
@@ -293,22 +298,49 @@ label.col-form-label.required {
     text-align: center;
   }
 
-  a.card-body {
-    text-decoration: none;
-    color: $black;
+  .table {
+    margin-bottom: 0;
 
-    -webkit-transition: background-color 0.1s ease-in-out;
-    -o-transition: background-color 0.1s ease-in-out;
-    transition: background-color 0.1s ease-in-out;
+    tr {
+      td:first-child {
+        border-left: 0;
+      }
 
-    &:hover {
-      background: $card-border-color;
-      color: $black
+      td:last-child {
+        border-right: 0;
+      }
+    }
+
+    tr:first-child {
+      border-top: 0;
+
+      td, th {
+        border-top: 0;
+      }
+    }
+
+    tbody {
+      tr:last-child {
+        border-bottom: 0;
+
+        td, th {
+          border-bottom: 0;
+        }
+      }
     }
   }
+}
 
-  > .table {
-    border-top: 0;
+a.card {
+  text-decoration: none;
+  //color: $black;
+
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover {
+    background: $card-border-color;
   }
 }
 
@@ -326,3 +358,22 @@ label.col-form-label.required {
   align-self: flex-start;
   top: 1rem;
 }
+
+@include color-mode(dark) {
+  footer {
+    background: var(--#{$prefix}body-bg);
+    border-color: var(--#{$prefix}border-color-translucent);
+
+    img {
+      padding: $dark-footer-img-padding;
+      background: $dark-footer-img-background;
+      border-radius: $dark-footer-img-border-radius;
+    }
+  }
+
+  .breadcrumb {
+    --#{$prefix}breadcrumb-bg: var(--#{$prefix}body-bg);
+  }
+}
+
+@import "callouts";

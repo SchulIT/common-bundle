@@ -1,18 +1,47 @@
-$enable-shadows: true;
-$enable-gradients: true;
+$white: #ffffff !default;
 
-$blue: #02225B;
-$primary: $blue;
+$primary: #004675 !default;
+$secondary: #1172b9 !default;
+$info: #3A87AD !default;
+$success: #009d57 !default;
+$warning: #e2c800 !default;
+$light: #c2f0fc !default;
+$dark: #030302 !default;
 
-$primary-menu-background: $blue;
-$secondary-menu-background: #2e7eed;
+$info-text: $info !default;
+$info-border-subtle: $info !default;
+$info-bg-subtle: mix($info, $white, 20%) !default;
 
-$dark-primary-menu-background: #171717;
-$dark-secondary-menu-background: $blue;
+$info-text-dark: $info !default;
+$info-border-subtle-dark: $info !default;
+$info-bg-subtle-dark: mix($info, $dark, 20%) !default;
 
-$nav-pills-link-active-bg: $blue;
+$blue: $primary !default;
 
-$background: rgb(245,245,245);
+$primary-menu-background: $primary !default;
+$secondary-menu-background: $secondary !default;
 
-$breadcrumb-background: #e1e1e1;
-$footer-background: #e1e1e1;
+$background: #f5f5f5 !default;
+$background-dark: #222 !default;
+$footer-background: #e1e1e1 !default;
+
+// Footer
+$dark-footer-img-padding: 0.5rem !default;
+$dark-footer-img-background: #bebebe !default;
+$dark-footer-img-border-radius: 0.25rem !default;
+
+// Bootstrap overrides
+$border-radius: .25rem !default;
+
+$background-opacity: 0.7 !default;
+
+$card-cap-padding-y: 0.75rem !default;
+$card-cap-padding-x: 1.25rem !default;
+
+$breadcrumb-bg: #e1e1e1 !default;
+$breadcrumb-padding-y: .75rem !default;
+$breadcrumb-padding-x:  1rem !default;
+$breadcrumb-border-radius: $border-radius;
+
+$list-group-item-padding-x: 1.25rem !default;
+$list-group-item-padding-y: 0.75rem !default;
