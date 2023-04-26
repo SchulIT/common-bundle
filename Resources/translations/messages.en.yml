@@ -55,7 +55,7 @@ logs:
 mails:
   label: Mail delivery
   errors:
-    message: In the past %days% day(s) %num_errors% error(s) occured while sending mails.
+    message: In the past %days% day(s) %num_errors% error(s) occurred while sending mails.
     view: View logs
   to: To
   from: From
