@@ -10,17 +10,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand(name: 'app:create-certificate', description: 'Creates a new self-signed certificate')]
+#[AsCommand(name: 'app:create-certificate', description: 'Erzeugt ein selbst-signiertes Zertifikat.')]
 class CreateCertificateCommand extends Command {
 
-    private array $types = [ ];
-    private CertificateCreator $certificateCreator;
-
-    public function __construct(array $types, CertificateCreator  $certificateCreator, ?string $name = null) {
+    public function __construct(private readonly array $types, private readonly CertificateCreator  $certificateCreator, ?string $name = null) {
         parent::__construct($name);
-
-        $this->types = $types;
-        $this->certificateCreator = $certificateCreator;
     }
 
     public function configure() {
@@ -29,7 +23,7 @@ class CreateCertificateCommand extends Command {
                 'type',
                 't',
                 InputOption::VALUE_REQUIRED,
-                'Type of certificate (e.g. saml or oauth2)'
+                'Art des Zertifikats (z.B. saml or oauth2)'
             )
             ->addOption(
                 'countryName',
@@ -75,7 +69,7 @@ class CreateCertificateCommand extends Command {
         $availableTypes = array_keys($this->types);
 
         if(!in_array($type, $availableTypes)) {
-            $io->error('Invalid certificate type - available types: ' . implode(', ', $availableTypes));
+            $io->error('Ungültige Zertifikatsart - gültige Werte: ' . implode(', ', $availableTypes));
             return 1;
         }
 
@@ -95,7 +89,7 @@ class CreateCertificateCommand extends Command {
             $localityName,  $organizationName, $organizationalUnitName,
             $commonName, $emailAddress);
 
-        $io->success(sprintf('Certificate generated successfully (saved as %s)', $certFile));
+        $io->success(sprintf('Zertifikat erfolgreich gespeichert (unter %s)', $certFile));
         return 0;
     }
 }

@@ -12,25 +12,21 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'shapecode:cron:clean-up', description: 'Cleans the logs for each cron job.')]
 class PruneCronjobResultsCommand extends Command {
-    private EntityManagerInterface $em;
-
     private string $threshold = '-7 days';
 
-    public function __construct(EntityManagerInterface $em, string $name = null) {
+    public function __construct(private readonly EntityManagerInterface $em, string $name = null) {
         parent::__construct($name);
-
-        $this->em = $em;
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int {
-        $output->writeln('Cleaning logs for all cron jobs');
+        $output->writeln('Räume Verlauf aller Cronjobs auf...');
 
         $threshold = (new DateTime())->modify($this->threshold);
 
         $repo = $this->em->getRepository(CronJobResult::class);
         $repo->deleteOldLogs($threshold);
 
-        $output->writeln('Logs cleaned successfully');
+        $output->writeln('Fertig');
 
         return CronJobResult::EXIT_CODE_SUCCEEDED;
     }

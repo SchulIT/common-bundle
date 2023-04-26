@@ -16,21 +16,15 @@ class ClearLogsCommand extends Command {
 
     private const KeepLogsForDays = 7;
 
-    private DateHelper $dateHelper;
-    private EntityManagerInterface $em;
-
-    public function __construct(DateHelper $dateHelper, EntityManagerInterface $em, string $name = null) {
+    public function __construct(private readonly DateHelper $dateHelper, private readonly EntityManagerInterface $em, string $name = null) {
         parent::__construct($name);
-
-        $this->dateHelper = $dateHelper;
-        $this->em = $em;
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int {
         $threshold = $this->dateHelper->getToday()->modify(sprintf('-%d days', static::KeepLogsForDays));
 
         $style = new SymfonyStyle($input, $output);
-        $style->section(sprintf('Delete log entries older than %s...', $threshold->format('c')));
+        $style->section(sprintf('Lösche Log-Einträge, die älter als %s sind...', $threshold->format('c')));
 
         $count = $this->em->createQueryBuilder()
             ->delete(LogEntry::class, 'l')
@@ -39,7 +33,7 @@ class ClearLogsCommand extends Command {
             ->getQuery()
             ->execute();
 
-        $style->success(sprintf('Deleted %d entries', $count));
+        $style->success(sprintf('%d Eintrag/Einträge gelöscht', $count));
 
         return 0;
     }

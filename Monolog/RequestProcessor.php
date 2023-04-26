@@ -12,7 +12,7 @@ class RequestProcessor implements ProcessorInterface {
     private ?string $url = null;
     private ?string $referer = null;
 
-    public function __construct(private RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
     }
 
