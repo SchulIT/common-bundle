@@ -1,19 +1,25 @@
 {% extends ["main.html.twig", "@Common/main.html.twig"] %}
 
-{% block title %}{{ 'licenses.label'|trans }}{% endblock %}
-
-{% block breadcrumb %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('list_composer_dependencies') }}">{{ 'licenses.label'|trans }}</a></li>
-        <li class="breadcrumb-item">{{ block('title') }}</li>
-    </ol>
-{% endblock %}
+{% block title %}{{ dependency.name }}{% endblock %}
 
 {% block container %}
+    <div class="d-none d-md-block">
+        {% block breadcrumb %}
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('list_composer_dependencies') }}">{{ 'licenses.label'|trans }}</a></li>
+                <li class="breadcrumb-item">{{ block('title') }}</li>
+            </ol>
+        {% endblock %}
+    </div>
+
     <div class="card">
         <div class="card-header">{{ 'licenses.header'|trans({ '%project%': dependency.name, '%license_type%': dependency.licenseType }) }}</div>
         <div class="card-body">
             <pre>{{ license }}</pre>
         </div>
+    </div>
+
+    <div class="d-show d-md-none">
+        {{ block('breadcrumb') }}
     </div>
 {% endblock %}
