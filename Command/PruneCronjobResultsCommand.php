@@ -28,6 +28,6 @@ class PruneCronjobResultsCommand extends Command {
 
         $output->writeln('Fertig');
 
-        return CronJobResult::EXIT_CODE_SUCCEEDED;
+        return 0;
     }
 }
