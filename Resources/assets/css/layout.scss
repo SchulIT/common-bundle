@@ -395,8 +395,25 @@ a {
     text-decoration: underline;
 
     &.nav-link,
-    &.btn {
+    &.btn,
+    &.dropdown-item {
       text-decoration: none;
+    }
+  }
+}
+
+table {
+  &.table-bordered {
+    thead {
+      tr {
+        th:first-child {
+          border-left: 0;
+        }
+
+        th:last-child {
+          border-right: 0;
+        }
+      }
     }
   }
 }
