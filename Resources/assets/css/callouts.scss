@@ -36,7 +36,7 @@ $bd-callout-variants: info, warning, danger, success !default;
 // Variations
 @each $variant in $bd-callout-variants {
   .bs-callout-#{$variant} {
-    --bd-callout-color: var(--bs-#{$variant}-text);
+    --bd-callout-color: var(--bs-#{$variant}-text-emphasis);
     --bd-callout-bg: var(--bs-#{$variant}-bg-subtle);
     --bd-callout-border: var(--bs-#{$variant}-border-subtle);
   }
