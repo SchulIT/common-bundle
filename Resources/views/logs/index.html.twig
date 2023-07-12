@@ -9,7 +9,7 @@
                 <div class="row row-cols-4 mb-3 g-4">
                     {% for counter in counters %}
                     <div class="col">
-                        <a class="card h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}">
+                        <a class="card card-link h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}">
                             <div class="card-body d-flex align-items-center" >
                                 <div class="icon d-inline-block me-2">{{ counter.counter }}</div>
                                 {{ counter.name }}
