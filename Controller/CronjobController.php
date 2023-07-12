@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
 use Shapecode\Bundle\CronBundle\Entity\CronJob;
 use Shapecode\Bundle\CronBundle\Entity\CronJobResult;
-use Shapecode\Bundle\CronBundle\Manager\CronJobManager;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Input\StringInput;
@@ -60,7 +59,7 @@ class CronjobController extends AbstractController {
     }
 
     #[Route('/admin/cron/{id}/run', name: 'run_cronjob')]
-    public function runJob(CronJob $job, CronJobManager $manager, KernelInterface $kernel): Response {
+    public function runJob(CronJob $job, KernelInterface $kernel): Response {
         $application = new Application($kernel);
         $application->setAutoExit(false);
 
