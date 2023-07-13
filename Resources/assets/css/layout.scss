@@ -298,6 +298,18 @@ label.col-form-label.required {
     text-align: center;
   }
 
+  > .table-responsive:first-child,
+  > .table-responsive:first-child + table {
+    border-top-left-radius: var(--bs-card-inner-border-radius);
+    border-top-right-radius: var(--bs-card-inner-border-radius);
+  }
+
+  > .table-responsive:last-child,
+  > .table-responsive:last-child + table {
+    border-bottom-left-radius: var(--bs-card-inner-border-radius);
+    border-bottom-right-radius: var(--bs-card-inner-border-radius);
+  }
+
   .table {
     margin-bottom: 0;
 
