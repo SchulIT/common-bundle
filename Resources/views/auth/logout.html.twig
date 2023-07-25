@@ -1,24 +1,75 @@
-{% extends ["simple/main.html.twig", "@Common/simple/main.html.twig"] %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config.name }}</title>
 
-{% block title %}{{ 'logout.success'|trans }}{% endblock %}
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{{ preload(asset('build/simple.css')) }}">
+    {% endblock %}
 
-{% block content %}
-    <div class="text-center mb-2">
-        <i class="fas fa-sign-out-alt fa-3x d-block text-secondary"></i>
-        <h4>{{ 'logout.success'|trans }}</h4>
+    {% block head %}{% endblock %}
+</head>
 
-        <p>{{ 'logout.info'|trans }}</p>
-    </div>
+<body class="d-flex align-items-center">
+<div class="container d-flex m-auto">
+    <div class="row justify-content-center align-self-md-center mt-sm-4 mt-xs-4 w-100 mx-auto">
+        <div class="col-xl-5 col-lg-6 col-md-9 col-sm-12 col-xs-12 mx-auto text-left pb-5">
+            {% block error %}{% endblock %}
 
-    <div class="container-fluid px-0">
-        <div class="row">
-            <div class="col-md-6">
-                <a href="/" class="btn btn-primary w-100" type="submit">{{ 'logout.login'|trans }}</a>
-            </div>
+            {% block container %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-sign-out-alt fa-3x d-block text-secondary"></i>
+                            <h4>{{ 'logout.success'|trans }}</h4>
 
-            <div class="col-md-6">
-                <a href="{{ logout_url }}" class="btn btn-secondary w-100" role="button">{{ 'logout.logout'|trans }}</a>
-            </div>
+                            <p>{{ 'logout.info'|trans }}</p>
+                        </div>
+
+                        <div class="container-fluid px-0">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="/" class="btn btn-primary w-100" type="submit">{{ 'logout.login'|trans }}</a>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <a href="{{ logout_url }}" class="btn btn-secondary w-100" role="button">{{ 'logout.logout'|trans }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+
+            <footer class="hidden-print">
+                <div class="container-fluid px-0">
+                    <div class="row">
+                        {% if config.logo is defined and config.logo is not empty %}
+                            <div class="col-auto d-none d-sm-inline-flex">
+                                <img src="{{ asset(config.logo) }}" class="logo" alt="" />
+                            </div>
+                        {% endif %}
+
+                        <div class="col">
+                            <h3>{{ config.name }}</h3>
+
+                            <p>
+                                {{ 'version'|trans({'%version%': config.version }) }}
+                            </p>
+                            <p>
+                                © {{ "now"|date("Y") }} SchulIT {% if config.projectUrl is not null %} – <i class="fab fa-github"></i> <a href="{{ config.projectUrl }}" target="_blank">GitHub</a>{% endif %}{% block footer_links %}{% endblock %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-{% endblock %}
+</div>
+
+{% block javascript %}{% endblock %}
+
+</body>
+</html>
