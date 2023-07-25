@@ -101,11 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         let marginLeft = parseInt(style.marginLeft);
                         let marginRight = parseInt(style.marginRight);
 
-                        if (child.classList.contains('ml-auto')) {
+                        if (child.classList.contains('ms-auto')) {
                             marginLeft = 0;
                         }
 
-                        if (child.classList.contains('mr-auto')) {
+                        if (child.classList.contains('me-auto')) {
                             marginRight = 0;
                         }
 
