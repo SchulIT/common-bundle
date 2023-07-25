@@ -3,7 +3,7 @@
 {% block title %}{{ 'logout.success'|trans }}{% endblock %}
 
 {% block content %}
-    <div class="text-center">
+    <div class="text-center mb-2">
         <i class="fas fa-sign-out-alt fa-3x d-block text-secondary"></i>
         <h4>{{ 'logout.success'|trans }}</h4>
 
@@ -11,13 +11,13 @@
     </div>
 
     <div class="container-fluid px-0">
-        <div class="row mb-3">
+        <div class="row">
             <div class="col-md-6">
-                <a href="/" class="btn btn-primary btn-block" type="submit">{{ 'logout.login'|trans }}</a>
+                <a href="/" class="btn btn-primary w-100" type="submit">{{ 'logout.login'|trans }}</a>
             </div>
 
             <div class="col-md-6">
-                <a href="{{ logout_url }}" class="btn btn-secondary btn-block" role="button">{{ 'logout.logout'|trans }}</a>
+                <a href="{{ logout_url }}" class="btn btn-secondary w-100" role="button">{{ 'logout.logout'|trans }}</a>
             </div>
         </div>
     </div>
