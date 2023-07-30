@@ -1,9 +1,9 @@
-{% use "bootstrap_4_horizontal_layout.html.twig" %}
+{% use "bootstrap_5_horizontal_layout.html.twig" %}
 
 {% block form_label_errors %}{% endblock %}
 
 {% block form_row -%}
-    <div class="form-group row{% if (not compound or force_error|default(false)) and not valid %} is-invalid{% endif %}">
+    <div class="mb-3 row{% if (not compound or force_error|default(false)) and not valid %} is-invalid{% endif %}">
         {{- form_label(form) -}}
         <div class="{{ block('form_group_class') }}">
             {{- form_widget(form) -}}
@@ -36,15 +36,11 @@
 
         {% set attr = attr|merge({class: (attr.class|default('') ~ ' input-group')|trim}) -%}
         <div {{ block('widget_container_attributes') }}>
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-            </div>
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
 
             {{- form_widget(form.date, { datetime: true, hide_input_group: true } ) -}}
 
-            <div class="input-group-prepend">
-                <span class="input-group-text border-left-0"><i class="fa fa-clock"></i></span>
-            </div>
+            <span class="input-group-text border-left-0"><i class="fa fa-clock"></i></span>
 
             {{- form_widget(form.time, { datetime: true, hide_input_group: true } ) -}}
         </div>
@@ -66,11 +62,9 @@
 {% block date_widget -%}
     {% if hide_input_group|default(false) is same as(false) %}
         <div class="input-group">
-            <div class="input-group-prepend">
             <span class="input-group-text">
                 <i class="fa fa-calendar"></i>
             </span>
-            </div>
 
             {{ parent() }}
         </div>
@@ -82,11 +76,9 @@
 {% block time_widget -%}
     {% if hide_input_group|default(false) is same as(false) %}
         <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fa fa-clock"></i>
-                </span>
-            </div>
+            <span class="input-group-text">
+                <i class="fa fa-clock"></i>
+            </span>
 
             {{ parent() }}
         </div>
@@ -97,9 +89,7 @@
 
 {% block icon_picker_widget %}
     <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="icon_{{ form.vars.id }}"> </span>
-        </div>
+        <span class="input-group-text" id="icon_{{ form.vars.id }}"> </span>
 
         {{ block('form_widget_simple') }}
     </div>
