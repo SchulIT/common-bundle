@@ -408,7 +408,8 @@ a {
 
     &.nav-link,
     &.btn,
-    &.dropdown-item {
+    &.dropdown-item,
+    &.page-link{
       text-decoration: none;
     }
   }
