@@ -16,9 +16,15 @@
                                 <span class="d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
                                     <i class="{{ child.extras['icon'] }}"></i>
                                     {{ child.label|trans }}
+                                    {% if child.extra('count') is not empty %}
+                                        <span class="d-md-inline-block d-sm-none badge rounded-pill text-bg-primary{%- if matcher.isCurrent(child) %} badge-light{% endif %}">{{ child.extra('count') }}</span>
+                                    {% endif %}
                                 </span>
                                 <span class="d-block d-xs-block d-sm-block d-md-block d-lg-none d-xl-none">
                                     <i class="{{ child.extras['icon'] }}"></i>
+                                    {% if child.extra('count') is not empty %}
+                                        <span class="d-md-inline-block d-sm-none badge rounded-pill text-bg-primary{%- if matcher.isCurrent(child) %} badge-light{% endif %}">{{ child.extra('count') }}</span>
+                                    {% endif %}
                                 </span>
                             {% else %}
                                 {{ child.label|trans }}
