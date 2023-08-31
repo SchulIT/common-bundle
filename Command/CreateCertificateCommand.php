@@ -17,7 +17,7 @@ class CreateCertificateCommand extends Command {
         parent::__construct($name);
     }
 
-    public function configure() {
+    public function configure(): void {
         $this
             ->addOption(
                 'type',

@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Loader;
 
 class CommonExtension extends Extension implements PrependExtensionInterface {
 
-    public function load(array $configs, ContainerBuilder $container) {
+    public function load(array $configs, ContainerBuilder $container): void {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
@@ -53,7 +53,7 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         return 'common';
     }
 
-    public function prepend(ContainerBuilder $container) {
+    public function prepend(ContainerBuilder $container): void {
         $container->prependExtensionConfig('two_factor', [
             'google' => [
                 'server_name' => '%app.common.host%'
