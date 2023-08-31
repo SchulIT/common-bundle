@@ -88,7 +88,7 @@
 
                             <div class="form-group">
                                 <label for="channel" class="form-label">{{ 'logs.channel'|trans }}</label>
-                                <select class="form-control" name="channel" data-choice="true">
+                                <select class="form-control" name="channel" id="channel" data-choice="true">
                                     <option value="">{{ 'logs.all_channels'|trans }}</option>
                                     {% for c in channels %}
                                         <option value="{{ c }}" {% if c == channel %}selected{% endif %}>{{ c }}</option>
