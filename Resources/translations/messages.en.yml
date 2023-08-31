@@ -43,6 +43,7 @@ logs:
   message: Message
   time: Time
   filter: Filter
+  username: Username
   apply_filter: Apply filter
   clear_filter: Clear filter
   all_channels: All channels

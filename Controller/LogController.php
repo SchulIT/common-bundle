@@ -7,6 +7,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Monolog\Level;
 use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use SchulIT\CommonBundle\Controller\Model\LogCounter;
 use SchulIT\CommonBundle\Entity\LogEntry;
 use SchulIT\CommonBundle\Form\ConfirmType;
@@ -18,13 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class LogController extends AbstractController {
     const ITEMS_PER_PAGE = 25;
 
-    public function __construct(private readonly EntityManagerInterface $em) { }
+    public function __construct(private readonly EntityManagerInterface $em, private readonly LoggerInterface $logger) { }
 
     #[Route('/admin/logs', name: 'admin_logs')]
     public function index(Request $request): Response {
         $page = $request->query->get('page', 1);
         $channel = $request->query->get('channel', null);
         $level = $request->query->get('level', null);
+        $username = $request->query->get('username', null);
 
         if(!is_numeric($page) || $page < 1) {
             $page = 1;
@@ -62,6 +64,15 @@ class LogController extends AbstractController {
                 ->setParameter('channel', $channel);
         }
 
+        if(!empty($username)) {
+            if($this->em->getConfiguration()->getCustomStringFunction('JSON_VALUE') !== null) {
+                $queryBuilder->andWhere("JSON_VALUE(l.details, '$.username') = :username")
+                    ->setParameter('username', $username);
+            } else {
+                $this->logger->notice('Der SQL-Befehl JSON_VALUE ist nicht verfügbar in Doctrine. Bitte die Bibliothek installieren (https://github.com/ScientaNL/DoctrineJsonFunctions) und einrichten');
+            }
+        }
+
         $paginator = new Paginator($queryBuilder->getQuery());
         $count = $paginator->count();
         $pages = 0;
@@ -70,7 +81,7 @@ class LogController extends AbstractController {
             $pages = ceil((float)$count / static::ITEMS_PER_PAGE);
         }
 
-        $counters = $this->getCounterForLevels($channel);
+        $counters = $this->getCounterForLevels($channel, $username);
 
         return $this->render('@Common/logs/index.html.twig', [
             'items' => $paginator,
@@ -79,11 +90,12 @@ class LogController extends AbstractController {
             'level' => $level,
             'channel' => $channel,
             'channels' => $channels,
-            'counters' => $counters
+            'counters' => $counters,
+            'username' => $username
         ]);
     }
 
-    private function getCounterForLevels($channel = null): array {
+    private function getCounterForLevels($channel = null, ?string $username = null): array {
         $levels = [ ];
 
         foreach(Level::cases() as $level) {
@@ -101,6 +113,11 @@ class LogController extends AbstractController {
             $qb
                 ->where('l.channel = :channel')
                 ->setParameter('channel', $channel);
+        }
+
+        if(!empty($username) && $this->em->getConfiguration()->getCustomStringFunction('JSON_VALUE') !== null) {
+            $qb->andWhere("JSON_VALUE(l.details, '$.username') = :username")
+                ->setParameter('username', $username);
         }
 
         $results = $qb->getQuery()->getArrayResult();

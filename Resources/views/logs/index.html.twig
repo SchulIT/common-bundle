@@ -9,7 +9,7 @@
                 <div class="row row-cols-4 mb-3 g-4">
                     {% for counter in counters %}
                     <div class="col">
-                        <a class="card card-link h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel }) }}">
+                        <a class="card card-link h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel, username: username }) }}">
                             <div class="card-body d-flex align-items-center" >
                                 <div class="icon d-inline-block me-2">{{ counter.counter }}</div>
                                 {{ counter.name }}
@@ -86,7 +86,7 @@
                                 <input type="hidden" name="level" value="{{ level }}" />
                             {% endif %}
 
-                            <div class="form-group">
+                            <div class="mb-2">
                                 <label for="channel" class="form-label">{{ 'logs.channel'|trans }}</label>
                                 <select class="form-control" name="channel" id="channel" data-choice="true">
                                     <option value="">{{ 'logs.all_channels'|trans }}</option>
@@ -94,6 +94,11 @@
                                         <option value="{{ c }}" {% if c == channel %}selected{% endif %}>{{ c }}</option>
                                     {% endfor %}
                                 </select>
+                            </div>
+
+                            <div>
+                                <label for="username" class="form-label">{{ 'logs.username'|trans }}</label>
+                                <input type="text" name="username" id="username" class="form-control" value="{{ username }}">
                             </div>
                         </div>
 

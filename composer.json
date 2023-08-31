@@ -24,7 +24,8 @@
         "knplabs/knp-time-bundle": "",
         "shapecode/cron-bundle": "",
         "doctrine/orm": "",
-        "symfony/doctrine-messenger": ""
+        "symfony/doctrine-messenger": "",
+        "scienta/doctrine-json-functions": ""
     },
     "autoload": {
         "psr-4": {
