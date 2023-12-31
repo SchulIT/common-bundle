@@ -10,7 +10,7 @@
         "symfony/yaml": "^6.0",
         "monolog/monolog": "^3.0",
         "knplabs/knp-menu": "^3.0",
-        "frostiede/composer-dependency-list-bundle": "^3.0",
+        "frostiede/composer-dependency-list-bundle": "^3.0|^4.0",
         "twig/twig": "^3.0",
         "symfony/translation": "^6.0",
         "symfony/form": "^6.0",
