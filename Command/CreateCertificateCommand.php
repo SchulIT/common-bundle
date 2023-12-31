@@ -90,6 +90,6 @@ class CreateCertificateCommand extends Command {
             $commonName, $emailAddress);
 
         $io->success(sprintf('Zertifikat erfolgreich gespeichert (unter %s)', $certFile));
-        return 0;
+        return Command::SUCCESS;
     }
 }

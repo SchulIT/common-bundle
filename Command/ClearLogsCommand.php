@@ -35,6 +35,6 @@ class ClearLogsCommand extends Command {
 
         $style->success(sprintf('%d Eintrag/Einträge gelöscht', $count));
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
