@@ -10,16 +10,18 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class ConsoleSubscriber implements EventSubscriberInterface {
 
-    use ContainerAwareTrait;
+    public function __construct(private readonly string $appName, private readonly string $appVersion) {
 
-    public function onConsoleCommand(ConsoleCommandEvent $event) {
+    }
+
+    public function onConsoleCommand(ConsoleCommandEvent $event): void {
         $command = $event->getCommand();
         $application = $command->getApplication();
 
         $application
-            ->setName($this->container->getParameter('app.common.name'));
+            ->setName($this->appName);
 
-        $version = sprintf("%s (Symfony %s)", $this->container->getParameter('app.common.version'), Kernel::VERSION);
+        $version = sprintf("%s (Symfony %s)", $this->appVersion, Kernel::VERSION);
         $application
             ->setVersion($version);
     }

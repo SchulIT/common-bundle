@@ -31,8 +31,9 @@ services:
       $locales: '%app.common.locales%'
 
   SchulIT\CommonBundle\EventSubscriber\ConsoleSubscriber:
-    calls:
-      - [ "setContainer", ["@service_container"]]
+    arguments:
+      $appName: "%app.common.name%"
+      $appVersion: "%app.common.version%"
 
   # DateHelper
   SchulIT\CommonBundle\Helper\DateHelper: ~
