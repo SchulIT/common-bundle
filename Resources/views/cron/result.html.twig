@@ -5,7 +5,7 @@
 {% block content %}
     <div class="card">
         <div class="card-header">
-            {{ result.cronJob.command }} @ {{ result.runAt|format_datetime }}
+            {{ result.cronJob.command }} <span class="text-muted">{{ result.cronJob.arguments }}</span> @ {{ result.runAt|format_datetime }}
         </div>
 
         <div class="card-body">

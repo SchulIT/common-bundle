@@ -26,7 +26,10 @@
                 <tbody>
                 {% for job in jobs %}
                     <tr>
-                        <td class="align-middle">{{ job.command }}</td>
+                        <td class="align-middle">
+                            {{ job.command }}
+                            <span class="text-muted">{{ job.arguments }}</span>
+                        </td>
                         <td>
                             {% if job.lastUse is not null %}
                                 {{ job.lastUse|format_datetime }}
