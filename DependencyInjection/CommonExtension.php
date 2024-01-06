@@ -37,8 +37,6 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
 
         if (!isset($config['disable']) || $config['disable']['messenger'] !== true) {
             $loader->load('messenger.yaml');
-            $definition = $container->getDefinition(MessengerController::class);
-            $definition->setArgument('$transport', new Reference($config['messenger']['transport']));
         }
 
         if (isset($config['disable']) && $config['disable']['orm'] === true) {

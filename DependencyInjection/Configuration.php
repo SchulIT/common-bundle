@@ -45,7 +45,7 @@ class Configuration implements ConfigurationInterface {
             ->end()
             ->arrayNode('messenger')
                 ->children()
-                    ->scalarNode('transport')->defaultValue('messenger.transport.async')->end()
+                    ->scalarNode('transport')->defaultValue('messenger.transport.async')->setDeprecated('schulit/common-bundle', '4.3.0')->end()
                 ->end()
             ->end()
             ->arrayNode('disable')
