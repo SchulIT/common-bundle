@@ -3,6 +3,7 @@
 namespace SchulIT\CommonBundle\Helper;
 
 use DateTime;
+use InvalidArgumentException;
 
 class DateHelper {
 
@@ -14,7 +15,7 @@ class DateHelper {
         $this->setToday($today);
     }
 
-    public function setToday(?DateTime $today = null) {
+    public function setToday(?DateTime $today = null): void {
         $this->today = $today;
     }
 
@@ -74,7 +75,7 @@ class DateHelper {
      */
     public function getListOfNextDays(int $number, ?DateTime $first = null): array {
         if($number <= 0) {
-            throw new \InvalidArgumentException('$number must be greater than 0');
+            throw new InvalidArgumentException('$number must be greater than 0');
         }
 
         if($first === null) {
@@ -96,7 +97,7 @@ class DateHelper {
     }
 
     /**
-     * Checks if a given date is beween a given start and end date
+     * Checks if a given date is between a given start and end date
      *
      * @param DateTime $dateTime
      * @param DateTime $start
