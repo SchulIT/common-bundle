@@ -25,7 +25,7 @@ class Voter implements VoterInterface {
             return true;
         }
 
-        if($itemUri === substr($currentUri, 0, strlen($itemUri))) {
+        if(str_starts_with($currentUri, $itemUri)) {
             return true;
         }
 
