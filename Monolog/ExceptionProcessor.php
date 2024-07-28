@@ -8,15 +8,15 @@ use Throwable;
 
 class ExceptionProcessor implements ProcessorInterface {
 
-    public function __invoke(LogRecord $records): LogRecord {
-        if(isset($records['context']['exception']) && $records['context']['exception'] instanceof Throwable) {
-            $records['extra']['exception'] = [
-                'class' => $records['context']['exception']::class,
-                'message' => $records['context']['exception']->getMessage(),
-                'stacktrace' => $records['context']['exception']->getTraceAsString()
+    public function __invoke(LogRecord $record): LogRecord {
+        if(isset($record['context']['exception']) && $record['context']['exception'] instanceof Throwable) {
+            $record['extra']['exception'] = [
+                'class' => $record['context']['exception']::class,
+                'message' => $record['context']['exception']->getMessage(),
+                'stacktrace' => $record['context']['exception']->getTraceAsString()
             ];
         }
 
-        return $records;
+        return $record;
     }
 }

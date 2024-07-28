@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FieldsetType extends AbstractType {
-    public function configureOptions(OptionsResolver $resolver) {
+    public function configureOptions(OptionsResolver $resolver): void {
         $resolver->setDefaults([
             'legend' => '',
             'inherit_data' => true,
@@ -20,7 +20,7 @@ class FieldsetType extends AbstractType {
             ->addAllowedTypes('fields', ['array', 'callable']);
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options): void {
         if(!empty($options['fields'])) {
             if(is_callable($options['fields'])) {
                 $options['fields']($builder);
@@ -32,7 +32,7 @@ class FieldsetType extends AbstractType {
         }
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options) {
+    public function buildView(FormView $view, FormInterface $form, array $options): void {
         if($options['legend'] !== false) {
             $view->vars['legend'] = $options['legend'];
         }

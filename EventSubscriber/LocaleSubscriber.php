@@ -12,7 +12,7 @@ class LocaleSubscriber implements EventSubscriberInterface {
 
     public function __construct(private readonly array $locales, private readonly LoggerInterface $logger) { }
 
-    public function onKernelRequest(RequestEvent $event) {
+    public function onKernelRequest(RequestEvent $event): void {
         $request = $event->getRequest();
 
         if (!$request->hasPreviousSession()) {

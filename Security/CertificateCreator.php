@@ -8,7 +8,7 @@ namespace SchulIT\CommonBundle\Security;
 class CertificateCreator {
     public function createCertificate(string $certFile, string $keyFile, string $countryName, string $stateOrProvinceName,
                                       string $localityName, string $organizationName, string $organizationalUnitName,
-                                      string $commonName, string $emailAddress) {
+                                      string $commonName, string $emailAddress): void {
         $config = [
             'digest_alg' => 'sha512',
             'private_key_bits' => 4096,
