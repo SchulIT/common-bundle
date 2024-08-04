@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class CommonBundle extends Bundle {
 
-    public function build(ContainerBuilder $container) {
+    public function build(ContainerBuilder $container): void {
         parent::build($container);
 
         if(class_exists("Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass")) {
