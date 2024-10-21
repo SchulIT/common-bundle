@@ -1,3 +1,5 @@
+let breakpoint = 576; // see https://getbootstrap.com/docs/5.3/layout/breakpoints/
+
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-role=menu]').forEach(function(container) {
         let menuContainerSelector = container.getAttribute('data-menu');
@@ -121,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
             element.setAttribute('data-parent-width', containerWidth);
             element.setAttribute('data-children-width', childrenWidth);
 
-            if(childrenWidth > containerWidth) {
+            if(childrenWidth > containerWidth && window.innerWidth >= breakpoint) {
                 element.querySelectorAll('.is-collapsible').forEach(function(el) {
                     el.classList.add('collapse');
                 });
