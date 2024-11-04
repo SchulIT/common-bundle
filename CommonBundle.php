@@ -17,7 +17,8 @@ class CommonBundle extends Bundle {
             $container->addCompilerPass(
                 DoctrineOrmMappingsPass::createAttributeMappingDriver(
                     ['SchulIT\CommonBundle\Entity'],
-                    [realpath(__DIR__ . '/Entity')]
+                    [realpath(__DIR__ . '/Entity')],
+                    reportFieldsWhereDeclared: true
                 )
             );
         }
