@@ -44,6 +44,9 @@ logs:
   time: Time
   filter: Filter
   username: Username
+  request_id: Request ID
+  url: URL
+  level: Level
   apply_filter: Apply filter
   clear_filter: Clear filter
   all_channels: All channels

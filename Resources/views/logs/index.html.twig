@@ -9,7 +9,7 @@
                 <div class="row row-cols-4 mb-3 g-4">
                     {% for counter in counters %}
                     <div class="col">
-                        <a class="card card-link h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel, username: username }) }}">
+                        <a class="card card-link h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel, username: username, request: request_id }) }}">
                             <div class="card-body d-flex align-items-center" >
                                 <div class="icon d-inline-block me-2">{{ counter.counter }}</div>
                                 {{ counter.name }}
@@ -26,19 +26,27 @@
 
 
                 <div class="card">
-                    <table class="table table-hover table-striped" style="table-layout: fixed">
+                    <table class="table table-hover table-striped card-table">
                         <colgroup>
+                            <col class="column-sm" />
                             <col class="column-100" />
                             <col class="column-md" />
                             <col />
-                            <col class="column-lg" />
+                            <col class="column-200"/>
+                            <col class="column-200"/>
+                            <col class="column-280"/>
+                            <col class="column-md" />
                         </colgroup>
 
                         <thead>
                         <tr>
                             <th></th>
+                            <th>{{ 'logs.level'|trans }}</th>
                             <th>{{ 'logs.channel'|trans }}</th>
                             <th>{{ 'logs.message'|trans }}</th>
+                            <th>{{ 'logs.url'|trans }}</th>
+                            <th>{{ 'logs.username'|trans }}</th>
+                            <th>{{ 'logs.request_id'|trans }}</th>
                             <th>{{ 'logs.time'|trans }}</th>
                         </tr>
                         </thead>
@@ -46,14 +54,43 @@
                         <tbody>
                         {% for item in items %}
                             <tr>
+                                <td>
+                                    <div class="pointer" data-toggle="table-collapse" data-target="#log-detail-{{ item.id }}">
+                                        <i class="fa fa-chevron-down indicator"></i>
+                                    </div>
+                                </td>
                                 <td>{{ item.getLevel()|log_level }}</td>
                                 <td>{{ item.getChannel() }}</td>
-                                <td>{{ item.getMessage() }}
-                                    {% if item.getDetails() != null %}
-                                        <pre style="max-width: 1000px;">{{ item.getDetails()|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+                                <td>{{ item.getMessage() }}</td>
+                                <td>
+                                    {% if item.details['url'] is defined and item.details['url'] is not empty %}
+                                        {{ item.details['url'] }}
+                                    {% else %}
+                                        <span class="badge text-bg-danger">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.details['username'] is defined and item.details['username'] is not empty %}
+                                        {{ item.details['username'] }}
+                                    {% else %}
+                                        <span class="badge text-bg-danger">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.details['request_id'] is defined and item.details['request_id'] is not empty %}
+                                        <a href="{{ path('admin_logs', { request: item.details['request_id']}) }}">{{ item.details['request_id'] }}</a>
+                                    {% else %}
+                                        <span class="badge text-bg-danger">N/A</span>
                                     {% endif %}
                                 </td>
                                 <td>{{ item.getTime().format('d.m.Y H:i:s') }}</td>
+                            </tr>
+                            <tr id="log-detail-{{ item.id }}" class="collapse">
+                                <td colspan="8">
+                                    {% if item.details is not null %}
+                                        <pre style="max-width: 1000px;">{{ item.getDetails()|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}</pre>
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -62,7 +99,7 @@
 
                 {% include '@Common/includes/pagination.html.twig' with {
                     currentPage: page,
-                    currentFilters: { level: level, channel: channel },
+                    currentFilters: { level: level, channel: channel, request: request_id },
                     paginationPath: 'admin_logs',
                     lastPage: pages,
                     showAlwaysFirstAndLast: true
@@ -99,6 +136,11 @@
                             <div>
                                 <label for="username" class="form-label">{{ 'logs.username'|trans }}</label>
                                 <input type="text" name="username" id="username" class="form-control" value="{{ username }}">
+                            </div>
+
+                            <div>
+                                <label for="request_id" class="form-label">{{ 'logs.request_id'|trans }}</label>
+                                <input type="text" name="request_id" id="request_id" class="form-control" value="{{ request_id }}">
                             </div>
                         </div>
 

@@ -27,6 +27,7 @@ class LogController extends AbstractController {
         $channel = $request->query->get('channel', null);
         $level = $request->query->get('level', null);
         $username = $request->query->get('username', null);
+        $requestId = $request->query->get('request', null);
 
         if(!is_numeric($page) || $page < 1) {
             $page = 1;
@@ -62,6 +63,15 @@ class LogController extends AbstractController {
             $queryBuilder
                 ->andWhere('l.channel = :channel')
                 ->setParameter('channel', $channel);
+        }
+
+        if(!empty($requestId)) {
+            if($this->em->getConfiguration()->getCustomStringFunction('JSON_VALUE') !== null) {
+                $queryBuilder->andWhere("JSON_VALUE(l.details, '$.request_id') = :request")
+                    ->setParameter('request', $requestId);
+            } else {
+                $this->logger->notice('Der SQL-Befehl JSON_VALUE ist nicht verfügbar in Doctrine. Bitte die Bibliothek installieren (https://github.com/ScientaNL/DoctrineJsonFunctions) und einrichten');
+            }
         }
 
         if(!empty($username)) {
