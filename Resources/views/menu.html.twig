@@ -156,7 +156,7 @@
 {% endblock %}
 
 {% block badge %}
-    {% if item.extra('count') is not empty %}
+    {% if item.extra('count') is not empty and item.extra('count') > 0 %}
         <span class="d-md-inline-block d-sm-none badge rounded-pill text-bg-danger{%- if matcher.isCurrent(item) %} badge-light{% endif %}">{{ item.extra('count') }}</span>
     {% endif %}
 {% endblock %}
