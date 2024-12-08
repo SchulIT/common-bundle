@@ -26,8 +26,8 @@ class LogEntry {
     #[ORM\Column(type: 'datetime')]
     private DateTime $time;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $details;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $details = null;
 
     public function getId(): int {
         return $this->id;
@@ -69,11 +69,11 @@ class LogEntry {
         return $this;
     }
 
-    public function getDetails(): ?string {
+    public function getDetails(): ?array {
         return $this->details;
     }
 
-    public function setDetails(?string $details): LogEntry {
+    public function setDetails(?array $details): LogEntry {
         $this->details = $details;
         return $this;
     }

@@ -50,7 +50,7 @@
                                 <td>{{ item.getChannel() }}</td>
                                 <td>{{ item.getMessage() }}
                                     {% if item.getDetails() != null %}
-                                        <pre style="max-width: 1000px;">{{ item.getDetails() }}</pre>
+                                        <pre style="max-width: 1000px;">{{ item.getDetails()|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
                                     {% endif %}
                                 </td>
                                 <td>{{ item.getTime().format('d.m.Y H:i:s') }}</td>

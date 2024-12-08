@@ -24,7 +24,7 @@ class DatabaseHandler extends AbstractProcessingHandler {
             'level' => $record['level'],
             'message' => $record['formatted'],
             'time' => $record['datetime'],
-            'details' => json_encode($record['extra'], JSON_PRETTY_PRINT)
+            'details' => is_array($record['extra']) ? $record['extra'] : null
         ];
 
         try {
@@ -34,7 +34,7 @@ class DatabaseHandler extends AbstractProcessingHandler {
                     Types::INTEGER,
                     Types::TEXT,
                     Types::DATETIME_MUTABLE,
-                    Types::STRING
+                    Types::JSON
                 ]);
         } catch (Exception) {
             // Logging failed :-/
