@@ -91,7 +91,7 @@ class LogController extends AbstractController {
             $pages = ceil((float)$count / static::ITEMS_PER_PAGE);
         }
 
-        $counters = $this->getCounterForLevels($channel, $username);
+        $counters = $this->getCounterForLevels($channel, $username, $requestId);
 
         return $this->render('@Common/logs/index.html.twig', [
             'items' => $paginator,
@@ -106,7 +106,7 @@ class LogController extends AbstractController {
         ]);
     }
 
-    private function getCounterForLevels($channel = null, ?string $username = null): array {
+    private function getCounterForLevels($channel = null, ?string $username = null, ?string $requestId = null): array {
         $levels = [ ];
 
         foreach(Level::cases() as $level) {
@@ -129,6 +129,11 @@ class LogController extends AbstractController {
         if(!empty($username) && $this->em->getConfiguration()->getCustomStringFunction('JSON_VALUE') !== null) {
             $qb->andWhere("JSON_VALUE(l.details, '$.username') = :username")
                 ->setParameter('username', $username);
+        }
+
+        if(!empty($requestId) && $this->em->getConfiguration()->getCustomStringFunction('JSON_VALUE') !== null) {
+            $qb->andWhere("JSON_VALUE(l.details, '$.request_id') = :request")
+                ->setParameter('request', $requestId);
         }
 
         $results = $qb->getQuery()->getArrayResult();
