@@ -41,3 +41,18 @@ $bd-callout-variants: info, warning, danger, success !default;
     --bd-callout-border: var(--bs-#{$variant}-border-subtle);
   }
 }
+
+.bs-callout {
+  &.bs-callout-card {
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+    margin: 0;
+  }
+}
+
+.card-body {
+  > .bs-callout:first-child {
+    margin-top: 0;
+  }
+}
