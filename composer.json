@@ -1,5 +1,6 @@
 {
     "name": "schulit/common-bundle",
+    "description": "Commonly used bundle for SchulIT software suite.",
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
