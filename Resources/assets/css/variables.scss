@@ -1,45 +1,65 @@
-$white: #ffffff !default;
+:root,
+[data-bs-theme=light] {
+  // Bootstrap overrides
+  --bs-primary: #004675;
+  --bs-secondary: #1172b9;
+  --bs-info: #3A87AD;
+  --bs-info-rgb: 58,135,173;
+  --bs-light: #c2f0fc;
+  --bs-light-rgb: 194,240,252;
+  --bs-dark: #030302;
+  --bs-dark-rgb: 3,3,2;
+  --bs-blue: var(--bs-primary);
 
-$primary: #004675 !default;
-$secondary: #1172b9 !default;
-$info: #3A87AD !default;
-$light: #c2f0fc !default;
-$dark: #030302 !default;
+  --bs-border-radius: .25rem;
 
-$info-text: $info !default;
-$info-border-subtle: $info !default;
-$info-bg-subtle: mix($info, $white, 20%) !default;
+  --bs-info-text-emphasis: #173645;
+  --bs-info-bg-subtle: #d8e7ef;
+  --bs-info-border-subtle: #3a87ad;
 
-$info-text-dark: $info !default;
-$info-border-subtle-dark: $info !default;
-$info-bg-subtle-dark: mix($info, $dark, 20%) !default;
+  // Theme colors
+  --background: #f5f5f5;
 
-$blue: $primary !default;
+  // Menu
+  --primary-menu-background: var(--bs-primary);
+  --secondary-menu-background: var(--bs-secondary);
 
-$primary-menu-background: $primary !default;
-$secondary-menu-background: $secondary !default;
+  // Footer
+  --footer-background: #e1e1e1;
+  --footer-border-color: #ccc;
+  --footer-img-padding: 0;
+  --footer-img-background: none;
+  --footer-img-border-radius: 0;
+}
 
-$background: #f5f5f5 !default;
-$background-dark: #222 !default;
-$footer-background: #e1e1e1 !default;
+.breadcrumb {
+  --bs-breadcrumb-bg: #e1e1e1;
+  --bs-breadcrumb-padding-y: .75rem;
+  --bs-breadcrumb-padding-x:  1rem;
+  --bs-breadcrumb-border-radius: var(--bs-border-radius);
+}
 
-// Footer
-$dark-footer-img-padding: 0.5rem !default;
-$dark-footer-img-background: #bebebe !default;
-$dark-footer-img-border-radius: 0.25rem !default;
+.card {
+  --bs-card-cap-padding-y: 0.75rem;
+  --bs-card-cap-padding-x: 1.25rem;
+}
 
-// Bootstrap overrides
-$border-radius: .25rem !default;
+.list-group-item {
+  --bs-list-group-item-padding-x: 1.25rem;
+  --bs-list-group-item-padding-y: 0.75rem;
+}
 
-$background-opacity: 0.7 !default;
+[data-bs-theme=dark] {
+  // Bootstrap overrides
+  .breadcrumb {
+    --bs-breadcrumb-bg: var(--bs-body-bg);
+  }
 
-$card-cap-padding-y: 0.75rem !default;
-$card-cap-padding-x: 1.25rem !default;
+  --background: #222222;
 
-$breadcrumb-bg: #e1e1e1 !default;
-$breadcrumb-padding-y: .75rem !default;
-$breadcrumb-padding-x:  1rem !default;
-$breadcrumb-border-radius: $border-radius;
-
-$list-group-item-padding-x: 1.25rem !default;
-$list-group-item-padding-y: 0.75rem !default;
+  --footer-background: var(--bs-body-bg);
+  --footer-border-color: var(--bs-border-color-translucent);
+  --footer-img-padding: 0.5rem;
+  --footer-img-background: #bebebe;
+  --footer-img-border-radius: 0.25rem;
+}

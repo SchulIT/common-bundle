@@ -21,9 +21,9 @@
 
 .#{$choices-selector}__list--multiple {
   .#{$choices-selector}__item {
-    background-color: $primary;
-    border-color: $primary;
-    border-radius: $border-radius;
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    border-radius: var(--bs-border-radius);
     margin-bottom: 0;
   }
 }

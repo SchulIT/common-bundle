@@ -3,13 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-size: 90%;
-  background: $background;
-}
-
-@include color-mode(dark) {
-  html, body {
-    background: $background-dark !important;
-  }
+  background: var(--background);
 }
 
 body {
@@ -21,7 +15,7 @@ body {
     .navbar-nav {
       .nav-item {
         .dropdown-menu {
-          background: $red !important;
+          background: var(--bs-red) !important;
           color: white;
 
           &.show {
@@ -36,13 +30,11 @@ body {
 // Menu
 header {
   .brand {
-    color: $gray-800;
-    font-size: $font-size-lg;
+    color: var(--bs-gray-800);
   }
 
   .logo {
-    padding: 5px;
-    padding-right: 10px;
+    padding: 5px 10px 5px 5px;
 
     > img {
       max-height: 80px;
@@ -59,16 +51,16 @@ header {
 
   .navbar {
     padding: 0;
-    background: $primary-menu-background;
+    background: var(--primary-menu-background);
 
     .navbar-toggler {
-      margin: $navbar-padding-y $navbar-padding-x;
+      margin: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
     }
 
     &.no-logo {
       .navbar-nav:first-child {
         .nav-item:first-child {
-          border-top-left-radius: $border-radius;
+          border-top-left-radius: var(--bs-border-radius);
         }
       }
     }
@@ -88,7 +80,7 @@ header {
               color: white;
 
               &:hover {
-                background: transparentize($white, 0.75);
+                background: rgba(var(--bs-white-rgb), 0.25);
               }
             }
           }
@@ -98,28 +90,28 @@ header {
       .nav-item {
 
         &.open {
-          background: $secondary-menu-background;
+          background: var(--secondary-menu-background);
         }
 
         &.active,
         &.current_ancestor {
-          background: rgba($secondary-menu-background, 0.8);
+          background: rgba(var(--secondary-menu-background), 0.8);
         }
 
         &.open {
-          background: $secondary-menu-background;
+          background: var(--secondary-menu-background);
           .fa-caret-down {
             @extend .fa-caret-up;
           }
         }
 
         .nav-link {
-          padding: $navbar-padding-y+$nav-link-padding-y $nav-link-padding-x;
+          padding: calc(var(--bs-navbar-padding-y) + var(--bs-nav-link-padding-y)) 1rem;
           color: white;
           transition: all .1s ease-out;
 
           &:hover {
-            background: transparentize($white, 0.75);
+            background: rgba(var(--bs-white-rgb), 0.25);
           }
         }
 
@@ -131,8 +123,8 @@ header {
   }
 
   .navbar.navbar-sub {
-    padding: $navbar-padding-y;
-    background: $secondary-menu-background;
+    padding: var(--bs-navbar-padding-y);
+    background: var(--secondary-menu-background);
 
     .navbar {
       background: transparent !important;
@@ -146,7 +138,7 @@ header {
       &.active,
       &:hover {
         border-radius: 0.25rem;
-        background: transparentize($white, 0.75);
+        background: rgba(var(--bs-white-rgb), 0.25);
       }
     }
 
@@ -230,9 +222,15 @@ header {
 }
 
 footer {
-  border-top: 1px solid #ccc;
-  background: $footer-background;
+  border-top: 1px solid var(--footer-border-color);
+  background: var(--footer-background);
   width: 100%;
+
+  img {
+    padding: var(--footer-img-padding);
+    background: var(--footer-img-background);
+    border-radius: var(--footer-img-border-radius);
+  }
 
   .logo {
     max-height:80px;
@@ -291,8 +289,8 @@ label.col-form-label.required {
     font-size: 1.4em;
     line-height: 40px;
     -webkit-font-smoothing: antialiased;
-    color: $white;
-    background: $secondary;
+    color: var(--bs-white);
+    background: var(--bs-secondary);
     border-radius: 50%;
     text-align: center;
   }
@@ -350,7 +348,7 @@ label.col-form-label.required {
   transition: background-color 0.1s ease-in-out;
 
   &:hover {
-    background: $card-border-color;
+    background: var(--bs-card-border-color);
     text-decoration: none;
   }
 }
@@ -368,23 +366,6 @@ label.col-form-label.required {
   position: sticky;
   align-self: flex-start;
   top: 1rem;
-}
-
-@include color-mode(dark) {
-  footer {
-    background: var(--#{$prefix}body-bg);
-    border-color: var(--#{$prefix}border-color-translucent);
-
-    img {
-      padding: $dark-footer-img-padding;
-      background: $dark-footer-img-background;
-      border-radius: $dark-footer-img-border-radius;
-    }
-  }
-
-  .breadcrumb {
-    --#{$prefix}breadcrumb-bg: var(--#{$prefix}body-bg);
-  }
 }
 
 table {
