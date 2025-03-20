@@ -1,12 +1,5 @@
 // Allows the creation of tables using divs
-div.table {
-  @extend .d-flex;
-  @extend .flex-column;
-
-  &.collapse {
-    @extend .d-none;
-  }
-
+.table {
   .column-sm {
     width: 20px;
   }
@@ -35,6 +28,15 @@ div.table {
   }
   .column-320 {
     width: 320px;
+  }
+}
+
+div.table {
+  @extend .d-flex;
+  @extend .flex-column;
+
+  &.collapse {
+    @extend .d-none;
   }
 
   &.table-bordered {
