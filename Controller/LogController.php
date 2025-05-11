@@ -193,6 +193,6 @@ class LogController extends AbstractController {
         $metadata = $this->em->getClassMetadata(LogEntry::class);
 
         $query = $platform->getTruncateTableSql($metadata->getTableName());
-        $connection->executeUpdate($query);
+        $connection->executeQuery($query);
     }
 }
