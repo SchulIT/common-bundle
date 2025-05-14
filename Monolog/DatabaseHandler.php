@@ -33,7 +33,7 @@ class DatabaseHandler extends AbstractProcessingHandler {
                     Types::STRING,
                     Types::INTEGER,
                     Types::TEXT,
-                    Types::DATETIME_MUTABLE,
+                    Types::DATETIME_IMMUTABLE,
                     Types::JSON
                 ]);
         } catch (Exception) {
