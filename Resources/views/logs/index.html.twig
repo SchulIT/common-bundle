@@ -9,7 +9,7 @@
                 <div class="row row-cols-4 mb-3 g-4">
                     {% for counter in counters %}
                     <div class="col">
-                        <a class="card card-link h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel, username: username, request: request_id }) }}">
+                        <a class="card card-link h-100" href="{{ path('admin_logs', { level: counter.level, channel: channel, username: username, request: request }) }}">
                             <div class="card-body d-flex align-items-center" >
                                 <div class="icon d-inline-block me-2">{{ counter.counter }}</div>
                                 {{ counter.name }}
@@ -116,7 +116,7 @@
 
                 {% include '@Common/includes/pagination.html.twig' with {
                     currentPage: page,
-                    currentFilters: { level: level, channel: channel, request: request_id },
+                    currentFilters: { level: level, channel: channel, request: request },
                     paginationPath: 'admin_logs',
                     lastPage: pages,
                     showAlwaysFirstAndLast: true
