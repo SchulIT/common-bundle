@@ -46,7 +46,7 @@ logs:
   username: Benutzername
   request_id: Request ID
   url: URL
-  Level: Level
+  level: Level
   apply_filter: Filter übernehmen
   clear_filter: Filter löschen
   all_channels: Alle Bereiche
