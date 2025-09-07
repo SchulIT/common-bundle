@@ -32,9 +32,6 @@
                             <col class="column-100" />
                             <col class="column-md" />
                             <col />
-                            <col class="column-200"/>
-                            <col class="column-200"/>
-                            <col class="column-280"/>
                             <col class="column-md" />
                         </colgroup>
 
@@ -44,9 +41,6 @@
                             <th>{{ 'logs.level'|trans }}</th>
                             <th>{{ 'logs.channel'|trans }}</th>
                             <th>{{ 'logs.message'|trans }}</th>
-                            <th>{{ 'logs.url'|trans }}</th>
-                            <th>{{ 'logs.username'|trans }}</th>
-                            <th>{{ 'logs.request_id'|trans }}</th>
                             <th>{{ 'logs.time'|trans }}</th>
                         </tr>
                         </thead>
@@ -62,33 +56,56 @@
                                 <td>{{ item.getLevel()|log_level }}</td>
                                 <td>{{ item.getChannel() }}</td>
                                 <td>{{ item.getMessage() }}</td>
-                                <td>
-                                    {% if item.details['url'] is defined and item.details['url'] is not empty %}
-                                        {{ item.details['url'] }}
-                                    {% else %}
-                                        <span class="badge text-bg-danger">N/A</span>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if item.details['username'] is defined and item.details['username'] is not empty %}
-                                        {{ item.details['username'] }}
-                                    {% else %}
-                                        <span class="badge text-bg-danger">N/A</span>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if item.details['request_id'] is defined and item.details['request_id'] is not empty %}
-                                        <a href="{{ path('admin_logs', { request: item.details['request_id']}) }}">{{ item.details['request_id'] }}</a>
-                                    {% else %}
-                                        <span class="badge text-bg-danger">N/A</span>
-                                    {% endif %}
-                                </td>
                                 <td>{{ item.getTime().format('d.m.Y H:i:s') }}</td>
                             </tr>
                             <tr id="log-detail-{{ item.id }}" class="collapse">
                                 <td colspan="8">
+                                    <table class="table mb-1">
+                                        <tbody>
+                                        <tr>
+                                            <th>{{ 'logs.url'|trans }}</th>
+                                            <td>
+                                                {% if item.details['url'] is defined and item.details['url'] is not empty %}
+                                                    {{ item.details['url'] }}
+                                                {% else %}
+                                                    <span class="badge text-bg-danger">N/A</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'logs.username'|trans }}</th>
+                                            <td>
+                                                {% if item.details['username'] is defined and item.details['username'] is not empty %}
+                                                    {{ item.details['username'] }}
+                                                {% else %}
+                                                    <span class="badge text-bg-danger">N/A</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'logs.request_id'|trans }}</th>
+                                            <td>
+                                                {% if item.details['request_id'] is defined and item.details['request_id'] is not empty %}
+                                                    <a href="{{ path('admin_logs', { request: item.details['request_id']}) }}">{{ item.details['request_id'] }}</a>
+                                                {% else %}
+                                                    <span class="badge text-bg-danger">N/A</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+
+                                        {% if item.getDetails()['exception']['stacktrace'] is defined %}
+                                            <tr>
+                                                <th></th>
+                                                <td class="font-monospace">
+                                                    {{ item.getDetails()['exception']['stacktrace']|nl2br }}
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
+
                                     {% if item.details is not null %}
-                                        <pre style="max-width: 1000px;">{{ item.getDetails()|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}</pre>
+                                        <pre style="max-width: 1000px;">{{ item.getDetails()|json_encode(192)|raw }}</pre> {# 192 = JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT  #}
                                     {% endif %}
                                 </td>
                             </tr>
@@ -139,8 +156,8 @@
                             </div>
 
                             <div>
-                                <label for="request_id" class="form-label">{{ 'logs.request_id'|trans }}</label>
-                                <input type="text" name="request_id" id="request_id" class="form-control" value="{{ request_id }}">
+                                <label for="request" class="form-label">{{ 'logs.request_id'|trans }}</label>
+                                <input type="text" name="request_id" id="request" class="form-control" value="{{ request }}">
                             </div>
                         </div>
 
