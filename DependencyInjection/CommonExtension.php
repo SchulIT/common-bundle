@@ -30,9 +30,6 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $container->setParameter('app.common.locales', $config['locales']);
         $container->setParameter('app.common.menu', $config['menu']);
 
-        $container->setParameter('app.autoconfig.app_name', $config['autoconfig']['app_name']);
-        $container->setParameter('app.autoconfig.');
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
