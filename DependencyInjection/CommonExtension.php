@@ -50,15 +50,15 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
             $loader->load('autoconfig.yaml');
 
             $samlConfigExporter = $container->getDefinition(SamlConfigExporter::class);
-            $samlConfigExporter->setArgument('entityId', $config['autoconfig']['entity_id']);
-            $samlConfigExporter->setArgument('appName', $config['autoconfig']['app_name']);
-            $samlConfigExporter->setArgument('appIcon', $config['autoconfig']['app_icon']);
-            $samlConfigExporter->setArgument('certFile', $config['autoconfig']['saml_cert_file']);
+            $samlConfigExporter->setArgument('$entityId', $config['autoconfig']['entity_id']);
+            $samlConfigExporter->setArgument('$appName', $config['autoconfig']['app_name']);
+            $samlConfigExporter->setArgument('$appIcon', $config['autoconfig']['app_icon']);
+            $samlConfigExporter->setArgument('$certFile', $config['autoconfig']['saml_cert_file']);
 
             $roleConfigExporter = $container->getDefinition(RoleConfigExporter::class);
-            $roleConfigExporter->setArgument('roleHierarchy', $config['autoconfig']['role_hierarchy']);
-            $roleConfigExporter->setArgument('roleAttributeName', $config['autoconfig']['role_attribute_name']);
-            $roleConfigExporter->setArgument('ignoreRoles', $config['autoconfig']['ignore_roles']);
+            $roleConfigExporter->setArgument('$roleHierarchy', $config['autoconfig']['role_hierarchy']);
+            $roleConfigExporter->setArgument('$roleAttributeName', $config['autoconfig']['role_attribute_name']);
+            $roleConfigExporter->setArgument('$ignoreRoles', $config['autoconfig']['ignore_roles']);
         }
 
         $loader->load('controller.yaml');
