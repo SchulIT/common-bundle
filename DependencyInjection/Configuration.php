@@ -62,7 +62,7 @@ class Configuration implements ConfigurationInterface {
                     ->stringNode('app_name')->end()
                     ->stringNode('app_icon')->end()
                     ->stringNode('saml_cert_file')->end()
-                    ->stringNode('role_hierarchy')->end()
+                    ->variableNode('role_hierarchy')->end()
                     ->arrayNode('ignore_roles')
                         ->defaultValue([])
                         ->prototype('string')->end()
