@@ -2,6 +2,8 @@
 
 namespace SchulIT\CommonBundle\DependencyInjection;
 
+use SchulIT\CommonBundle\Autoconfig\Roles\RoleConfigExporter;
+use SchulIT\CommonBundle\Autoconfig\Saml\SamlConfigExporter;
 use SchulIT\CommonBundle\Command\ClearLogsCommand;
 use SchulIT\CommonBundle\Controller\MessengerController;
 use SchulIT\CommonBundle\Monolog\DatabaseHandler;
@@ -28,6 +30,9 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $container->setParameter('app.common.locales', $config['locales']);
         $container->setParameter('app.common.menu', $config['menu']);
 
+        $container->setParameter('app.autoconfig.app_name', $config['autoconfig']['app_name']);
+        $container->setParameter('app.autoconfig.');
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
@@ -42,6 +47,21 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         if (isset($config['disable']) && $config['disable']['orm'] === true) {
             $container->removeDefinition(DatabaseHandler::class);
             $container->removeDefinition(ClearLogsCommand::class);
+        }
+
+        if(isset($config['disable']) && $config['disable']['autoconfig'] !== true){
+            $loader->load('autoconfig.yaml');
+
+            $samlConfigExporter = $container->getDefinition(SamlConfigExporter::class);
+            $samlConfigExporter->setArgument('entityId', $config['autoconfig']['entity_id']);
+            $samlConfigExporter->setArgument('appName', $config['autoconfig']['app_name']);
+            $samlConfigExporter->setArgument('appIcon', $config['autoconfig']['app_icon']);
+            $samlConfigExporter->setArgument('certFile', $config['autoconfig']['saml_cert_file']);
+
+            $roleConfigExporter = $container->getDefinition(RoleConfigExporter::class);
+            $roleConfigExporter->setArgument('roleHierarchy', $config['autoconfig']['role_hierarchy']);
+            $roleConfigExporter->setArgument('roleAttributeName', $config['autoconfig']['role_attribute_name']);
+            $roleConfigExporter->setArgument('ignoreRoles', $config['autoconfig']['ignore_roles']);
         }
 
         $loader->load('controller.yaml');
