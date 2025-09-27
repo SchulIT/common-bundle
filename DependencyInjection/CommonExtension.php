@@ -55,7 +55,7 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
             $samlConfigExporter->setArgument('$appIcon', $config['autoconfig']['app_icon']);
             $samlConfigExporter->setArgument('$certFile', $config['autoconfig']['saml_cert_file']);
             $samlConfigExporter->setArgument('$indexRouteName', $config['autoconfig']['index_route_name']);
-            $samlConfigExporter->setArgument('$loginAcsRouteName', $config['autoconfig']['login_acs_route_name']);
+            $samlConfigExporter->setArgument('$samlAcsRouteName', $config['autoconfig']['login_acs_route_name']);
 
             $roleConfigExporter = $container->getDefinition(RoleConfigExporter::class);
             $roleConfigExporter->setArgument('$roleHierarchy', $config['autoconfig']['role_hierarchy']);
