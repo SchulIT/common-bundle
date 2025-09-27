@@ -43,8 +43,8 @@ readonly class RoleConfigExporter {
     public function getConfig(): RoleConfig {
         return new RoleConfig(
             new AttributeConfig(
-                $this->translator->trans('attribute.display_name', [], 'autoconfig'),
-                $this->translator->trans('attribute.description', [], 'autoconfig'),
+                $this->translator->trans('role_attribute.display_name', [], 'autoconfig'),
+                $this->translator->trans('role_attribute.description', [], 'autoconfig'),
                 false,
                 $this->roleAttributeName,
                 AttributeType::CHOICE,
