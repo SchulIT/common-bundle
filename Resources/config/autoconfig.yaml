@@ -6,6 +6,4 @@ services:
 
   SchulIT\CommonBundle\Autoconfig\Saml\SamlConfigExporter: ~
 
-  SchulIT\CommonBundle\Autoconfig\Roles\RoleConfigExporter:
-    bind:
-      $roleHierarchy: '%security.role_hierarchy.roles%'
+  SchulIT\CommonBundle\Autoconfig\Roles\RoleConfigExporter: ~

@@ -68,6 +68,8 @@ class Configuration implements ConfigurationInterface {
                         ->prototype('string')->end()
                     ->end()
                     ->stringNode('role_attribute_name')->defaultValue('urn:roles')->end()
+                    ->stringNode('index_route_name')->defaultValue('index')->end()
+                    ->stringNode('login_acs_route_name')->defaultValue('lightsaml_sp.login_check')->end()
                 ->end()
             ->end()
         ->end();

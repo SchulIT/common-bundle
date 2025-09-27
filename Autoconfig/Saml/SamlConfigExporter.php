@@ -12,6 +12,8 @@ readonly class SamlConfigExporter {
                                 private string $appName,
                                 private string $appIcon,
                                 private string $certFile,
+                                private string $indexRouteName,
+                                private string $samlAcsRouteName,
                                 private TranslatorInterface $translator) {
 
     }
@@ -24,12 +26,14 @@ readonly class SamlConfigExporter {
         }
 
         return new SamlConfig(
-            $this->urlGenerator->generate('index', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            $this->urlGenerator->generate($this->indexRouteName, [], UrlGeneratorInterface::ABSOLUTE_URL),
             $this->entityId,
             $this->appName,
             $this->translator->trans('description', [], 'autoconfig'),
             $this->appIcon,
-            $this->urlGenerator->generate('lightsaml_sp.login_check', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            [
+                $this->urlGenerator->generate($this->samlAcsRouteName, [], UrlGeneratorInterface::ABSOLUTE_URL)
+            ],
             $cert
         );
     }
