@@ -46,7 +46,7 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
             $container->removeDefinition(ClearLogsCommand::class);
         }
 
-        if(isset($config['disable']) && $config['disable']['autoconfig'] !== true){
+        if(!isset($config['disable']) || $config['disable']['autoconfig'] !== true){
             $loader->load('autoconfig.yaml');
 
             $samlConfigExporter = $container->getDefinition(SamlConfigExporter::class);
