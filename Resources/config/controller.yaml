@@ -12,6 +12,10 @@ services:
         tags:
             - 'controller.service_arguments'
 
+    SchulIT\CommonBundle\Controller\AutoconfigController:
+        tags:
+          - 'controller.service_arguments'
+
     SchulIT\CommonBundle\Controller\LogoutController:
         arguments:
             $logoutUrl: '%env(IDP_LOGOUT_URL)%'
