@@ -18,7 +18,8 @@
         "sensiolabs/ansi-to-html": "^1.1",
         "symfony/security-core": "^6.0|^7.0",
         "symfony/validator": "^6.0|^7.0",
-        "chrisguitarguy/request-id-bundle": "^6.0"
+        "chrisguitarguy/request-id-bundle": "^6.0",
+        "scienta/doctrine-json-functions": "^6.3"
     },
     "suggest": {
         "lightsaml/lightsaml": "",
@@ -26,8 +27,7 @@
         "knplabs/knp-time-bundle": "",
         "shapecode/cron-bundle": "",
         "doctrine/orm": "",
-        "symfony/doctrine-messenger": "",
-        "scienta/doctrine-json-functions": ""
+        "symfony/doctrine-messenger": ""
     },
     "autoload": {
         "psr-4": {

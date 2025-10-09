@@ -89,5 +89,15 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
             'enable_monolog' => true,
             'enable_twig' => true
         ]);
+
+        $container->prependExtensionConfig('doctrine', [
+            'orm' => [
+                'dql' => [
+                    'string_functions' => [
+                        'JSON_VALUE' => 'Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mariadb\JsonValue'
+                    ]
+                ]
+            ]
+        ]);
     }
 }
