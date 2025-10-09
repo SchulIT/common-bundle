@@ -81,5 +81,13 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
             'list_template' => '@Common/dependencies/list.html.twig',
             'license_template' => '@Common/dependencies/license.html.twig'
         ]);
+
+        $container->prependExtensionConfig('chrisguitarguy_request_id', [
+            'request_header' => 'Request-Id',
+            'trust_request_header' => false,
+            'response_header' => 'Request-Id',
+            'enable_monolog' => true,
+            'enable_twig' => true
+        ]);
     }
 }
