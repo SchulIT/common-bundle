@@ -102,7 +102,7 @@ class LogController extends AbstractController {
             'channels' => $channels,
             'counters' => $counters,
             'username' => $username,
-            'request' => $requestId
+            'requestId' => $requestId
         ]);
     }
 
