@@ -11,15 +11,15 @@ class IdEntity {
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'NONE')]
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $entityId;
+    private string $entityId;
 
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'NONE')]
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $id;
+    private string $id;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
-    private $expiry;
+    private DateTime $expiry;
 
     public function getEntityId(): string {
         return $this->entityId;
