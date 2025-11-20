@@ -33,10 +33,6 @@ class CommonExtension extends Extension implements PrependExtensionInterface {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
-        if (!isset($config['disable']) || $config['disable']['messenger'] !== true) {
-            $loader->load('messenger.yaml');
-        }
-
         if (isset($config['disable']) && $config['disable']['orm'] === true) {
             $container->removeDefinition(DatabaseHandler::class);
             $container->removeDefinition(ClearLogsCommand::class);
