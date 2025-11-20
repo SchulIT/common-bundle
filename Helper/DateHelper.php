@@ -9,7 +9,7 @@ class DateHelper {
 
     private ?DateTime $today;
 
-    const DateJsonFormat = 'Y-m-d\TH:i:s';
+    const string DateJsonFormat = 'Y-m-d\TH:i:s';
 
     public function __construct(?DateTime $today = null) {
         $this->setToday($today);

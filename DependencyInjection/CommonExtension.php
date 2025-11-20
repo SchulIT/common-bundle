@@ -5,14 +5,12 @@ namespace SchulIT\CommonBundle\DependencyInjection;
 use SchulIT\CommonBundle\Autoconfig\Roles\RoleConfigExporter;
 use SchulIT\CommonBundle\Autoconfig\Saml\SamlConfigExporter;
 use SchulIT\CommonBundle\Command\ClearLogsCommand;
-use SchulIT\CommonBundle\Controller\MessengerController;
 use SchulIT\CommonBundle\Monolog\DatabaseHandler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class CommonExtension extends Extension implements PrependExtensionInterface {
 

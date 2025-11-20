@@ -2,9 +2,9 @@
 
 namespace SchulIT\CommonBundle\Twig;
 
-class ConfigVariable {
+readonly class ConfigVariable {
 
-    public function __construct(private readonly string $name, private readonly string $url, private readonly string $version, private readonly string $projectUrl, private readonly ?string $logo = null, private readonly ?string $smallLogo = null, private readonly ?string $logoLink = null) { }
+    public function __construct(private string $name, private string $url, private string $version, private string $projectUrl, private ?string $logo = null, private ?string $smallLogo = null, private ?string $logoLink = null) { }
 
     /**
      * @return string

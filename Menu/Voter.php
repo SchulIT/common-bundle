@@ -6,9 +6,9 @@ use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class Voter implements VoterInterface {
+readonly class Voter implements VoterInterface {
 
-    public function __construct(private readonly RequestStack $requestStack) { }
+    public function __construct(private RequestStack $requestStack) { }
 
     /**
      * @inheritDoc

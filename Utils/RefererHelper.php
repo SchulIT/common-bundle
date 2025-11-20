@@ -7,7 +7,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 class RefererHelper {
 
-    private const RefQueryName = 'ref';
+    private const string RefQueryName = 'ref';
 
     public function __construct(private readonly RequestStack $requestStack, private readonly RouterInterface $router) { }
 
@@ -57,7 +57,7 @@ class RefererHelper {
         $params = $this->router->getMatcher()->match($parts['path']);
 
         $parameters = array_filter($params, function($key) {
-            return substr($key, 0, 1) !== '_';
+            return !str_starts_with($key, '_');
         }, ARRAY_FILTER_USE_KEY);
 
         $parameters = array_merge($parameters, $queryParameter);
