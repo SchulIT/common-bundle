@@ -25,7 +25,6 @@
         "lightsaml/lightsaml": "",
         "knplabs/knp-menu-bundle": "",
         "knplabs/knp-time-bundle": "",
-        "shapecode/cron-bundle": "",
         "doctrine/orm": "",
         "symfony/doctrine-messenger": ""
     },
