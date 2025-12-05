@@ -30,12 +30,6 @@ class CommonBundle extends AbstractBundle {
                         ->scalarNode('logo_link')->defaultValue(null)->end()
                     ->end()
                 ->end()
-                ->arrayNode('locales')
-                    ->prototype('scalar')->end()
-                ->end()
-                ->scalarNode('menu')
-                    ->defaultValue('App:Builder:mainMenu')
-                ->end()
                 ->arrayNode('disable')
                     ->children()
                         ->booleanNode('cron')->defaultFalse()->end()
@@ -72,8 +66,6 @@ class CommonBundle extends AbstractBundle {
         $builder->setParameter('app.common.logo', $config['app']['logo']);
         $builder->setParameter('app.common.small_logo', $config['app']['small_logo']);
         $builder->setParameter('app.common.logo_link', $config['app']['logo_link']);
-        $builder->setParameter('app.common.locales', $config['locales']);
-        $builder->setParameter('app.common.menu', $config['menu']);
 
         $loader = new YamlFileLoader($builder, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.yaml');

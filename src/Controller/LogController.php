@@ -14,10 +14,10 @@ use SchulIT\CommonBundle\Form\ConfirmType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class LogController extends AbstractController {
-    const ITEMS_PER_PAGE = 25;
+    const int ITEMS_PER_PAGE = 25;
 
     public function __construct(private readonly EntityManagerInterface $em, private readonly LoggerInterface $logger) { }
 

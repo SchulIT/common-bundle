@@ -11,29 +11,7 @@ services:
       Symfony\Component\EventDispatcher\EventSubscriberInterface:
           tags: ['kernel.event_subscriber']
 
-  SchulIT\CommonBundle\Twig\CommonExtension:
-    arguments:
-      $menuService: "%app.common.menu%"
-
-  SchulIT\CommonBundle\Twig\ConfigVariable:
-    arguments:
-      - "%app.common.name%"
-      - "%app.common.url%"
-      - "%app.common.version%"
-      - "%app.common.project_url%"
-      - "%app.common.logo%"
-      - "%app.common.small_logo%"
-      - "%app.common.logo_link%"
-
   # Event Listener
-  SchulIT\CommonBundle\EventSubscriber\LocaleSubscriber:
-    arguments:
-      $locales: '%app.common.locales%'
-
-  SchulIT\CommonBundle\EventSubscriber\ConsoleSubscriber:
-    arguments:
-      $appName: "%app.common.name%"
-      $appVersion: "%app.common.version%"
 
   # DateHelper
   SchulIT\CommonBundle\Helper\DateHelper: ~
@@ -44,9 +22,7 @@ services:
       $connection: "@doctrine.dbal.default_connection"
 
   # Commands
-  SchulIT\CommonBundle\Command\ClearLogsCommand:
-    tags:
-      - { name: shapecode_cron.cron_job, expression: '@daily' }
+  SchulIT\CommonBundle\Command\ClearLogsCommand: ~
 
   # Utils
   SchulIT\CommonBundle\Utils\RefererHelper: ~

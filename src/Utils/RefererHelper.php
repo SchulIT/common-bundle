@@ -5,11 +5,14 @@ namespace SchulIT\CommonBundle\Utils;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 
-class RefererHelper {
+readonly class RefererHelper {
 
     private const string RefQueryName = 'ref';
 
-    public function __construct(private readonly RequestStack $requestStack, private readonly RouterInterface $router) { }
+    public function __construct(
+        private RequestStack $requestStack,
+        private RouterInterface $router
+    ) { }
 
     public function getRefererPathFromQuery(array $mapping, string $route, array $parameters = [ ], array $fallbackParameters = [ ]): string {
         $request = $this->requestStack->getMainRequest();

@@ -2,15 +2,17 @@
 
 namespace SchulIT\CommonBundle\EventSubscriber;
 
-use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
-class ConsoleSubscriber implements EventSubscriberInterface {
+readonly class ConsoleSubscriber implements EventSubscriberInterface {
 
-    public function __construct(private readonly string $appName, private readonly string $appVersion) {
+    public function __construct(
+        #[Autowire(param: 'app.common.name')] private string $appName,
+        #[Autowire(param: 'app.common.version')] private string $appVersion
+    ) {
 
     }
 
@@ -26,14 +28,9 @@ class ConsoleSubscriber implements EventSubscriberInterface {
             ->setVersion($version);
     }
 
-    /**
-     * @return array
-     */
     public static function getSubscribedEvents(): array {
         return [
-            ConsoleEvents::COMMAND => [
-                [ 'onConsoleCommand']
-            ]
+            ConsoleCommandEvent::class => 'onConsoleCommand'
         ];
     }
 }

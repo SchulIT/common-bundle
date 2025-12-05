@@ -5,6 +5,7 @@ namespace SchulIT\CommonBundle\Twig;
 use DateTimeInterface;
 use Monolog\Level;
 use SchulIT\CommonBundle\DarkMode\DarkModeManagerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
@@ -12,16 +13,16 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class CommonExtension extends AbstractExtension implements GlobalsInterface {
-    private $menuService;
 
-    public function __construct(private readonly ConfigVariable $configVariable, $menuService, private readonly TranslatorInterface $translator, private readonly DarkModeManagerInterface $darkModeManager) {
-        $this->menuService = $menuService;
-    }
+    public function __construct(
+        private readonly ConfigVariable $configVariable,
+        private readonly TranslatorInterface $translator,
+        private readonly DarkModeManagerInterface $darkModeManager
+    ) { }
 
     public function getGlobals(): array {
         return [
-            'config' => $this->configVariable,
-            'mainMenu' => $this->menuService
+            'config' => $this->configVariable
         ];
     }
 

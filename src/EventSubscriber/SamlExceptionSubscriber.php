@@ -12,12 +12,16 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 
-class SamlExceptionSubscriber implements EventSubscriberInterface {
+readonly class SamlExceptionSubscriber implements EventSubscriberInterface {
 
 
-    public function __construct(private readonly string $retryRoute, private readonly string $loggedInRoute,
-                                private readonly TokenStorageInterface $tokenStorage, private readonly Environment $twig,
-                                private readonly UrlGeneratorInterface $urlGenerator) { }
+    public function __construct(
+        private string $retryRoute,
+        private string $loggedInRoute,
+        private TokenStorageInterface $tokenStorage,
+        private Environment $twig,
+        private UrlGeneratorInterface $urlGenerator
+    ) { }
 
     public function onKernelException(ExceptionEvent $event): void {
         $throwable = $event->getThrowable();

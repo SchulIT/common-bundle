@@ -2,9 +2,19 @@
 
 namespace SchulIT\CommonBundle\Twig;
 
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+
 readonly class ConfigVariable {
 
-    public function __construct(private string $name, private string $url, private string $version, private string $projectUrl, private ?string $logo = null, private ?string $smallLogo = null, private ?string $logoLink = null) { }
+    public function __construct(
+        #[Autowire(param: 'app.common.name')] private string $name,
+        #[Autowire(param: 'app.common.url')] private string $url,
+        #[Autowire(param: 'app.common.version')] private string $version,
+        #[Autowire(param: 'app.common.project_url')] private string $projectUrl,
+        #[Autowire(param: 'app.common.logo')] private ?string $logo = null,
+        #[Autowire(param: 'app.common.small_logo')] private ?string $smallLogo = null,
+        #[Autowire(param: 'app.common.logo_link')] private ?string $logoLink = null
+    ) { }
 
     /**
      * @return string

@@ -5,7 +5,7 @@ namespace SchulIT\CommonBundle\Security;
 /**
  * Helps to create certificates (which can be created from the CreateCertificateCommand or by code, e.g. for testing purposes)
  */
-class CertificateCreator {
+readonly class CertificateCreator {
     public function createCertificate(string $certFile, string $keyFile, string $countryName, string $stateOrProvinceName,
                                       string $localityName, string $organizationName, string $organizationalUnitName,
                                       string $commonName, string $emailAddress): void {
