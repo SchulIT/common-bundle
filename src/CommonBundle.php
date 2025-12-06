@@ -100,7 +100,7 @@ class CommonBundle extends AbstractBundle {
 
         if(class_exists("Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass")) {
             $container->addCompilerPass(
-                Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass::createAttributeMappingDriver(
+                \Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass::createAttributeMappingDriver(
                     ['SchulIT\CommonBundle\Entity'],
                     [realpath(__DIR__ . '/Entity')],
                     reportFieldsWhereDeclared: true
