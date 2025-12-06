@@ -21,7 +21,7 @@ class LogController extends AbstractController {
 
     public function __construct(private readonly EntityManagerInterface $em, private readonly LoggerInterface $logger) { }
 
-    #[Route('/admin/logs', name: 'admin_logs')]
+    #[Route('', name: 'admin_logs')]
     public function index(Request $request): Response {
         $page = $request->query->get('page', 1);
         $channel = $request->query->get('channel', null);
@@ -167,7 +167,7 @@ class LogController extends AbstractController {
         return $channels;
     }
 
-    #[Route('/admin/logs/clear', name: 'admin_logs_clear')]
+    #[Route('/clear', name: 'admin_logs_clear')]
     public function clear(Request $request): Response {
         $form = $this->createForm(ConfirmType::class, null, [
             'message' => 'logs.clear.confirm',
