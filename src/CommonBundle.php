@@ -67,7 +67,7 @@ class CommonBundle extends AbstractBundle {
         $builder->setParameter('app.common.small_logo', $config['app']['small_logo']);
         $builder->setParameter('app.common.logo_link', $config['app']['logo_link']);
 
-        $loader = new YamlFileLoader($builder, new FileLocator(__DIR__ . '/../../config'));
+        $loader = new YamlFileLoader($builder, new FileLocator(__DIR__ . '/../config'));
         $loader->load('services.yaml');
 
         if (isset($config['disable']) && $config['disable']['orm'] === true) {
