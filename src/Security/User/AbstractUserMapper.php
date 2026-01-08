@@ -5,7 +5,7 @@ namespace SchulIT\CommonBundle\Security\User;
 use LightSaml\Model\Protocol\Response;
 
 class AbstractUserMapper {
-    protected const string ROLES_ASSERTION_NAME = 'urn:roles';
+    public const string ROLES_ASSERTION_NAME = 'urn:roles';
 
     /**
      * @param Response $response
