@@ -41,8 +41,10 @@ abstract class AbstractHttpExceptionSubscriber implements EventSubscriberInterfa
         $controller = $request->attributes->get('_controller');
         $methodName = '__invoke';
 
-        if(str_contains($controller, '::')) {
+        if(is_string($controller) && str_contains($controller, '::')) {
             [$controller, $methodName] = explode('::', $controller);
+        } else if(is_array($controller)) {
+            [$controller, $methodName] = $controller;
         }
 
         if($controller === null || $methodName === null) {
