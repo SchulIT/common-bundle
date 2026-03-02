@@ -2,6 +2,8 @@
 
 namespace SchulIT\CommonBundle;
 
+use ReflectionClass;
+use ReflectionParameter;
 use SchulIT\CommonBundle\Autoconfig\Roles\RoleConfigExporter;
 use SchulIT\CommonBundle\Autoconfig\Saml\SamlConfigExporter;
 use SchulIT\CommonBundle\Command\ClearLogsCommand;
@@ -99,13 +101,26 @@ class CommonBundle extends AbstractBundle {
         parent::build($container);
 
         if(class_exists("Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass")) {
-            $container->addCompilerPass(
-                \Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass::createAttributeMappingDriver(
-                    ['SchulIT\CommonBundle\Entity'],
-                    [realpath(__DIR__ . '/Entity')],
-                    reportFieldsWhereDeclared: true
-                )
-            );
+            $class = new ReflectionClass("Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass");
+            $method = $class->getMethod('createAttributeMappingDriver');
+            $parameters = array_map(fn(ReflectionParameter $parameter): string => $parameter->getName(), $method->getParameters());
+
+            if(array_search('reportFieldsWhereDeclared', $parameters) === false) {
+                $container->addCompilerPass(
+                    \Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass::createAttributeMappingDriver(
+                        ['SchulIT\CommonBundle\Entity'],
+                        [realpath(__DIR__ . '/Entity')]
+                    )
+                );
+            } else {
+                $container->addCompilerPass(
+                    \Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass::createAttributeMappingDriver(
+                        ['SchulIT\CommonBundle\Entity'],
+                        [realpath(__DIR__ . '/Entity')],
+                        reportFieldsWhereDeclared: true
+                    )
+                );
+            }
         }
     }
 
