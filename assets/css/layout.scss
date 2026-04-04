@@ -256,7 +256,7 @@ form {
 legend.col-form-label.required,
 label.col-form-label.required {
   &::after {
-    font-family: $fa-style-family;
+    font-family: var(--fa-family, var(--fa-style-family, 'Font Awesome 7 Free'));
     font-weight: 900;
     content: " \f069";
     color: red;
@@ -281,7 +281,7 @@ label.col-form-label.required {
   .icon {
     width: 40px;
     height: 40px;
-    speak: none;
+    speak: never;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -362,7 +362,6 @@ label.col-form-label.required {
 }
 
 .sticky-sidebar {
-  position: -webkit-sticky;
   position: sticky;
   align-self: flex-start;
   top: 1rem;

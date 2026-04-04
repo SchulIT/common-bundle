@@ -1,0 +1,30 @@
+@import 'bootstrap.scss';
+
+// Import Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Import (and override) variables
+@import 'variables.scss';
+
+// Import FontAwesome
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/solid';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/regular';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/brands';
+
+// Import SchulIT design
+@import 'layout.scss';
+@import 'callouts.scss';
+@import 'div-tables.scss';
+@import 'swagger.scss';
+
+// Import editor
+@import '../../node_modules/easymde/src/css/easymde.css';
+@import '../../node_modules/codemirror/lib/codemirror.css';
+@import 'editor';
+@import 'dark/editor.scss';
+
+// Import choices.js
+@import '../../node_modules/choices.js/src/styles/choices';
+@import 'choices-fixes.scss';
+@import 'dark/choices';
