@@ -2,7 +2,12 @@
   "entrypoints": {
     "app": {
       "css": [
-        "./app.caa8cc48.css"
+        "./app.css"
+      ]
+    },
+    "simple": {
+      "css": [
+        "./simple.css"
       ]
     }
   }
