@@ -101,7 +101,7 @@ header {
         &.open {
           background: var(--secondary-menu-background);
           .fa-caret-down {
-            @extend .fa-caret-up;
+            --fa: "\f0d8";
           }
         }
 

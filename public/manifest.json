@@ -1,7 +1,4 @@
 {
   "app.css": "./app.css",
-  "simple.css": "./simple.css",
-  "fonts/fa-solid-900.woff2": "./fonts/fa-solid-900.ce9a3fa7.woff2",
-  "fonts/fa-brands-400.woff2": "./fonts/fa-brands-400.f276979f.woff2",
-  "fonts/fa-regular-400.woff2": "./fonts/fa-regular-400.cfbad32c.woff2"
+  "simple.css": "./simple.css"
 }
