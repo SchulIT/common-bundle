@@ -7,7 +7,7 @@ Encore
 
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(false)
-    .enableVersioning(true)
+    .enableVersioning(false)
     .disableSingleRuntimeChunk()
 
     .addStyleEntry('app', './assets/css/app.scss')
