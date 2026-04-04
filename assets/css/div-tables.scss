@@ -39,19 +39,19 @@ div.table {
     @extend .d-none;
   }
 
-  &.table-bordered {
-    border-top: $table-border-width solid $table-border-color;
-    border-left: $table-border-width solid $table-border-color;
+  &.border-ed {
+    border-top: var(--bs-border-width) solid var(--bs-border-color);
+    border-left: var(--bs-border-width) solid var(--bs-border-color);
 
     .table-row {
-      border-bottom: $table-border-width solid $table-border-color;
+      border-bottom: var(--bs-border-width) solid var(--bs-border-color);
 
       &:last-child {
         border-bottom: none;
       }
 
       .table-col {
-        border-right: $table-border-width solid $table-border-color;
+        border-right: var(--bs-border-width) solid var(--bs-border-color);
 
         &:last-child {
           border-right: none;
@@ -89,7 +89,7 @@ div.table {
 
 .card {
   div.table {
-    &.table-bordered.table-card {
+    &.border-ed.table-card {
       border-left: 0;
     }
   }

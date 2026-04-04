@@ -1,6 +1,6 @@
 {
-  "app.css": "/app.b3b75c52.css",
-  "fonts/fa-solid-900.woff2": "/fonts/fa-solid-900.ce9a3fa7.woff2",
-  "fonts/fa-brands-400.woff2": "/fonts/fa-brands-400.f276979f.woff2",
-  "fonts/fa-regular-400.woff2": "/fonts/fa-regular-400.cfbad32c.woff2"
+  "app.css": "./app.caa8cc48.css",
+  "fonts/fa-solid-900.woff2": "./fonts/fa-solid-900.ce9a3fa7.woff2",
+  "fonts/fa-brands-400.woff2": "./fonts/fa-brands-400.f276979f.woff2",
+  "fonts/fa-regular-400.woff2": "./fonts/fa-regular-400.cfbad32c.woff2"
 }

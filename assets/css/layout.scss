@@ -189,7 +189,7 @@ header {
         margin-bottom: 0 !important;
       }
     }
-    sm {
+    .column-sm {
       width: 20px;
     }
     .column-60 {
@@ -342,9 +342,6 @@ label.col-form-label.required {
 
 .card-link {
   text-decoration: none;
-
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -o-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out;
 
   &:hover {

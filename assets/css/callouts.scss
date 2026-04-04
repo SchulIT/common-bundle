@@ -1,12 +1,8 @@
 // Source: https://github.com/twbs/bootstrap/blob/main/site/assets/scss/_callouts.scss
 
-$bd-gutter-x: 3rem;
 $bd-callout-variants: info, warning, danger, success !default;
 
 .bs-callout {
-  --#{$prefix}link-color-rgb: var(--bd-callout-link);
-  --#{$prefix}code-color: var(--bd-callout-code-color);
-
   padding: 1.25rem;
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;

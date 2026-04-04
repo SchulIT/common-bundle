@@ -2,7 +2,7 @@ const Encore = require('@symfony/webpack-encore');
 
 Encore
     .setOutputPath('./public/')
-    .setPublicPath('')
+    .setPublicPath('./')
     .setManifestKeyPrefix('')
 
     .cleanupOutputBeforeBuild()
@@ -11,6 +11,7 @@ Encore
     .disableSingleRuntimeChunk()
 
     .addStyleEntry('app', './assets/css/app.scss')
+    .addStyleEntry('simple', './assets/css/simple.scss')
     .enableSassLoader()
     .enablePostCssLoader()
 ;
