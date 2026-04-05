@@ -12,11 +12,8 @@
 @import 'div-tables.scss';
 @import 'swagger.scss';
 
-// Import editor
-@import '../../node_modules/easymde/src/css/easymde.css';
-@import '../../node_modules/codemirror/lib/codemirror.css';
+// Import editor overrides (ckeditor5)
 @import 'editor';
-@import 'dark/editor.scss';
 
 // Import choices.js
 @import '../../node_modules/choices.js/src/styles/choices';

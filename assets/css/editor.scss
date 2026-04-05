@@ -1,8 +1,92 @@
-.CodeMirror {
-  padding: 0 !important;
+.ck-editor {
+  --ck-border-radius: 0 !important;
+  --ck-content-font-family: var(--bs-body-font-family);
+  --ck-content-font-size: calc(0.9 * var(--bs-body-font-size));
 
-  .CodeMirror-scroll {
-    padding: 10px !important;
+  --ck-color-toolbar-background: var(--bs-card-bg);
+  --ck-color-dropdown-panel-background: var(--bs-card-bg);
+  --ck-color-list-background: var(--bs-card-bg);
+
+  --ck-color-base-border: var(--bs-card-border-color);
+  --ck-color-panel-border: var(--bs-card-border-color);
+  --ck-color-dialog-form-header-border: var(--bs-card-border-color);
+  --ck-color-split-button-hover-border: var(--bs-card-border-color);
+  --ck-color-input-border: var(--bs-card-border-color);
+  --ck-color-input-disabled-border: var(--bs-card-border-color);
+  --ck-color-toolbar-border: var(--bs-card-border-color);
+  --ck-color-widget-blurred-border: var(--bs-card-border-color);
+  --ck-color-widget-hover-border: var(--bs-card-border-color);
+  --ck-color-focus-border: var(--bs-card-border-color);
+  --ck-color-dropdown-panel-border: var(--bs-card-border-color);
+
+  --ck-content-font-color: var(--bs-card-color);
+  --ck-color-base-background: var(--bs-card-bg);
+}
+
+.ck-content {
+  min-height: 100px;
+}
+
+body[data-bs-theme="dark"] {
+  /* Source: https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/theme-customization.html */
+  --ck-custom-foreground: hsl(255, 3%, 18%);
+  --ck-custom-white: hsl(0, 0%, 100%);
+
+  --ck-color-text: hsl(0, 0%, 98%);
+  --ck-color-shadow-drop: hsla(0, 0%, 0%, 0.2);
+  --ck-color-shadow-inner: hsla(0, 0%, 0%, 0.1);
+
+  --ck-color-button-default-hover-background: hsl(270, 1%, 22%);
+  --ck-color-button-default-active-background: hsl(270, 2%, 20%);
+  --ck-color-button-default-active-shadow: hsl(270, 2%, 23%);
+
+  --ck-color-button-on-background: var(--ck-custom-foreground);
+  --ck-color-button-on-hover-background: hsl(255, 4%, 16%);
+  --ck-color-button-on-active-background: hsl(255, 4%, 14%);
+  --ck-color-button-on-active-shadow: hsl(240, 3%, 19%);
+  --ck-color-button-on-disabled-background: var(--ck-custom-foreground);
+
+  --ck-color-button-action-background: hsl(168, 76%, 42%);
+  --ck-color-button-action-hover-background: hsl(168, 76%, 38%);
+  --ck-color-button-action-active-background: hsl(168, 76%, 36%);
+  --ck-color-button-action-active-shadow: hsl(168, 75%, 34%);
+  --ck-color-button-action-disabled-background: hsl(168, 76%, 42%);
+  --ck-color-button-action-text: var(--ck-custom-white);
+
+  --ck-color-button-save: hsl(120, 100%, 46%);
+  --ck-color-button-cancel: hsl(15, 100%, 56%);
+
+  --ck-color-split-button-hover-background: var(--ck-color-button-default-hover-background);
+
+  --ck-color-input-text: hsl(0, 0%, 98%);
+  --ck-color-input-disabled-background: hsl(255, 4%, 21%);
+
+  --ck-color-input-disabled-text: hsl(0, 0%, 78%);
+
+  --ck-color-list-button-hover-background: var(--ck-custom-foreground);
+  --ck-color-list-button-on-background: hsl(208, 88%, 52%);
+  --ck-color-list-button-on-text: var(--ck-custom-white);
+
+  --ck-color-tooltip-background: hsl(252, 7%, 14%);
+  --ck-color-tooltip-text: hsl(0, 0%, 93%);
+
+  --ck-content-color-image-caption-background: hsl(0, 0%, 97%);
+  --ck-content-color-image-caption-text: hsl(0, 0%, 20%);
+
+  --ck-color-widget-editable-focus-background: var(--ck-custom-white);
+  --ck-color-link-default: hsl(190, 100%, 75%);
+
+  /* Improve displaying links. */
+  .ck.ck-editor__editable a {
+    color: hsl(210, 100%, 63%);
+  }
+
+  /* Improve displaying code blocks. */
+  .ck-content pre {
+    color: hsl(0, 0%, 91%);
+    border-color: hsl(0, 0%, 77%);
   }
 }
+
+
 

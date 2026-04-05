@@ -117,6 +117,7 @@ header {
 
         .navbar-text {
           display: block;
+          padding: calc(var(--bs-navbar-padding-y) + var(--bs-nav-link-padding-y)) 1rem;
         }
       }
     }
