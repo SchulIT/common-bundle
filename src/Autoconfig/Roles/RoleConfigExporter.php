@@ -6,13 +6,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 readonly class RoleConfigExporter {
 
-    public function __construct(private array $roleHierarchy,
+    public function __construct(private RoleResolverInterface $roleResolver,
                                 private string $roleAttributeName,
                                 private array $ignoreRoles,
                                 private TranslatorInterface $translator) { }
 
     public function getRoleNames(): array {
-        $roles = array_keys($this->roleHierarchy);
+        $roles = is_array($this->roleResolver) ? $this->roleResolver : $this->roleResolver->resolve();
         return array_filter($roles, fn(string $role) => !in_array($role, $this->ignoreRoles));
     }
 
