@@ -6,6 +6,7 @@ use ReflectionClass;
 use ReflectionParameter;
 use SchulIT\CommonBundle\Autoconfig\Roles\RoleConfigExporter;
 use SchulIT\CommonBundle\Autoconfig\Roles\RoleHierarchyRoleResolver;
+use SchulIT\CommonBundle\Autoconfig\Roles\TranslationFileTranslator;
 use SchulIT\CommonBundle\Autoconfig\Saml\SamlConfigExporter;
 use SchulIT\CommonBundle\Command\ClearLogsCommand;
 use SchulIT\CommonBundle\Monolog\DatabaseHandler;
@@ -15,7 +16,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
@@ -49,7 +49,8 @@ class CommonBundle extends AbstractBundle {
                         ->stringNode('app_name')->end()
                         ->stringNode('app_icon')->end()
                         ->stringNode('saml_cert_file')->end()
-                        ->stringNode('role_hierarchy')->end()
+                        ->variableNode('role_hierarchy')->end()
+                        ->stringNode('role_translator')->defaultValue(TranslationFileTranslator::class)->end()
                         ->arrayNode('ignore_roles')
                             ->defaultValue([])
                             ->prototype('string')->end()
@@ -93,9 +94,9 @@ class CommonBundle extends AbstractBundle {
 
             $roleConfigExporter = $builder->getDefinition(RoleConfigExporter::class);
 
-            if(str_starts_with($config['autoconfig']['role_hierarchy'], '%') && str_ends_with($config['autoconfig']['role_hierarchy'], '%')) {
+            if(is_array($config['autoconfig']['role_hierarchy'])) {
                 $roleHierarchyResolver = $builder->getDefinition(RoleHierarchyRoleResolver::class);
-                $roleHierarchyResolver->setArgument('$roleHierarchy', new Parameter($config['autoconfig']['role_hierarchy']));
+                $roleHierarchyResolver->setArgument('$roleHierarchy', $config['autoconfig']['role_hierarchy']);
 
                 $roleConfigExporter->setArgument('$roleResolver', new Reference(RoleHierarchyRoleResolver::class));
             } else {
@@ -104,6 +105,7 @@ class CommonBundle extends AbstractBundle {
 
             $roleConfigExporter->setArgument('$roleAttributeName', $config['autoconfig']['role_attribute_name']);
             $roleConfigExporter->setArgument('$ignoreRoles', $config['autoconfig']['ignore_roles']);
+            $roleConfigExporter->setArgument('$roleTranslator', new Reference($config['autoconfig']['role_translator']));
         }
 
         $loader->load('controller.yaml');

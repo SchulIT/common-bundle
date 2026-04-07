@@ -13,7 +13,7 @@ readonly class RoleHierarchyRoleResolver implements RoleResolverInterface {
     public function resolve(): array {
         return array_unique(
             array_merge(
-                $this->roleHierarchy,
+                array_keys($this->roleHierarchy),
                 ['ROLE_USER']
             )
         );

@@ -6,10 +6,15 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 readonly class RoleConfigExporter {
 
-    public function __construct(private RoleResolverInterface $roleResolver,
-                                private string $roleAttributeName,
-                                private array $ignoreRoles,
-                                private TranslatorInterface $translator) { }
+    public function __construct(
+        private RoleResolverInterface $roleResolver,
+        private string $roleAttributeName,
+        private array $ignoreRoles,
+        private RoleTranslatorInterface $roleTranslator,
+        private TranslatorInterface $translator,
+        private bool $ignoreRolesWithoutTranslation = false,
+        private string $translationDomain = 'autoconfig'
+    ) { }
 
     public function getRoleNames(): array {
         $roles = is_array($this->roleResolver) ? $this->roleResolver : $this->roleResolver->resolve();
@@ -23,15 +28,10 @@ readonly class RoleConfigExporter {
         $roles = [ ];
 
         foreach($this->getRoleNames() as $roleName) {
-            $translationKey = sprintf('roles.%s', $roleName);
-            $description = $this->translator->trans($translationKey, [], 'autoconfig');
+            $description = $this->roleTranslator->translate($roleName);
 
-            if($description === $translationKey) {
-                if($ignoreRolesWithoutTranslation === true) {
-                    continue;
-                } else {
-                    $description = $roleName;
-                }
+            if($description === null && $ignoreRolesWithoutTranslation === true) {
+                continue;
             }
 
             $roles[] = new Role($roleName, $description);
@@ -43,14 +43,14 @@ readonly class RoleConfigExporter {
     public function getConfig(): RoleConfig {
         return new RoleConfig(
             new AttributeConfig(
-                $this->translator->trans('role_attribute.display_name', [], 'autoconfig'),
-                $this->translator->trans('role_attribute.description', [], 'autoconfig'),
+                $this->translator->trans('role_attribute.display_name', [], $this->translationDomain),
+                $this->translator->trans('role_attribute.description', [], $this->translationDomain),
                 false,
                 $this->roleAttributeName,
                 AttributeType::CHOICE,
                 true
             ),
-            $this->getRoles(true)
+            $this->getRoles($this->ignoreRolesWithoutTranslation)
         );
     }
 }
