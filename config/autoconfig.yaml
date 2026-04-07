@@ -8,3 +8,4 @@ services:
 
   SchulIT\CommonBundle\Autoconfig\Roles\RoleConfigExporter: ~
   SchulIT\CommonBundle\Autoconfig\Roles\RoleHierarchyRoleResolver: ~
+  SchulIT\CommonBundle\Autoconfig\Roles\TranslationFileTranslator: ~
