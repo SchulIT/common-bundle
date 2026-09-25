@@ -16,25 +16,26 @@ readonly class RoleConfigExporter {
         private string $translationDomain = 'autoconfig'
     ) { }
 
-    public function getRoleNames(): array {
-        $roles = is_array($this->roleResolver) ? $this->roleResolver : $this->roleResolver->resolve();
-        return array_filter($roles, fn(string $role) => !in_array($role, $this->ignoreRoles));
-    }
-
     /**
      * @return Role[]
      */
     public function getRoles(bool $ignoreRolesWithoutTranslation = false): array {
-        $roles = [ ];
+        $roles = [ 'ROLE_USER' ];
 
-        foreach($this->getRoleNames() as $roleName) {
-            $description = $this->roleTranslator->translate($roleName);
+        $resolvedRoles = $this->roleResolver->resolve();
 
-            if($description === null && $ignoreRolesWithoutTranslation === true) {
-                continue;
+        foreach($resolvedRoles as $roleNameOrRole) {
+            if($roleNameOrRole instanceof Role) {
+                $roles[] = $roleNameOrRole;
+            } else if(is_string($roleNameOrRole) && !in_array($roleNameOrRole, $this->ignoreRoles)) {
+                $description = $this->roleTranslator->translate($roleNameOrRole);
+
+                if($description === null && $ignoreRolesWithoutTranslation === true) {
+                    continue;
+                }
+
+                $roles[] = new Role($roleNameOrRole, $description);
             }
-
-            $roles[] = new Role($roleName, $description);
         }
 
         return $roles;
