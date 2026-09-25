@@ -20,7 +20,7 @@ readonly class RoleConfigExporter {
      * @return Role[]
      */
     public function getRoles(bool $ignoreRolesWithoutTranslation = false): array {
-        $roles = [ 'ROLE_USER' ];
+        $roles = [ ];
 
         $resolvedRoles = $this->roleResolver->resolve();
 
