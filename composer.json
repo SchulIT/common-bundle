@@ -18,7 +18,7 @@
         "sensiolabs/ansi-to-html": "^1.1",
         "symfony/security-core": "^7.4|^8.0",
         "symfony/validator": "^7.4|^8.0",
-        "chrisguitarguy/request-id-bundle": "^7.0",
+        "chrisguitarguy/request-id-bundle": "^7.0|^8.0",
         "scienta/doctrine-json-functions": "^6.3"
     },
     "suggest": {
